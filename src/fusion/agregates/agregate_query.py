@@ -8,7 +8,7 @@ class AgregateQuery(Agregate):
     # TODO test if works correctly
 
     def __init__(self):
-        #super().__init__()
+        super().__init__()
         self.queryDB = QueryFromDB()
         pass
 
@@ -23,9 +23,10 @@ class AgregateQuery(Agregate):
             field = field, 
             tags = tags
             )
+
         query_str = self.queryDB.agregate(query_str, agr, window)
 
-        print(query_str)
+        # print(query_str)
         return self.queryDB.query_df(query_str)
 
     def agregate_now(self, agr:str = 'mean', window:str = '5m', start_time = None, stop_time = '-0m', measurement = '', field = '', tags = {'':''}):
@@ -43,5 +44,5 @@ class AgregateQuery(Agregate):
         
         query_str = self.queryDB.agregate(query_str, agr, window, offset=str(int(time.time() * 1000000))+'ms')
 
-        print(query_str)
+        #print(query_str)
         return self.queryDB.query_df(query_str)
