@@ -1,0 +1,1 @@
+InfludDB alredy include some agregates. For tose we will generate the query to get them. For others we will calculate them from data.
