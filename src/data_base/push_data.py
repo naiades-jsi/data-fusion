@@ -5,7 +5,7 @@ class PushToDB():
 
     def __init__(self, config:str=''):
         # TODO create config
-        self.token = "4eGf10hbhUsPENRw89Jjm_taql2teo-SEJlzL_ESp7Wpl_H3CR1A5sUzf7wGoz7mjM4SdBs3McPNXkrW7M0EzA=="
+        self.token = "B1WdM9eu5E-GV5l3zA-eRvbboy_-2jzPyIZUW7x2rbhVLd2DRYRU-UgQrmdOf8bXTKAhMp8XVRhmSUCaeGpTZA=="
         self.url = "http://localhost:8086"
         self.org = "TestOrg"
         self.bucket = "TestBucket"
@@ -16,6 +16,10 @@ class PushToDB():
         writer = self.client.write_api(write_options=SYNCHRONOUS)
         writer.write(bucket=bucket, record=point)
         pass
+
+    def push_data_pd(self, df) {
+        #TODO
+    }
 
     def create_point(self, measurement: str, time, tags: dict, fields:dict):
         # TODO could add time zone

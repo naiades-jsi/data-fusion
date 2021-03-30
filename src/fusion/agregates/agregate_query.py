@@ -6,13 +6,12 @@ import time
 
 class AgregateQuery(Agregate):
     # TODO test if works correctly
-
-    def __init__(self):
-        super().__init__()
-        self.queryDB = QueryFromDB()
+    def __init__(self, token, url, organisation, bucket):
+        super().__init__(token, url, organisation, bucket)
+        self.queryDB = QueryFromDB(self.token, self.url, self.organisation, self.bucket)
         pass
 
-    def agregate(self, agr:str = 'mean', window:str = '5m', start_time = None, stop_time = '-0m', measurement = '', field = '', tags = {'':''}):
+    def agregate(self, agr:str = 'mean', every:str = '5m', window:str = '5m', start_time = None, stop_time = '-0m', measurement = '', fields = [], tags = {None: None}):
         if start_time is None:
             start_time = '-' + window
 
@@ -20,16 +19,15 @@ class AgregateQuery(Agregate):
             start_time = start_time,
             stop_time = stop_time, 
             measurement = measurement, 
-            field = field, 
+            fields = fields, 
             tags = tags
-            )
+        )
 
-        query_str = self.queryDB.agregate(query_str, agr, window)
+        query_str = self.queryDB.agregate(query_str, agr, every, window)
 
-        # print(query_str)
         return self.queryDB.query_df(query_str)
 
-    def agregate_now(self, agr:str = 'mean', window:str = '5m', start_time = None, stop_time = '-0m', measurement = '', field = '', tags = {'':''}):
+    def agregate_now(self, agr:str = 'mean', every:str = '5m', window:str = '5m', start_time = None, stop_time = '-0m', measurement = '', fields = [], tags = {None: None}):
         # set offset so agregate is calculated from now 
         if start_time is None:
             start_time = '-' + window
@@ -38,11 +36,29 @@ class AgregateQuery(Agregate):
             start_time = start_time,
             stop_time = stop_time, 
             measurement = measurement, 
-            field = field, 
+            fields = fields, 
             tags = tags
-            )
-        
-        query_str = self.queryDB.agregate(query_str, agr, window, offset=str(int(time.time() * 1000000))+'ms')
+        )
 
-        #print(query_str)
+        query_str = self.queryDB.agregate(query_str, agr, every, window, offset=str(int(time.time() * 1000 ))+'ms')
+
+        return self.queryDB.query_df(query_str)
+
+    def agregate_time(self, agr:str = 'mean', every:str = '5m', window:str = '5m', start_time = None, stop_time = '-0m', offset:int=0, measurement = '', fields = [], tags = {None: None}):
+        # set offset so agregate is calculated from now 
+        if start_time is None:
+            start_time = str(offset - window) + 'ms'
+        if isinstance(every, int):
+            every = str(every) + 'ms'
+
+        query_str = self._build_query(
+            start_time = start_time,
+            stop_time = stop_time, 
+            measurement = measurement, 
+            fields = fields, 
+            tags = tags
+        )
+
+        query_str = self.queryDB.agregate(query_str, agr, every, window, offset=str(int(time.time() * 1000 - offset))+'ms')
+
         return self.queryDB.query_df(query_str)

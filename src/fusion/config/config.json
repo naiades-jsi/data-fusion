@@ -1,0 +1,15 @@
+{
+    "token":"B1WdM9eu5E-GV5l3zA-eRvbboy_-2jzPyIZUW7x2rbhVLd2DRYRU-UgQrmdOf8bXTKAhMp8XVRhmSUCaeGpTZA==",
+    "organisation": "TestOrg",
+    "bucket": "TestBucket",
+    "fusion": [
+        {
+        "aggregate":"mean",
+        "measurement":"",
+        "fields":[""],
+        "tags":{"": ""},
+        "window":"1d",
+        "": 
+    }
+    ]
+}
