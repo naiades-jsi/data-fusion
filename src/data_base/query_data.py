@@ -24,7 +24,7 @@ class QueryFromDB():
 
     def query_df(self, query:str):
         # DataFrames
-        print(query)
+        #print(query) # TODO remove print
         df = self.client.query_api().query_data_frame(query)
         if isinstance(df, pd.DataFrame):
             pass

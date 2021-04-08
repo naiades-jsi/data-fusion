@@ -75,9 +75,16 @@ class streamFusion():
             )
 
             for f in fields:
-                feature_vector.append( feat["_value"][feat["_field"] == f].iloc[0] )
+                try:
+                    feature_vector.append( feat["_value"][feat["_field"] == f].iloc[0] )
+                except:
+                    print('python aggregate')
+                    feature_vector.append(feat)
 
         return feature_vector, feat["_time"].iloc[0]
+
+    def save(self):
+        pass
 
 class bachFusion():
     def __init__(self, config):
@@ -191,12 +198,16 @@ class bachFusion():
             )
 
             for f in fields:
-                feature_vector.append( feat["_value"][feat["_field"] == f].values )
+                try:
+                    feature_vector.append( feat["_value"][feat["_field"] == f].values )
+                except:
+                    print('python aggregate')
+                    feature_vector.append(feat)
 
         feature_vector = np.transpose(np.array(feature_vector))
         times = feat["_time"][feat["_field"] == f].values
 
         return feature_vector, times
 
-    def SaveLastTime():
+    def save(self):
         pass

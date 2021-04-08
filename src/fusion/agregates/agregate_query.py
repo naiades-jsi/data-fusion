@@ -46,8 +46,6 @@ class AgregateQuery(Agregate):
 
     def agregate_time(self, agr:str = 'mean', every:str = '5m', window:str = '5m', start_time = None, stop_time = '-0m', offset:int=0, measurement = '', fields = [], tags = {None: None}):
         # set offset so agregate is calculated from now 
-        if start_time is None:
-            start_time = str(offset - window) + 'ms'
         if isinstance(every, int):
             every = str(every) + 'ms'
 

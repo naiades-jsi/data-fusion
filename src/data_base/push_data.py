@@ -17,9 +17,9 @@ class PushToDB():
         writer.write(bucket=bucket, record=point)
         pass
 
-    def push_data_pd(self, df) {
+    def push_data_pd(self, df):
         #TODO
-    }
+        pass
 
     def create_point(self, measurement: str, time, tags: dict, fields:dict):
         # TODO could add time zone

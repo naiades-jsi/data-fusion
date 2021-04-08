@@ -1,0 +1,32 @@
+{
+    "token":"B1WdM9eu5E-GV5l3zA-eRvbboy_-2jzPyIZUW7x2rbhVLd2DRYRU-UgQrmdOf8bXTKAhMp8XVRhmSUCaeGpTZA==",
+        "url": "http://localhost:8086",
+        "organisation": "TestOrg",
+        "bucket": "TestBucket",
+        "startTime":"-7h",
+        "stopTime":"-0h",
+        "every":"10m",
+        "fusion": [
+            {
+            "aggregate":"mean",
+            "measurement":"python_test",
+            "fields":["Value1"],
+            "tags":{"tag1": ["water"]},
+            "window":"2m"
+            },
+            {
+            "aggregate":"mean",
+            "measurement":"python_test",
+            "fields":["Value2", "Value1"],
+            "tags":{"tag1": ["pressure"]},
+            "window":"1m"
+            },
+            {
+            "aggregate":"mean",
+            "measurement":"python_test",
+            "fields":["Value2", "Value1"],
+            "tags":{"tag1": ["pressure"]},
+            "window": 300000
+            }
+        ]
+    }
