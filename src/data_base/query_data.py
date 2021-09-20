@@ -100,8 +100,8 @@ class QueryFromDB():
         query = query + '|> yield()'
         return query
 
-    def window(self, query: str = '', every:str = '5m', period:str = '5m', offset = '0m'):
-        query = query + f'|> window(every: {every}, period: {period}, offset: {offset})'
+    def window(self, query: str = '', every:str = '5m', period:str = '5m', offset = '0m', createEmpty:str= 'true'):
+        query = query + f'|> window(every: {every}, period: {period}, offset: {offset}, createEmpty: {createEmpty})'
         return query
 
     def duplicate(self, query: str = '', column:str = "_stop", to:str = "_time"):
@@ -112,9 +112,13 @@ class QueryFromDB():
         if (offset == '0m') and (every == period):
             query = query + f'|> aggregateWindow(every: {every}, fn: {agr}, timeSrc: "{timeSrc}", timeDst: "{timeDst}", createEmpty: {createEmpty} )'
         else:
-            query = self.window(query, every, period, offset)
+            query = self.window(query, every, period, offset, createEmpty)
             query = query + f'|> {agr}()'
             query = self.duplicate(query, timeSrc, timeDst)
 
         return query
     
+    def shift_time(self, query: str = '', shift = '0m'):
+        query = query + f'|> timeShift(duration: {shift})'
+
+        return query

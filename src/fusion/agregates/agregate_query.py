@@ -11,7 +11,7 @@ class AgregateQuery(Agregate):
         self.queryDB = QueryFromDB(self.token, self.url, self.organisation, self.bucket)
         pass
 
-    def agregate(self, agr:str = 'mean', every:str = '5m', window:str = '5m', start_time = None, stop_time = '-0m', measurement = '', fields = [], tags = {None: None}):
+    """ def agregate(self, agr:str = 'mean', every:str = '5m', window:str = '5m', start_time = None, stop_time = '-0m', measurement = '', fields = [], tags = {None: None}):
         if start_time is None:
             start_time = '-' + window
 
@@ -42,9 +42,9 @@ class AgregateQuery(Agregate):
 
         query_str = self.queryDB.agregate(query_str, agr, every, window, offset=str(int(time.time() * 1000 ))+'ms')
 
-        return self.queryDB.query_df(query_str)
+        return self.queryDB.query_df(query_str) """
 
-    def agregate_time(self, agr:str = 'mean', every:str = '5m', window:str = '5m', start_time = None, stop_time = '-0m', offset:int=0, measurement = '', fields = [], tags = {None: None}):
+    def agregate_time(self, agr:str = 'mean', every:str = '5m', window:str = '5m', start_time = None, stop_time = '-0m', shift = '0m', offset:int=0, measurement = '', fields = [], tags = {None: None}):
         # set offset so agregate is calculated from now 
         if isinstance(every, int):
             every = str(every) + 'ms'
@@ -52,7 +52,8 @@ class AgregateQuery(Agregate):
         query_str = self._build_query(
             start_time = start_time,
             stop_time = stop_time, 
-            measurement = measurement, 
+            shift = shift,
+            measurement = measurement,
             fields = fields, 
             tags = tags
         )

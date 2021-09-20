@@ -1,7 +1,12 @@
 from .agregates.agregate_query import AgregateQuery
 from .agregates.agregate_py import AgregatePy
 
+from .time_parser import TimeParser
+
 import numpy as np
+import pandas as pd
+
+from kafka import KafkaConsumer
 
 class streamFusion():
     def __init__(self, config):
@@ -15,8 +20,17 @@ class streamFusion():
         
         self.agregate = AgregateQuery(self.token, self.url, self.organisation, self.bucket)
 
+    def fuildFeatuureVectorKafka(self, topics, bootstrap_server):
+        consumer = KafkaConsumer(bootstrap_servers=bootstrap_server)
+        consumer.subscribe(topics)
+
+        for msg in consumer:
+            self.buildFeatureVector()
+
     def buildFeatureVector(self):
         feature_vector = []
+
+        time_parser = TimeParser()
 
         for feature in self.fusion:
             aggregate = feature["aggregate"]
@@ -25,63 +39,66 @@ class streamFusion():
             tags = feature["tags"]
             window = feature["window"]
             when = feature["when"]
+            try:
+                self.bucket = feature['bucket']
+            except:
+                pass
 
-            offset_time = 0
-            if isinstance(when, int):
-                offset_time = int(when)
-                when = str(when) + 'ms'
-            elif (when[-2:-1] == 'ms'):
-                offset_time = int(when[0:-1])
-            elif (when[-1] == 's'):
-                offset_time = int(when[0:-1]) * 1000
-            elif (when[-1] == 'm'):
-                offset_time = int(when[0:-1]) * 1000 * 60
-            elif (when[-1] == 'h'):
-                offset_time = int(when[0:-1]) * 1000 * 60 * 60
-            elif (when[-1] == 'd'):
-                offset_time = int(when[0:-1]) * 1000 * 60 * 60 * 24
-            elif (when[-1] == 'w'):
-                offset_time = int(when[0:-1]) * 1000 * 60 * 60 * 24 * 7
+            offset_time = time_parser.parseToInt(when)
+            when = time_parser.parseToMS(offset_time)
 
-            window_time = 0
-            if isinstance(window, int):
-                window_time = int(window)
-                window = str(window) + 'ms'
-            elif (window[-2:-1] == 'ms'):
-                window_time = int(window[0:-1])
-            elif (window[-1] == 's'):
-                window_time = int(window[0:-1]) * 1000
-            elif (window[-1] == 'm'):
-                window_time = int(window[0:-1]) * 1000 * 60
-            elif (window[-1] == 'h'):
-                window_time = int(window[0:-1]) * 1000 * 60 * 60
-            elif (window[-1] == 'd'):
-                window_time = int(window[0:-1]) * 1000 * 60 * 60 * 24
-            elif (window[-1] == 'w'):
-                window_time = int(window[0:-1]) * 1000 * 60 * 60 * 24 * 7
+            window_time = time_parser.parseToInt(window)
+            window = time_parser.parseToMS(window_time)
 
             start_time = str(offset_time - window_time) + 'ms'
+            print(start_time, when)
 
-            feat = self.agregate.agregate_time(
-                agr=aggregate,
-                every=window,
-                window=window,
-                start_time=start_time,
-                stop_time=when,
-                offset=offset_time,
-                measurement=measurement,
-                fields=fields,
-                tags=tags
-            )
+            try:
+                what = feature['what']
+            except:
+                what = 'influx'
+                pass
+        
+            if what == 'python':
+                feat = AgregatePy(self.token, self.url, self.organisation, self.bucket).agregate_time(
+                    agr=aggregate,
+                    every=window,
+                    window=window,
+                    start_time=start_time,
+                    stop_time=when,
+                    shift= '-' + when,
+                    offset=offset_time,
+                    measurement=measurement,
+                    fields=fields,
+                    tags=tags
+                )
+            else:
+                feat = self.agregate.agregate_time(
+                    agr=aggregate,
+                    every=window,
+                    window=window,
+                    start_time=start_time,
+                    stop_time=when,
+                    shift = '-' + when,
+                    offset=offset_time,
+                    measurement=measurement,
+                    fields=fields,
+                    tags=tags
+                )
 
             for f in fields:
                 try:
-                    feature_vector.append( feat["_value"][feat["_field"] == f].iloc[0] )
+                    if what == 'python':
+                        feature_vector.append( feat["_value"])
+                    else:
+                        feature_vector.append( feat["_value"][feat["_field"] == f].iloc[0] )
                 except:
-                    print('python aggregate')
-                    feature_vector.append(feat)
+                    print('missing value')
+                    feature_vector.append(None)
 
-        return feature_vector, feat["_time"].iloc[0]
+                print(feat["_time"], '\n')
+
+        return feature_vector, np.datetime64('now')
 
     def save(self):
         pass
@@ -98,6 +115,7 @@ class bachFusion():
 
         self.startTime = config["startTime"]
         self.stopTime = config["stopTime"]
+
         self.every = config["every"]
         
         self.agregate = AgregateQuery(self.token, self.url, self.organisation, self.bucket)
@@ -105,85 +123,51 @@ class bachFusion():
     def buildFeatureVectors(self):
         feature_vector = []
 
+        time_parser = TimeParser()
+
         for feature in self.fusion:
             aggregate = feature["aggregate"]
             measurement = feature["measurement"]
             fields = feature["fields"]
             tags = feature["tags"]
             window = feature["window"]
+            try:
+                when = feature["when"]
+            except:
+                when = 0
+
+            try:
+                self.bucket = feature['bucket']
+            except:
+                pass
+
             stop_time = self.stopTime
-            every = self.every
-
-            offset_time = 0
-            if isinstance(stop_time, int):
-                offset_time = int(stop_time)
-                stop_time = str(stop_time) + 'ms'
-            elif (stop_time[-2:-1] == 'ms'):
-                offset_time = int(stop_time[0:-1])
-            elif (stop_time[-1] == 's'):
-                offset_time = int(stop_time[0:-1]) * 1000
-            elif (stop_time[-1] == 'm'):
-                offset_time = int(stop_time[0:-1]) * 1000 * 60
-            elif (stop_time[-1] == 'h'):
-                offset_time = int(stop_time[0:-1]) * 1000 * 60 * 60
-            elif (stop_time[-1] == 'd'):
-                offset_time = int(stop_time[0:-1]) * 1000 * 60 * 60 * 24
-            elif (stop_time[-1] == 'w'):
-                offset_time = int(stop_time[0:-1]) * 1000 * 60 * 60 * 24 * 7
-
-            window_time = 0
-            if isinstance(window, int):
-                window_time = int(window)
-                window = str(window) + 'ms'
-            elif (window[-2:-1] == 'ms'):
-                window_time = int(window[0:-1])
-            elif (window[-1] == 's'):
-                window_time = int(window[0:-1]) * 1000
-            elif (window[-1] == 'm'):
-                window_time = int(window[0:-1]) * 1000 * 60
-            elif (window[-1] == 'h'):
-                window_time = int(window[0:-1]) * 1000 * 60 * 60
-            elif (window[-1] == 'd'):
-                window_time = int(window[0:-1]) * 1000 * 60 * 60 * 24
-            elif (window[-1] == 'w'):
-                window_time = int(window[0:-1]) * 1000 * 60 * 60 * 24 * 7
-
-            every_time = 0
-            if isinstance(every, int):
-                every_time = int(every)
-                every = str(every) + 'ms'
-            elif (every[-2:-1] == 'ms'):
-                every_time = int(every[0:-1])
-            elif (every[-1] == 's'):
-                every_time = int(every[0:-1]) * 1000
-            elif (every[-1] == 'm'):
-                every_time = int(every[0:-1]) * 1000 * 60
-            elif (every[-1] == 'h'):
-                every_time = int(every[0:-1]) * 1000 * 60 * 60
-            elif (every[-1] == 'd'):
-                every_time = int(every[0:-1]) * 1000 * 60 * 60 * 24
-            elif (every[-1] == 'w'):
-                every_time = int(every[0:-1]) * 1000 * 60 * 60 * 24 * 7
+            if isinstance(stop_time, str):
+                if len(stop_time) > 18:
+                    stop_time = - time_parser.diffFromNow(stop_time)
 
             start_time = self.startTime
-            if isinstance(start_time, int):
-                start_time = int(start_time)
-                start_time = str(start_time) + 'ms'
-            elif (start_time[-2:-1] == 'ms'):
-                start_time = int(start_time[0:-1])
-            elif (start_time[-1] == 's'):
-                start_time = int(start_time[0:-1]) * 1000
-            elif (start_time[-1] == 'm'):
-                start_time = int(start_time[0:-1]) * 1000 * 60
-            elif (start_time[-1] == 'h'):
-                start_time = int(start_time[0:-1]) * 1000 * 60 * 60
-            elif (start_time[-1] == 'd'):
-                start_time = int(start_time[0:-1]) * 1000 * 60 * 60 * 24
-            elif (start_time[-1] == 'w'):
-                start_time = int(start_time[0:-1]) * 1000 * 60 * 60 * 24 * 7
+            if isinstance(start_time, str):
+                if len(start_time) > 18:
+                    start_time = - time_parser.diffFromNow(start_time)
+
+            every = self.every
+
+            when_time = time_parser.parseToInt(when)
+            when = time_parser.parseToMS(when)
+
+            offset_time = time_parser.parseToInt(stop_time)
+            stop_time = time_parser.parseToMS(offset_time + when_time)
+
+            window_time = time_parser.parseToInt(window)
+            window = time_parser.parseToMS(window_time)
+
+            every_time = time_parser.parseToInt(every)
+            every = time_parser.parseToMS(every_time)
+
+            start_time = time_parser.parseToInt(start_time) + when_time
 
             start_time = str(int((start_time - offset_time )/ every_time) * every_time - window_time) + 'ms'
-
             
             feat = self.agregate.agregate_time(
                 agr=aggregate,
@@ -191,20 +175,29 @@ class bachFusion():
                 window=window,
                 start_time=start_time,
                 stop_time=stop_time,
+                shift = '-' + when,
                 offset=offset_time,
                 measurement=measurement,
                 fields=fields,
                 tags=tags
             )
+            #print(measurement)
 
+            feat = feat.drop_duplicates(subset=['_stop'], keep='first')
+            feat = feat.drop_duplicates(subset=['_start'], keep='last')
+            #print(feat)
+            if (feat['_time'].iloc[-1] - feat['_time'].iloc[-2]) < pd.Timedelta(1, unit='s'):
+                feat.drop(feat.tail(1).index,inplace=True)
+            #print(feat['_time'])
             for f in fields:
                 try:
                     feature_vector.append( feat["_value"][feat["_field"] == f].values )
                 except:
-                    print('python aggregate')
-                    feature_vector.append(feat)
+                    print('missing value')
 
-        feature_vector = np.transpose(np.array(feature_vector))
+        feature_vector = np.array(feature_vector)
+
+        feature_vector = np.transpose(feature_vector)
         times = feat["_time"][feat["_field"] == f].values
 
         return feature_vector, times

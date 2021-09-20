@@ -8,14 +8,16 @@ class Agregate():
         self.organisation = organisation
         self.bucket = bucket
 
-    def agregate(self, every:str = '5m', window:str = '5m',  start_time = '-1h', stop_time = '-0h', measurement = '', fields = [], tags = {'':''}):
+    def agregate(self, every:str = '5m', window:str = '5m',  start_time = '-1h', stop_time = '-0h', shift = '0h', measurement = '', fields = [], tags = {'':''}):
         pass
 
-    def _build_query(self, start_time = '-1h', stop_time = '-0h', measurement: str = '', fields:list = [], tags:dict = {'':''}):
+    def _build_query(self, start_time = '-1h', stop_time = '-0h', shift='0h', measurement: str = '', fields:list = [], tags:dict = {'':''}):
         query_str = self.queryDB.bucket_query()
         query_str = self.queryDB.time_query(query_str, start_time, stop_time)
         query_str = self.queryDB.filter_query(query_str, measurement = measurement, fields = fields, tags = tags)
+        query_str = self.queryDB.shift_time(query_str, shift = shift)
         
+
         query_str = self.queryDB.group(query_str)
         
         return query_str

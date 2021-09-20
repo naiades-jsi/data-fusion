@@ -3,12 +3,12 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 
 class PushToDB():
 
-    def __init__(self, config:str=''):
+    def __init__(self, config:str='', token = "B1WdM9eu5E-GV5l3zA-eRvbboy_-2jzPyIZUW7x2rbhVLd2DRYRU-UgQrmdOf8bXTKAhMp8XVRhmSUCaeGpTZA==", url="http://localhost:8086", org="TestOrg" ):
         # TODO create config
-        self.token = "B1WdM9eu5E-GV5l3zA-eRvbboy_-2jzPyIZUW7x2rbhVLd2DRYRU-UgQrmdOf8bXTKAhMp8XVRhmSUCaeGpTZA=="
-        self.url = "http://localhost:8086"
-        self.org = "TestOrg"
-        self.bucket = "TestBucket"
+        self.token = token
+        self.url = url
+        self.org = org
+        
         self.client = InfluxDBClient(url=self.url, token=self.token, org=self.org)
         pass
         
@@ -21,14 +21,16 @@ class PushToDB():
         #TODO
         pass
 
-    def create_point(self, measurement: str, time, tags: dict, fields:dict):
+    def create_point(self, measurement: str, time, tags: dict=None, fields:dict=None):
         # TODO could add time zone
         point = Point(measurement)
 
         point.time(time)
-        for key, value in tags.items():
-            point = point.tag(key, value)
-        for key, value in fields.items():
-            point = point.field(key, value)
+        if tags != None:
+            for key, value in tags.items():
+                point = point.tag(key, value)
+        if fields != None:
+            for key, value in fields.items():
+                point = point.field(key, value)
         
         return point
