@@ -25,6 +25,8 @@ class QueryFromDB():
     def query_df(self, query:str):
         # DataFrames
         #print(query) # TODO remove print
+
+        #Error here - cannot query empty range
         df = self.client.query_api().query_data_frame(query)
         if isinstance(df, pd.DataFrame):
             pass

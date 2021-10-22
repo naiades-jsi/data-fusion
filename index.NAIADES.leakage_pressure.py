@@ -6,6 +6,7 @@ import json
 import copy
 import time
 import datetime
+import schedule
 
 from kafka import KafkaProducer
 
@@ -55,19 +56,18 @@ for m in measurements_presure:
 #while (True):
 wait = True
 once = True
-while once:
-    once = True
 
+def RunBatchFusionOnce():
     today = datetime.datetime.today()
 
-    if wait:
-        if today.hour < 20:
-            future = datetime.datetime(today.year, today.month, today.day, 20, 0)
-        else:
-            future = datetime.datetime(today.year, today.month, today.day + 1, 20, 0)
-    
-        print('Sleep:', (future - today).total_seconds())
-        time.sleep((future - today).total_seconds())
+    #if wait:
+    #    if today.hour < 20:
+    #        future = datetime.datetime(today.year, today.month, today.day, 20, 0)
+    #    else:
+    #        future = datetime.datetime(today.year, today.month, today.day + 1, 20, 0)
+    #
+    #    print('Sleep:', (future - today).total_seconds())
+    #    time.sleep((future - today).total_seconds())
 
     config = {
         "token":"k_TK7JanSGbx9k7QClaPjarlhJSsh8oApCyQrs9GqfsyO3-GIDf_tJ79ckwrcA-K536Gvz8bxQhMXKuKYjDsgw==",
@@ -106,6 +106,8 @@ while once:
 
     sf2 = bachFusion(config)
     sf2 = bachFusion(config)
+
+
     fv, t = sf2.buildFeatureVectors()
 
     # firs sensor missing therefore zeros for now
@@ -138,3 +140,6 @@ while once:
             record_metadata = future.get(timeout=10)
         except Exception as e:
             print('Producer error: ' + str(e))
+
+#Do batch fusion once per day
+schedule.every().day.at("07:00").do(RunBatchFusionOnce)

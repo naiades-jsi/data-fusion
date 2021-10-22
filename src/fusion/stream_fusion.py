@@ -169,6 +169,8 @@ class bachFusion():
 
             start_time = str(int((start_time - offset_time )/ every_time) * every_time - window_time) + 'ms'
             
+
+            #Error here - cannot query empty range (if start_time < stop_time ?)
             feat = self.agregate.agregate_time(
                 agr=aggregate,
                 every=every,

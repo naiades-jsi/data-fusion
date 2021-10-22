@@ -56,7 +56,7 @@ class Kafka ():
         for topic in topics:
             time_dic[topic] = 0
 
-        file_kafka = open("../kafka/ " file_name + ".json", "w+")
+        file_kafka = open("../kafka/ " + file_name + ".json", "w+")
 
         file_kafka.write(json.dumps(time_dic, indent=4, sort_keys=True))
 
@@ -72,4 +72,4 @@ class Kafka ():
             time.sleep(t)
             function(kafka = True) # TODO function should read file and accept argument kafka and run if times in file acceptable
 
-        file_kafka.colse()
+        file_kafka.close()
