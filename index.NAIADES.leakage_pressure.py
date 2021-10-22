@@ -25,8 +25,8 @@ measurements_presure = [
     'pressure5773'
     ]
 
-start = 14 #1
-stop = 0   #0
+#start = 14 #1
+stop = 9   #0
 
 template = {
             "aggregate":"mean",
@@ -85,8 +85,8 @@ def RunBatchFusionOnce():
     today = datetime.datetime.today()
     folder = 'features_data'
 
-    config['stopTime'] = datetime.datetime.utcfromtimestamp((today - datetime.datetime(1970, 1, 1 + stop)).total_seconds()).strftime("%Y-%m-%dT00:00:00")
-    config['startTime'] = datetime.datetime.utcfromtimestamp((today - datetime.datetime(1970, 1, 2 + start)).total_seconds()).strftime("%Y-%m-%dT00:00:00")
+    config['stopTime'] = datetime.datetime.utcfromtimestamp((today - datetime.datetime(1970, 1, 1 + stop)).total_seconds()).strftime("%Y-%m-%dT%H:00:00")
+    #config['startTime'] = datetime.datetime.utcfromtimestamp((today - datetime.datetime(1970, 1, 2 + start)).total_seconds()).strftime("%Y-%m-%dT%H:00:00")
     
     print(config['stopTime'] )
 
@@ -95,6 +95,10 @@ def RunBatchFusionOnce():
     lines = file_json.readlines()
     last_line = lines[-1]
     tss = int(json.loads(last_line)['timestamp']/1000 + 60*60)
+    
+    #print(last_line)
+    #print(tss)
+    #print(datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00"))
 
     config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00")
 
@@ -104,7 +108,7 @@ def RunBatchFusionOnce():
     file_json.write(json.dumps(config, indent=4, sort_keys=True) )
     file_json.close()
 
-    sf2 = bachFusion(config)
+    #sf2 = bachFusion(config)
     sf2 = bachFusion(config)
 
 
@@ -142,4 +146,13 @@ def RunBatchFusionOnce():
             print('Producer error: ' + str(e))
 
 #Do batch fusion once per day
-schedule.every().day.at("10:00").do(RunBatchFusionOnce)
+schedule.every().day.at("09:00").do(RunBatchFusionOnce)
+print(schedule.get_jobs())
+now = datetime.datetime.now()
+
+current_time = now.strftime("%H:%M:%S")
+print("Current Time =", current_time)
+while True:
+    
+    schedule.run_pending()
+    time.sleep(1)
