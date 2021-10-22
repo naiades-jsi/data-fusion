@@ -142,4 +142,4 @@ def RunBatchFusionOnce():
             print('Producer error: ' + str(e))
 
 #Do batch fusion once per day
-schedule.every().day.at("07:00").do(RunBatchFusionOnce)
+schedule.every().day.at("10:00").do(RunBatchFusionOnce)
