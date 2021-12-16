@@ -60,15 +60,6 @@ once = True
 def RunBatchFusionOnce():
     today = datetime.datetime.today()
 
-    #if wait:
-    #    if today.hour < 20:
-    #        future = datetime.datetime(today.year, today.month, today.day, 20, 0)
-    #    else:
-    #        future = datetime.datetime(today.year, today.month, today.day + 1, 20, 0)
-    #
-    #    print('Sleep:', (future - today).total_seconds())
-    #    time.sleep((future - today).total_seconds())
-
     config = {
         "token":"k_TK7JanSGbx9k7QClaPjarlhJSsh8oApCyQrs9GqfsyO3-GIDf_tJ79ckwrcA-K536Gvz8bxQhMXKuKYjDsgw==",
         "url": "http://localhost:8086",
@@ -85,7 +76,7 @@ def RunBatchFusionOnce():
     today = datetime.datetime.today()
     folder = 'features_data'
 
-    config['stopTime'] = datetime.datetime.utcfromtimestamp((today - datetime.datetime(1970, 1, 1 + stop)).total_seconds()).strftime("%Y-%m-%dT%H:00:00")
+    config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:00:00")
     #config['startTime'] = datetime.datetime.utcfromtimestamp((today - datetime.datetime(1970, 1, 2 + start)).total_seconds()).strftime("%Y-%m-%dT%H:00:00")
     
     print(config['stopTime'] )
@@ -112,38 +103,68 @@ def RunBatchFusionOnce():
     sf2 = bachFusion(config)
 
 
-    fv, t = sf2.buildFeatureVectors()
+    update_outputs = True
+    try:
+      fv, t = sf2.buildFeatureVectors()
+    except:
+      print('Feature vector generation failed')
+      update_outputs = False
+      
+    if(update_outputs):
 
-    # firs sensor missing therefore zeros for now
-    zero = np.zeros([fv.shape[0], 24])
+      # firs sensor missing therefore zeros for now
+      zero = np.zeros((fv.shape[0], 24))
+      
+      print(fv)
+      print(t)
+      print(zero)
+      print(fv.shape)
+      print(zero.shape)
+  
+      fv = np.concatenate((zero, fv), axis=1)
+  
+      
+  
+      # use formula to transform TODO add in sistem
+      fv[:, 24: 24 * 4] = (fv[:,24: 24 * 4] - 0.6) * 4 * 10.197
+      
+  
+  
+      file_json = open(f'{folder}/features_pressure.json', 'a')
+      for j in range(t.shape[0]):
+          fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
+          
+          #data is uploaded at different times - this ensures that FV's won't be sent if data hasn't been uploaded for one or more of the sensors
+          last_values = []
+          for n in range(7):
+            last_values.append(fv[j][n*24])
+          last_values = np.array(last_values)
+          
+          
+          if((all(isinstance(x, (float, int)) for x in last_values)) and (not np.isnan(last_values).any())):
+            file_json.write((json.dumps(fv_line) + '\n' ))
+            
+  
+      file_json.close()
+  
 
-    fv = np.concatenate((zero, fv), axis=1)
-
-    
-
-    # use formula to transform TODO add in sistem
-    fv[:, 24: 24 * 4] = (fv[:,24: 24 * 4] - 0.6) * 4 * 10.197
-
-
-    file_json = open(f'{folder}/features_pressure.json', 'a')
-    for j in range(t.shape[0]):
-        fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
-        file_json.write((json.dumps(fv_line) + '\n' ))
-
-    file_json.close()
-
-
-    for j in range(t.shape[0]):
-        output = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
-        output_topic = "features_braila_leakage_detection"
-        # Start Kafka producer
-        
-        future = producer.send(output_topic, output)
-
-        try:
-            record_metadata = future.get(timeout=10)
-        except Exception as e:
-            print('Producer error: ' + str(e))
+      for j in range(t.shape[0]):
+          output = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
+          output_topic = "features_braila_leakage_detection"
+          
+          last_values = []
+          for n in range(7):
+            last_values.append(fv[j][n*24])
+          last_values = np.array(last_values)
+          
+         # Start Kafka producer
+          if((all(isinstance(x, (float, int)) for x in last_values)) and (not np.isnan(last_values).any())):
+            future = producer.send(output_topic, output)
+  
+          try:
+              record_metadata = future.get(timeout=10)
+          except Exception as e:
+              print('Producer error: ' + str(e))
 
 #Do batch fusion once per day
 schedule.every().day.at("09:00").do(RunBatchFusionOnce)
@@ -152,6 +173,8 @@ now = datetime.datetime.now()
 
 current_time = now.strftime("%H:%M:%S")
 print("Current Time =", current_time)
+
+RunBatchFusionOnce()
 while True:
     
     schedule.run_pending()

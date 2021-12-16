@@ -168,7 +168,6 @@ class bachFusion():
             start_time = time_parser.parseToInt(start_time) + when_time
 
             start_time = str(int((start_time - offset_time )/ every_time) * every_time - window_time) + 'ms'
-            
 
             #Error here - cannot query empty range (if start_time < stop_time ?)
             feat = self.agregate.agregate_time(
@@ -183,24 +182,42 @@ class bachFusion():
                 fields=fields,
                 tags=tags
             )
-            #print(measurement)
 
             feat = feat.drop_duplicates(subset=['_stop'], keep='first')
             feat = feat.drop_duplicates(subset=['_start'], keep='last')
-            #print(feat)
-            if (feat['_time'].iloc[-1] - feat['_time'].iloc[-2]) < pd.Timedelta(1, unit='s'):
-                feat.drop(feat.tail(1).index,inplace=True)
-            #print(feat['_time'])
+            
+            if (not(feat.empty)):
+              if (feat['_time'].iloc[-1] - feat['_time'].iloc[-2]) < pd.Timedelta(1, unit='s'):
+                  feat.drop(feat.tail(1).index,inplace=True)
+              #print(feat['_time'])
             for f in fields:
                 try:
-                    feature_vector.append( feat["_value"][feat["_field"] == f].values )
+                  feature_vector.append( feat["_value"][feat["_field"] == f].values )
+                  times = feat["_time"][feat["_field"] == f].values
                 except:
-                    print('missing value')
+                  feature_vector.append([np.nan])
+                  print('missing value')
+                  
+                  
+
+        #fix unexual row lengths
+                  
+        row_lengths = []
+
+        for row in feature_vector:
+            row_lengths.append(len(row))
+            
+        
+        max_length = max(row_lengths)
+        
+        for i in range(len(feature_vector)):
+            while len(feature_vector[i]) < max_length:
+                feature_vector[i] = np.concatenate([feature_vector[i],[np.nan]])    
 
         feature_vector = np.array(feature_vector)
 
-        feature_vector = np.transpose(feature_vector)
-        times = feat["_time"][feat["_field"] == f].values
+        feature_vector = np.array(np.transpose(feature_vector))
+        
 
         return feature_vector, times
 
