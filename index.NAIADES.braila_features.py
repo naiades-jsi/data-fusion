@@ -105,6 +105,9 @@ def RunBatchFusionOnce(location):
     if(update_outputs):
       
       for j in range(t.shape[0]):
+          for idx in range(1, len(fv[j])):
+            if(np.isnan(fv[j][idx])):
+              fv[j][idx] = fv[j][idx-1]
           if(not np.isnan(fv[j]).any()):
             fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
           
@@ -116,7 +119,7 @@ def RunBatchFusionOnce(location):
       for j in range(t.shape[0]):
           if(not np.isnan(fv[j]).any()):
             output = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
-            output_topic = "features_braila_{location}_anomaly_Gan"
+            output_topic = f'features_braila_{location}_anomaly_Gan'
   
             future = producer.send(output_topic, output)
     

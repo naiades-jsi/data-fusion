@@ -96,7 +96,7 @@ def RunBatchFusionOnce():
 
     lines = file_json.readlines()
     last_line = lines[-1]
-    tss = int(json.loads(last_line)['timestamp']/1000)
+    tss = int(json.loads(last_line)['timestamp']/1000+ 60*60)
     
     #print(last_line)
     #print(tss)
