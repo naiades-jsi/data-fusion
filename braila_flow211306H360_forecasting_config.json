@@ -1,0 +1,443 @@
+{
+    "bucket": "braila",
+    "every": "20m",
+    "fusion": [
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-0m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-20m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-40m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-60m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-80m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-100m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-120m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-140m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-160m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-180m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-200m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-220m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-240m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-260m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-280m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-300m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-320m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-340m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-360m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-380m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-400m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-420m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-440m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-460m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-480m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-500m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-520m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-540m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-560m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-580m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-600m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-620m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-640m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-660m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-680m",
+            "window": "20m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-700m",
+            "window": "20m"
+        }
+    ],
+    "organisation": "naiades",
+    "startTime": "2022-02-28T08:00:00",
+    "stopTime": "2022-02-28T14:00:00",
+    "token": "k_TK7JanSGbx9k7QClaPjarlhJSsh8oApCyQrs9GqfsyO3-GIDf_tJ79ckwrcA-K536Gvz8bxQhMXKuKYjDsgw==",
+    "url": "http://localhost:8086"
+}
