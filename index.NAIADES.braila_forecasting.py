@@ -24,7 +24,7 @@ template = {
             "measurement":"braila",
             "fields":["flow_rate_value"],
             "tags":{None: None},
-            "window":"20m",
+            "window":"30m",
             "when":"-0h"
             }
 
@@ -32,10 +32,10 @@ template = {
 fusions = {}
 for m in measurements_analog:
     fusion = []
-    for i in range(36):
+    for i in range(48):
       template['measurement'] = m
       temp = copy.deepcopy(template)
-      temp['when'] = f"-{i*20}m"
+      temp['when'] = f"-{(47-i)*30}m"
       fusion.append(temp)
     fusions[m] = copy.deepcopy(fusion)
 
@@ -50,18 +50,14 @@ def RunBatchFusionOnce():
           "bucket": "braila",
           "startTime":"2021-07-07T00:00:00",
           "stopTime":"2021-07-13T00:00:00",
-          "every":"20m",
+          "every":"3s0m",
           "fusion": fusions[location]
       }
-  
-      #print(json.dumps(config, indent=4, sort_keys=True))
   
       today = datetime.datetime.today()
       folder = 'features_data'
   
       config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:00:00")
-      
-      #print(config['stopTime'] )
   
       file_json = open(f'{folder}/features_braila_{location}_forecasting.json', 'r')
   
@@ -70,8 +66,6 @@ def RunBatchFusionOnce():
       tss = int(json.loads(last_line)['timestamp']/1000 + 20*60)
   
       config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00")
-  
-      #print(config['startTime'])
   
       file_json = open(f'braila_{location}_forecasting_config.json', 'w')
       file_json.write(json.dumps(config, indent=4, sort_keys=True) )
@@ -123,6 +117,7 @@ current_time = now.strftime("%H:%M:%S")
 print("Current Time =", current_time)
 
 RunBatchFusionOnce()
+print("Component started successfully.")
 while True:
     
     schedule.run_pending()
