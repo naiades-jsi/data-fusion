@@ -147,7 +147,7 @@ def RunBatchFusionOnce():
 
 
 
-schedule.every().hour.do(lambda: RunBatchFusionOnce())
+schedule.every().hour.do(RunBatchFusionOnce)
 RunBatchFusionOnce()
   
 now = datetime.datetime.now()

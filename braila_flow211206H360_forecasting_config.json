@@ -1,6 +1,6 @@
 {
     "bucket": "braila",
-    "every": "20m",
+    "every": "30m",
     "fusion": [
         {
             "aggregate": "mean",
@@ -11,8 +11,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-0m",
-            "window": "20m"
+            "when": "-1410m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -23,8 +23,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-20m",
-            "window": "20m"
+            "when": "-1380m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -35,8 +35,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-40m",
-            "window": "20m"
+            "when": "-1350m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -47,8 +47,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-60m",
-            "window": "20m"
+            "when": "-1320m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -59,8 +59,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-80m",
-            "window": "20m"
+            "when": "-1290m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -71,8 +71,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-100m",
-            "window": "20m"
+            "when": "-1260m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -83,8 +83,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-120m",
-            "window": "20m"
+            "when": "-1230m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -95,8 +95,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-140m",
-            "window": "20m"
+            "when": "-1200m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -107,8 +107,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-160m",
-            "window": "20m"
+            "when": "-1170m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -119,8 +119,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-180m",
-            "window": "20m"
+            "when": "-1140m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -131,8 +131,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-200m",
-            "window": "20m"
+            "when": "-1110m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -143,8 +143,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-220m",
-            "window": "20m"
+            "when": "-1080m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -155,8 +155,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-240m",
-            "window": "20m"
+            "when": "-1050m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -167,8 +167,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-260m",
-            "window": "20m"
+            "when": "-1020m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -179,8 +179,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-280m",
-            "window": "20m"
+            "when": "-990m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -191,8 +191,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-300m",
-            "window": "20m"
+            "when": "-960m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -203,8 +203,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-320m",
-            "window": "20m"
+            "when": "-930m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -215,8 +215,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-340m",
-            "window": "20m"
+            "when": "-900m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -227,8 +227,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-360m",
-            "window": "20m"
+            "when": "-870m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -239,8 +239,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-380m",
-            "window": "20m"
+            "when": "-840m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -251,8 +251,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-400m",
-            "window": "20m"
+            "when": "-810m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -263,8 +263,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-420m",
-            "window": "20m"
+            "when": "-780m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -275,8 +275,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-440m",
-            "window": "20m"
+            "when": "-750m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -287,8 +287,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-460m",
-            "window": "20m"
+            "when": "-720m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -299,104 +299,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-480m",
-            "window": "20m"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "flow_rate_value"
-            ],
-            "measurement": "flow211206H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-500m",
-            "window": "20m"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "flow_rate_value"
-            ],
-            "measurement": "flow211206H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-520m",
-            "window": "20m"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "flow_rate_value"
-            ],
-            "measurement": "flow211206H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-540m",
-            "window": "20m"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "flow_rate_value"
-            ],
-            "measurement": "flow211206H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-560m",
-            "window": "20m"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "flow_rate_value"
-            ],
-            "measurement": "flow211206H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-580m",
-            "window": "20m"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "flow_rate_value"
-            ],
-            "measurement": "flow211206H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-600m",
-            "window": "20m"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "flow_rate_value"
-            ],
-            "measurement": "flow211206H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-620m",
-            "window": "20m"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "flow_rate_value"
-            ],
-            "measurement": "flow211206H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-640m",
-            "window": "20m"
+            "when": "-690m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -408,7 +312,7 @@
                 "null": null
             },
             "when": "-660m",
-            "window": "20m"
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -419,8 +323,8 @@
             "tags": {
                 "null": null
             },
-            "when": "-680m",
-            "window": "20m"
+            "when": "-630m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
@@ -431,13 +335,253 @@
             "tags": {
                 "null": null
             },
-            "when": "-700m",
-            "window": "20m"
+            "when": "-600m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-570m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-540m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-510m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-480m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-450m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-420m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-390m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-360m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-330m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-300m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-270m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-240m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-210m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-180m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-150m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-120m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-90m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-60m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-30m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "flow_rate_value"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-0m",
+            "window": "30m"
         }
     ],
     "organisation": "naiades",
-    "startTime": "2022-02-28T04:00:00",
-    "stopTime": "2022-02-28T14:00:00",
+    "startTime": "2022-03-21T10:00:00",
+    "stopTime": "2022-03-21T15:00:00",
     "token": "k_TK7JanSGbx9k7QClaPjarlhJSsh8oApCyQrs9GqfsyO3-GIDf_tJ79ckwrcA-K536Gvz8bxQhMXKuKYjDsgw==",
     "url": "http://localhost:8086"
 }

@@ -11,7 +11,7 @@
             "tags": {
                 "null": null
             },
-            "when": "-0m",
+            "when": "-1410m",
             "window": "30m"
         },
         {
@@ -23,7 +23,7 @@
             "tags": {
                 "null": null
             },
-            "when": "-30m",
+            "when": "-1380m",
             "window": "30m"
         },
         {
@@ -35,7 +35,7 @@
             "tags": {
                 "null": null
             },
-            "when": "-60m",
+            "when": "-1350m",
             "window": "30m"
         },
         {
@@ -47,7 +47,7 @@
             "tags": {
                 "null": null
             },
-            "when": "-90m",
+            "when": "-1320m",
             "window": "30m"
         },
         {
@@ -59,7 +59,7 @@
             "tags": {
                 "null": null
             },
-            "when": "-120m",
+            "when": "-1290m",
             "window": "30m"
         },
         {
@@ -71,7 +71,7 @@
             "tags": {
                 "null": null
             },
-            "when": "-150m",
+            "when": "-1260m",
             "window": "30m"
         },
         {
@@ -83,7 +83,7 @@
             "tags": {
                 "null": null
             },
-            "when": "-180m",
+            "when": "-1230m",
             "window": "30m"
         },
         {
@@ -95,7 +95,7 @@
             "tags": {
                 "null": null
             },
-            "when": "-210m",
+            "when": "-1200m",
             "window": "30m"
         },
         {
@@ -107,7 +107,7 @@
             "tags": {
                 "null": null
             },
-            "when": "-240m",
+            "when": "-1170m",
             "window": "30m"
         },
         {
@@ -119,7 +119,7 @@
             "tags": {
                 "null": null
             },
-            "when": "-270m",
+            "when": "-1140m",
             "window": "30m"
         },
         {
@@ -131,7 +131,7 @@
             "tags": {
                 "null": null
             },
-            "when": "-300m",
+            "when": "-1110m",
             "window": "30m"
         },
         {
@@ -143,7 +143,7 @@
             "tags": {
                 "null": null
             },
-            "when": "-330m",
+            "when": "-1080m",
             "window": "30m"
         },
         {
@@ -155,7 +155,7 @@
             "tags": {
                 "null": null
             },
-            "when": "-360m",
+            "when": "-1050m",
             "window": "30m"
         },
         {
@@ -167,7 +167,7 @@
             "tags": {
                 "null": null
             },
-            "when": "-390m",
+            "when": "-1020m",
             "window": "30m"
         },
         {
@@ -179,7 +179,7 @@
             "tags": {
                 "null": null
             },
-            "when": "-420m",
+            "when": "-990m",
             "window": "30m"
         },
         {
@@ -191,7 +191,7 @@
             "tags": {
                 "null": null
             },
-            "when": "-450m",
+            "when": "-960m",
             "window": "30m"
         },
         {
@@ -203,7 +203,7 @@
             "tags": {
                 "null": null
             },
-            "when": "-480m",
+            "when": "-930m",
             "window": "30m"
         },
         {
@@ -215,7 +215,7 @@
             "tags": {
                 "null": null
             },
-            "when": "-510m",
+            "when": "-900m",
             "window": "30m"
         },
         {
@@ -227,7 +227,7 @@
             "tags": {
                 "null": null
             },
-            "when": "-540m",
+            "when": "-870m",
             "window": "30m"
         },
         {
@@ -239,7 +239,7 @@
             "tags": {
                 "null": null
             },
-            "when": "-570m",
+            "when": "-840m",
             "window": "30m"
         },
         {
@@ -251,7 +251,7 @@
             "tags": {
                 "null": null
             },
-            "when": "-600m",
+            "when": "-810m",
             "window": "30m"
         },
         {
@@ -263,7 +263,43 @@
             "tags": {
                 "null": null
             },
-            "when": "-630m",
+            "when": "-780m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "autobuses_flow",
+            "tags": {
+                "null": null
+            },
+            "when": "-750m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "autobuses_flow",
+            "tags": {
+                "null": null
+            },
+            "when": "-720m",
+            "window": "30m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "autobuses_flow",
+            "tags": {
+                "null": null
+            },
+            "when": "-690m",
             "window": "30m"
         },
         {
@@ -287,1453 +323,265 @@
             "tags": {
                 "null": null
             },
-            "when": "-690m",
+            "when": "-630m",
             "window": "30m"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "pressure"
+                "value"
             ],
-            "measurement": "weather_observed1",
+            "measurement": "autobuses_flow",
             "tags": {
                 "null": null
             },
-            "when": "-23h",
-            "window": "1h"
+            "when": "-600m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "humidity"
+                "value"
             ],
-            "measurement": "weather_observed1",
+            "measurement": "autobuses_flow",
             "tags": {
                 "null": null
             },
-            "when": "-23h",
-            "window": "1h"
+            "when": "-570m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "temperature"
+                "value"
             ],
-            "measurement": "weather_observed1",
+            "measurement": "autobuses_flow",
             "tags": {
                 "null": null
             },
-            "when": "-23h",
-            "window": "1h"
+            "when": "-540m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "wind_bearing"
+                "value"
             ],
-            "measurement": "weather_observed1",
+            "measurement": "autobuses_flow",
             "tags": {
                 "null": null
             },
-            "when": "-23h",
-            "window": "1h"
+            "when": "-510m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "wind_speed"
+                "value"
             ],
-            "measurement": "weather_observed1",
+            "measurement": "autobuses_flow",
             "tags": {
                 "null": null
             },
-            "when": "-23h",
-            "window": "1h"
+            "when": "-480m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "pressure"
+                "value"
             ],
-            "measurement": "weather_observed1",
+            "measurement": "autobuses_flow",
             "tags": {
                 "null": null
             },
-            "when": "-22h",
-            "window": "1h"
+            "when": "-450m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "humidity"
+                "value"
             ],
-            "measurement": "weather_observed1",
+            "measurement": "autobuses_flow",
             "tags": {
                 "null": null
             },
-            "when": "-22h",
-            "window": "1h"
+            "when": "-420m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "temperature"
+                "value"
             ],
-            "measurement": "weather_observed1",
+            "measurement": "autobuses_flow",
             "tags": {
                 "null": null
             },
-            "when": "-22h",
-            "window": "1h"
+            "when": "-390m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "wind_bearing"
+                "value"
             ],
-            "measurement": "weather_observed1",
+            "measurement": "autobuses_flow",
             "tags": {
                 "null": null
             },
-            "when": "-22h",
-            "window": "1h"
+            "when": "-360m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "wind_speed"
+                "value"
             ],
-            "measurement": "weather_observed1",
+            "measurement": "autobuses_flow",
             "tags": {
                 "null": null
             },
-            "when": "-22h",
-            "window": "1h"
+            "when": "-330m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "pressure"
+                "value"
             ],
-            "measurement": "weather_observed1",
+            "measurement": "autobuses_flow",
             "tags": {
                 "null": null
             },
-            "when": "-21h",
-            "window": "1h"
+            "when": "-300m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "humidity"
+                "value"
             ],
-            "measurement": "weather_observed1",
+            "measurement": "autobuses_flow",
             "tags": {
                 "null": null
             },
-            "when": "-21h",
-            "window": "1h"
+            "when": "-270m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "temperature"
+                "value"
             ],
-            "measurement": "weather_observed1",
+            "measurement": "autobuses_flow",
             "tags": {
                 "null": null
             },
-            "when": "-21h",
-            "window": "1h"
+            "when": "-240m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "wind_bearing"
+                "value"
             ],
-            "measurement": "weather_observed1",
+            "measurement": "autobuses_flow",
             "tags": {
                 "null": null
             },
-            "when": "-21h",
-            "window": "1h"
+            "when": "-210m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "wind_speed"
+                "value"
             ],
-            "measurement": "weather_observed1",
+            "measurement": "autobuses_flow",
             "tags": {
                 "null": null
             },
-            "when": "-21h",
-            "window": "1h"
+            "when": "-180m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "pressure"
+                "value"
             ],
-            "measurement": "weather_observed1",
+            "measurement": "autobuses_flow",
             "tags": {
                 "null": null
             },
-            "when": "-20h",
-            "window": "1h"
+            "when": "-150m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "humidity"
+                "value"
             ],
-            "measurement": "weather_observed1",
+            "measurement": "autobuses_flow",
             "tags": {
                 "null": null
             },
-            "when": "-20h",
-            "window": "1h"
+            "when": "-120m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "temperature"
+                "value"
             ],
-            "measurement": "weather_observed1",
+            "measurement": "autobuses_flow",
             "tags": {
                 "null": null
             },
-            "when": "-20h",
-            "window": "1h"
+            "when": "-90m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "wind_bearing"
+                "value"
             ],
-            "measurement": "weather_observed1",
+            "measurement": "autobuses_flow",
             "tags": {
                 "null": null
             },
-            "when": "-20h",
-            "window": "1h"
+            "when": "-60m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "wind_speed"
+                "value"
             ],
-            "measurement": "weather_observed1",
+            "measurement": "autobuses_flow",
             "tags": {
                 "null": null
             },
-            "when": "-20h",
-            "window": "1h"
+            "when": "-30m",
+            "window": "30m"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "pressure"
+                "value"
             ],
-            "measurement": "weather_observed1",
+            "measurement": "autobuses_flow",
             "tags": {
                 "null": null
             },
-            "when": "-19h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "humidity"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-19h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "temperature"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-19h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_bearing"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-19h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_speed"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-19h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "pressure"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-18h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "humidity"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-18h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "temperature"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-18h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_bearing"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-18h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_speed"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-18h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "pressure"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-17h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "humidity"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-17h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "temperature"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-17h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_bearing"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-17h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_speed"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-17h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "pressure"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-16h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "humidity"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-16h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "temperature"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-16h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_bearing"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-16h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_speed"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-16h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "pressure"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-15h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "humidity"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-15h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "temperature"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-15h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_bearing"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-15h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_speed"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-15h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "pressure"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-14h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "humidity"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-14h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "temperature"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-14h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_bearing"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-14h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_speed"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-14h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "pressure"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-13h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "humidity"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-13h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "temperature"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-13h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_bearing"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-13h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_speed"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-13h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "pressure"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-12h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "humidity"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-12h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "temperature"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-12h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_bearing"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-12h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_speed"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-12h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "pressure"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-11h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "humidity"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-11h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "temperature"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-11h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_bearing"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-11h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_speed"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-11h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "pressure"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-10h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "humidity"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-10h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "temperature"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-10h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_bearing"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-10h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_speed"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-10h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "pressure"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-9h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "humidity"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-9h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "temperature"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-9h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_bearing"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-9h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_speed"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-9h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "pressure"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-8h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "humidity"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-8h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "temperature"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-8h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_bearing"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-8h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_speed"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-8h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "pressure"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-7h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "humidity"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-7h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "temperature"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-7h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_bearing"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-7h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_speed"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-7h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "pressure"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-6h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "humidity"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-6h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "temperature"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-6h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_bearing"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-6h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_speed"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-6h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "pressure"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-5h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "humidity"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-5h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "temperature"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-5h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_bearing"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-5h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_speed"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-5h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "pressure"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-4h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "humidity"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-4h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "temperature"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-4h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_bearing"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-4h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_speed"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-4h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "pressure"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-3h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "humidity"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-3h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "temperature"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-3h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_bearing"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-3h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_speed"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-3h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "pressure"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-2h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "humidity"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-2h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "temperature"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-2h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_bearing"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-2h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_speed"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-2h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "pressure"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-1h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "humidity"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-1h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "temperature"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-1h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_bearing"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-1h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_speed"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-1h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "pressure"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-0h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "humidity"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-0h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "temperature"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-0h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_bearing"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-0h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "wind_speed"
-            ],
-            "measurement": "weather_observed1",
-            "tags": {
-                "null": null
-            },
-            "when": "-0h",
-            "window": "1h"
+            "when": "0m",
+            "window": "30m"
         }
     ],
     "organisation": "naiades",
-    "startTime": "2022-01-17T23:00:00",
-    "stopTime": "2022-02-26T00:00:00",
+    "startTime": "2022-03-20T23:00:00",
+    "stopTime": "2022-03-21T15:00:00",
     "token": "k_TK7JanSGbx9k7QClaPjarlhJSsh8oApCyQrs9GqfsyO3-GIDf_tJ79ckwrcA-K536Gvz8bxQhMXKuKYjDsgw==",
     "url": "http://localhost:8086"
 }

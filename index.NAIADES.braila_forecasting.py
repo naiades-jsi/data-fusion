@@ -50,7 +50,7 @@ def RunBatchFusionOnce():
           "bucket": "braila",
           "startTime":"2021-07-07T00:00:00",
           "stopTime":"2021-07-13T00:00:00",
-          "every":"3s0m",
+          "every":"30m",
           "fusion": fusions[location]
       }
   
@@ -63,7 +63,7 @@ def RunBatchFusionOnce():
   
       lines = file_json.readlines()
       last_line = lines[-1]
-      tss = int(json.loads(last_line)['timestamp']/1000 + 20*60)
+      tss = int(json.loads(last_line)['timestamp']/1000 + 30*60)
   
       config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00")
   
@@ -95,9 +95,6 @@ def RunBatchFusionOnce():
         for j in range(t.shape[0]):
             if(not np.isnan(fv[j]).any()):
               output = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
-              output_topic = f'features_braila_{location}_forecasting'
-              future = producer.send(output_topic, output)
-              
               output_topic = f'features_braila_{location}_forecasting'
               future = producer.send(output_topic, output)
       

@@ -81,7 +81,7 @@ def RunBatchFusionOnce():
   
       lines = file_json.readlines()
       last_line = lines[-1]
-      tss = int(json.loads(last_line)['timestamp']/1000 + 60*60)
+      tss = int(json.loads(last_line)['timestamp']/1000 + 30*60)
   
       config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00")
   

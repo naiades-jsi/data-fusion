@@ -118,9 +118,6 @@ def RunBatchFusionOnce():
               output = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
               output_topic = f'features_braila_{location}_anomaly'
               future = producer.send(output_topic, output)
-              
-              output_topic = f'features_braila_{location}_anomaly'
-              future = producer.send(output_topic, output)
       
               try:
                   record_metadata = future.get(timeout=10)

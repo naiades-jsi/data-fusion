@@ -71,7 +71,7 @@ def RunBatchFusionOnce():
       
       print(config['stopTime'] )
   
-      file_json = open(f'{folder}/features_braila_{location}_anomaly_Gan.json', 'r')
+      file_json = open(f'{folder}/features_braila_{location}_anomaly.json', 'r')
   
       lines = file_json.readlines()
       last_line = lines[-1]
@@ -81,7 +81,7 @@ def RunBatchFusionOnce():
   
       print(config['startTime'])
   
-      file_json = open(f'braila_{location}_anomaly_Gan_config.json', 'w')
+      file_json = open(f'braila_{location}_anomaly_config.json', 'w')
       file_json.write(json.dumps(config, indent=4, sort_keys=True) )
       file_json.close()
       
@@ -102,7 +102,7 @@ def RunBatchFusionOnce():
                   fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
             
               #data is uploaded at different times - this ensures that FV's won't be sent if data hasn't been uploaded for one or more of the sensors
-                  with open(f'{folder}/features_braila_{location}_anomaly_Gan.json', 'a') as file_json:
+                  with open(f'{folder}/features_braila_{location}_anomaly.json', 'a') as file_json:
                     file_json.write((json.dumps(fv_line) + '\n' ))
   
   
@@ -112,9 +112,6 @@ def RunBatchFusionOnce():
                   output = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
                   
                   output_topic = f'features_braila_{location}_anomaly'
-                  
-                  print(output)
-                  print(output_topic)
                   
                   future = producer.send(output_topic, output)
           
