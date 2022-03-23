@@ -18,7 +18,7 @@ template = {
             "measurement":"salinity_EA001_36_level",
             "fields":["value"],
             "tags":{None: None},
-            "window":"5m",
+            "window":"1m",
             "when":"-0h"
             }
 
@@ -42,7 +42,7 @@ def RunBatchFusionOnce():
         "bucket": "alicante",
         "startTime":"2021-07-07T00:00:00",
         "stopTime":"2021-07-13T00:00:00",
-        "every":"5m",
+        "every":"1m",
         "fusion": fusion
     }
 
