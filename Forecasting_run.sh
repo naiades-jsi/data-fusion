@@ -1,0 +1,1 @@
+python3 index.NAIADES.alicante_forecasting.py & python3 index.NAIADES.alicante_forecasting_w.py & python3 index.NAIADES.braila_consumption_forecasting.py & python3 index.NAIADES.braila_consumption_forecasting.py &

@@ -48,7 +48,7 @@ class AgregateQuery(Agregate):
         # set offset so agregate is calculated from now 
         if isinstance(every, int):
             every = str(every) + 'ms'
-
+            
         query_str = self._build_query(
             start_time = start_time,
             stop_time = stop_time, 

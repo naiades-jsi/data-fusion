@@ -1,11 +1,275 @@
 {
     "bucket": "braila",
-    "every": "1h",
+    "every": "15m",
     "fusion": [
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer1"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-0h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer2"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-0h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-1h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer2"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-1h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-2h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer2"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-2h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-3h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer2"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-3h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-4h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer2"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-4h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-5h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer2"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-5h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-6h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer2"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-6h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-7h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer2"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-7h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-8h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer2"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-8h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-9h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer2"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-9h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-10h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer2"
+            ],
+            "measurement": "flow211106H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-10h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
             ],
             "measurement": "flow211206H360",
             "tags": {
@@ -17,7 +281,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-0h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
             ],
             "measurement": "flow211206H360",
             "tags": {
@@ -29,7 +305,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-1h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
             ],
             "measurement": "flow211206H360",
             "tags": {
@@ -41,7 +329,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-2h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
             ],
             "measurement": "flow211206H360",
             "tags": {
@@ -53,7 +353,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-3h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
             ],
             "measurement": "flow211206H360",
             "tags": {
@@ -65,7 +377,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-4h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
             ],
             "measurement": "flow211206H360",
             "tags": {
@@ -77,7 +401,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-5h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
             ],
             "measurement": "flow211206H360",
             "tags": {
@@ -89,7 +425,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-6h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
             ],
             "measurement": "flow211206H360",
             "tags": {
@@ -101,7 +449,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-7h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
             ],
             "measurement": "flow211206H360",
             "tags": {
@@ -113,7 +473,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-8h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
             ],
             "measurement": "flow211206H360",
             "tags": {
@@ -125,7 +497,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-9h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
             ],
             "measurement": "flow211206H360",
             "tags": {
@@ -137,163 +521,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
             ],
             "measurement": "flow211206H360",
             "tags": {
                 "null": null
             },
-            "when": "-11h",
+            "when": "-10h",
             "window": "1h"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211206H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-12h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211206H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-13h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211206H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-14h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211206H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-15h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211206H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-16h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211206H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-17h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211206H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-18h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211206H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-19h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211206H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-20h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211206H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-21h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211206H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-22h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211206H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-23h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
+                "totalizer1"
             ],
             "measurement": "flow211306H360",
             "tags": {
@@ -305,7 +545,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-0h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
             ],
             "measurement": "flow211306H360",
             "tags": {
@@ -317,7 +569,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-1h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
             ],
             "measurement": "flow211306H360",
             "tags": {
@@ -329,7 +593,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-2h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
             ],
             "measurement": "flow211306H360",
             "tags": {
@@ -341,7 +617,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-3h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
             ],
             "measurement": "flow211306H360",
             "tags": {
@@ -353,7 +641,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-4h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
             ],
             "measurement": "flow211306H360",
             "tags": {
@@ -365,7 +665,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-5h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
             ],
             "measurement": "flow211306H360",
             "tags": {
@@ -377,7 +689,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-6h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
             ],
             "measurement": "flow211306H360",
             "tags": {
@@ -389,7 +713,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-7h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
             ],
             "measurement": "flow211306H360",
             "tags": {
@@ -401,7 +737,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-8h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
             ],
             "measurement": "flow211306H360",
             "tags": {
@@ -413,7 +761,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-9h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
             ],
             "measurement": "flow211306H360",
             "tags": {
@@ -425,163 +785,19 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
             ],
             "measurement": "flow211306H360",
             "tags": {
                 "null": null
             },
-            "when": "-11h",
+            "when": "-10h",
             "window": "1h"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211306H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-12h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211306H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-13h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211306H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-14h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211306H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-15h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211306H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-16h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211306H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-17h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211306H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-18h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211306H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-19h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211306H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-20h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211306H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-21h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211306H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-22h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow211306H360",
-            "tags": {
-                "null": null
-            },
-            "when": "-23h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
+                "totalizer1"
             ],
             "measurement": "flow318505H498",
             "tags": {
@@ -593,285 +809,9 @@
         {
             "aggregate": "mean",
             "fields": [
-                "analog_input2"
+                "totalizer2"
             ],
             "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-1h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-2h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-3h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-4h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-5h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-6h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-7h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-8h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-9h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-10h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-11h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-12h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-13h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-14h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-15h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-16h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-17h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-18h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-19h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-20h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-21h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-22h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "analog_input2"
-            ],
-            "measurement": "flow318505H498",
-            "tags": {
-                "null": null
-            },
-            "when": "-23h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5770",
             "tags": {
                 "null": null
             },
@@ -881,9 +821,9 @@
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "totalizer1"
             ],
-            "measurement": "pressure5770",
+            "measurement": "flow318505H498",
             "tags": {
                 "null": null
             },
@@ -893,9 +833,21 @@
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "totalizer2"
             ],
-            "measurement": "pressure5770",
+            "measurement": "flow318505H498",
+            "tags": {
+                "null": null
+            },
+            "when": "-1h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
+            ],
+            "measurement": "flow318505H498",
             "tags": {
                 "null": null
             },
@@ -905,9 +857,21 @@
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "totalizer2"
             ],
-            "measurement": "pressure5770",
+            "measurement": "flow318505H498",
+            "tags": {
+                "null": null
+            },
+            "when": "-2h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
+            ],
+            "measurement": "flow318505H498",
             "tags": {
                 "null": null
             },
@@ -917,9 +881,21 @@
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "totalizer2"
             ],
-            "measurement": "pressure5770",
+            "measurement": "flow318505H498",
+            "tags": {
+                "null": null
+            },
+            "when": "-3h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
+            ],
+            "measurement": "flow318505H498",
             "tags": {
                 "null": null
             },
@@ -929,9 +905,21 @@
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "totalizer2"
             ],
-            "measurement": "pressure5770",
+            "measurement": "flow318505H498",
+            "tags": {
+                "null": null
+            },
+            "when": "-4h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
+            ],
+            "measurement": "flow318505H498",
             "tags": {
                 "null": null
             },
@@ -941,9 +929,21 @@
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "totalizer2"
             ],
-            "measurement": "pressure5770",
+            "measurement": "flow318505H498",
+            "tags": {
+                "null": null
+            },
+            "when": "-5h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
+            ],
+            "measurement": "flow318505H498",
             "tags": {
                 "null": null
             },
@@ -953,9 +953,21 @@
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "totalizer2"
             ],
-            "measurement": "pressure5770",
+            "measurement": "flow318505H498",
+            "tags": {
+                "null": null
+            },
+            "when": "-6h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
+            ],
+            "measurement": "flow318505H498",
             "tags": {
                 "null": null
             },
@@ -965,9 +977,21 @@
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "totalizer2"
             ],
-            "measurement": "pressure5770",
+            "measurement": "flow318505H498",
+            "tags": {
+                "null": null
+            },
+            "when": "-7h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
+            ],
+            "measurement": "flow318505H498",
             "tags": {
                 "null": null
             },
@@ -977,9 +1001,21 @@
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "totalizer2"
             ],
-            "measurement": "pressure5770",
+            "measurement": "flow318505H498",
+            "tags": {
+                "null": null
+            },
+            "when": "-8h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
+            ],
+            "measurement": "flow318505H498",
             "tags": {
                 "null": null
             },
@@ -989,9 +1025,21 @@
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "totalizer2"
             ],
-            "measurement": "pressure5770",
+            "measurement": "flow318505H498",
+            "tags": {
+                "null": null
+            },
+            "when": "-9h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "totalizer1"
+            ],
+            "measurement": "flow318505H498",
             "tags": {
                 "null": null
             },
@@ -1001,165 +1049,561 @@
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "totalizer2"
             ],
-            "measurement": "pressure5770",
+            "measurement": "flow318505H498",
             "tags": {
                 "null": null
             },
-            "when": "-11h",
+            "when": "-10h",
             "window": "1h"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "pressure"
             ],
-            "measurement": "pressure5770",
+            "measurement": "weather_observed",
             "tags": {
                 "null": null
             },
-            "when": "-12h",
+            "when": "-9h",
             "window": "1h"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "humidity"
             ],
-            "measurement": "pressure5770",
+            "measurement": "weather_observed",
             "tags": {
                 "null": null
             },
-            "when": "-13h",
+            "when": "-9h",
             "window": "1h"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "temperature"
             ],
-            "measurement": "pressure5770",
+            "measurement": "weather_observed",
             "tags": {
                 "null": null
             },
-            "when": "-14h",
+            "when": "-9h",
             "window": "1h"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "wind_bearing"
             ],
-            "measurement": "pressure5770",
+            "measurement": "weather_observed",
             "tags": {
                 "null": null
             },
-            "when": "-15h",
+            "when": "-9h",
             "window": "1h"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "wind_speed"
             ],
-            "measurement": "pressure5770",
+            "measurement": "weather_observed",
             "tags": {
                 "null": null
             },
-            "when": "-16h",
+            "when": "-9h",
             "window": "1h"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "pressure"
             ],
-            "measurement": "pressure5770",
+            "measurement": "weather_observed",
             "tags": {
                 "null": null
             },
-            "when": "-17h",
+            "when": "-8h",
             "window": "1h"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "humidity"
             ],
-            "measurement": "pressure5770",
+            "measurement": "weather_observed",
             "tags": {
                 "null": null
             },
-            "when": "-18h",
+            "when": "-8h",
             "window": "1h"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "temperature"
             ],
-            "measurement": "pressure5770",
+            "measurement": "weather_observed",
             "tags": {
                 "null": null
             },
-            "when": "-19h",
+            "when": "-8h",
             "window": "1h"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "wind_bearing"
             ],
-            "measurement": "pressure5770",
+            "measurement": "weather_observed",
             "tags": {
                 "null": null
             },
-            "when": "-20h",
+            "when": "-8h",
             "window": "1h"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "wind_speed"
             ],
-            "measurement": "pressure5770",
+            "measurement": "weather_observed",
             "tags": {
                 "null": null
             },
-            "when": "-21h",
+            "when": "-8h",
             "window": "1h"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "pressure"
             ],
-            "measurement": "pressure5770",
+            "measurement": "weather_observed",
             "tags": {
                 "null": null
             },
-            "when": "-22h",
+            "when": "-7h",
             "window": "1h"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "humidity"
             ],
-            "measurement": "pressure5770",
+            "measurement": "weather_observed",
             "tags": {
                 "null": null
             },
-            "when": "-23h",
+            "when": "-7h",
             "window": "1h"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "temperature"
             ],
-            "measurement": "pressure5771",
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-7h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "wind_bearing"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-7h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "wind_speed"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-7h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "pressure"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-6h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "humidity"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-6h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "temperature"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-6h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "wind_bearing"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-6h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "wind_speed"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-6h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "pressure"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-5h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "humidity"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-5h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "temperature"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-5h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "wind_bearing"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-5h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "wind_speed"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-5h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "pressure"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-4h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "humidity"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-4h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "temperature"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-4h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "wind_bearing"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-4h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "wind_speed"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-4h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "pressure"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-3h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "humidity"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-3h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "temperature"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-3h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "wind_bearing"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-3h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "wind_speed"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-3h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "pressure"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-2h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "humidity"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-2h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "temperature"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-2h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "wind_bearing"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-2h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "wind_speed"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-2h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "pressure"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-1h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "humidity"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-1h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "temperature"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-1h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "wind_bearing"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-1h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "wind_speed"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-1h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "pressure"
+            ],
+            "measurement": "weather_observed",
             "tags": {
                 "null": null
             },
@@ -1169,285 +1613,9 @@
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "humidity"
             ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-1h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-2h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-3h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-4h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-5h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-6h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-7h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-8h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-9h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-10h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-11h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-12h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-13h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-14h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-15h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-16h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-17h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-18h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-19h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-20h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-21h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-22h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5771",
-            "tags": {
-                "null": null
-            },
-            "when": "-23h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
+            "measurement": "weather_observed",
             "tags": {
                 "null": null
             },
@@ -1457,285 +1625,9 @@
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "temperature"
             ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-1h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-2h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-3h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-4h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-5h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-6h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-7h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-8h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-9h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-10h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-11h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-12h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-13h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-14h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-15h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-16h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-17h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-18h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-19h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-20h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-21h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-22h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5772",
-            "tags": {
-                "null": null
-            },
-            "when": "-23h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
+            "measurement": "weather_observed",
             "tags": {
                 "null": null
             },
@@ -1745,283 +1637,31 @@
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "wind_bearing"
             ],
-            "measurement": "pressure5773",
+            "measurement": "weather_observed",
             "tags": {
                 "null": null
             },
-            "when": "-1h",
+            "when": "-0h",
             "window": "1h"
         },
         {
             "aggregate": "mean",
             "fields": [
-                "value"
+                "wind_speed"
             ],
-            "measurement": "pressure5773",
+            "measurement": "weather_observed",
             "tags": {
                 "null": null
             },
-            "when": "-2h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
-            "tags": {
-                "null": null
-            },
-            "when": "-3h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
-            "tags": {
-                "null": null
-            },
-            "when": "-4h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
-            "tags": {
-                "null": null
-            },
-            "when": "-5h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
-            "tags": {
-                "null": null
-            },
-            "when": "-6h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
-            "tags": {
-                "null": null
-            },
-            "when": "-7h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
-            "tags": {
-                "null": null
-            },
-            "when": "-8h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
-            "tags": {
-                "null": null
-            },
-            "when": "-9h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
-            "tags": {
-                "null": null
-            },
-            "when": "-10h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
-            "tags": {
-                "null": null
-            },
-            "when": "-11h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
-            "tags": {
-                "null": null
-            },
-            "when": "-12h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
-            "tags": {
-                "null": null
-            },
-            "when": "-13h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
-            "tags": {
-                "null": null
-            },
-            "when": "-14h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
-            "tags": {
-                "null": null
-            },
-            "when": "-15h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
-            "tags": {
-                "null": null
-            },
-            "when": "-16h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
-            "tags": {
-                "null": null
-            },
-            "when": "-17h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
-            "tags": {
-                "null": null
-            },
-            "when": "-18h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
-            "tags": {
-                "null": null
-            },
-            "when": "-19h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
-            "tags": {
-                "null": null
-            },
-            "when": "-20h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
-            "tags": {
-                "null": null
-            },
-            "when": "-21h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
-            "tags": {
-                "null": null
-            },
-            "when": "-22h",
-            "window": "1h"
-        },
-        {
-            "aggregate": "mean",
-            "fields": [
-                "value"
-            ],
-            "measurement": "pressure5773",
-            "tags": {
-                "null": null
-            },
-            "when": "-23h",
+            "when": "-0h",
             "window": "1h"
         }
     ],
     "organisation": "naiades",
-    "startTime": "2022-03-21T01:00:00",
-    "stopTime": "2022-03-23T09:00:00",
+    "startTime": "2022-03-23T13:00:00",
+    "stopTime": "2022-03-23T14:00:00",
     "token": "k_TK7JanSGbx9k7QClaPjarlhJSsh8oApCyQrs9GqfsyO3-GIDf_tJ79ckwrcA-K536Gvz8bxQhMXKuKYjDsgw==",
     "url": "http://localhost:8086"
 }
