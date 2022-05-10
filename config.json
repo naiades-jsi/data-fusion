@@ -588,7 +588,7 @@
                 "null": null
             },
             "when": "-0h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -600,7 +600,7 @@
                 "null": null
             },
             "when": "-1h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -612,7 +612,7 @@
                 "null": null
             },
             "when": "-2h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -624,7 +624,7 @@
                 "null": null
             },
             "when": "-3h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -636,7 +636,7 @@
                 "null": null
             },
             "when": "-4h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -648,7 +648,7 @@
                 "null": null
             },
             "when": "-5h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -660,7 +660,7 @@
                 "null": null
             },
             "when": "-6h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -672,7 +672,7 @@
                 "null": null
             },
             "when": "-7h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -684,7 +684,7 @@
                 "null": null
             },
             "when": "-8h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -696,7 +696,7 @@
                 "null": null
             },
             "when": "-9h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -708,7 +708,7 @@
                 "null": null
             },
             "when": "-10h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -720,7 +720,7 @@
                 "null": null
             },
             "when": "-11h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -732,7 +732,7 @@
                 "null": null
             },
             "when": "-12h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -744,7 +744,7 @@
                 "null": null
             },
             "when": "-13h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -756,7 +756,7 @@
                 "null": null
             },
             "when": "-14h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -768,7 +768,7 @@
                 "null": null
             },
             "when": "-15h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -780,7 +780,7 @@
                 "null": null
             },
             "when": "-16h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -792,7 +792,7 @@
                 "null": null
             },
             "when": "-17h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -804,7 +804,7 @@
                 "null": null
             },
             "when": "-18h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -816,7 +816,7 @@
                 "null": null
             },
             "when": "-19h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -828,7 +828,7 @@
                 "null": null
             },
             "when": "-20h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -840,7 +840,7 @@
                 "null": null
             },
             "when": "-21h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -852,7 +852,7 @@
                 "null": null
             },
             "when": "-22h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -864,7 +864,7 @@
                 "null": null
             },
             "when": "-23h",
-            "window": "1h"
+            "window": "4h"
         },
         {
             "aggregate": "mean",
@@ -876,7 +876,7 @@
                 "null": null
             },
             "when": "-0h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -888,7 +888,7 @@
                 "null": null
             },
             "when": "-1h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -900,7 +900,7 @@
                 "null": null
             },
             "when": "-2h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -912,7 +912,7 @@
                 "null": null
             },
             "when": "-3h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -924,7 +924,7 @@
                 "null": null
             },
             "when": "-4h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -936,7 +936,7 @@
                 "null": null
             },
             "when": "-5h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -948,7 +948,7 @@
                 "null": null
             },
             "when": "-6h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -960,7 +960,7 @@
                 "null": null
             },
             "when": "-7h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -972,7 +972,7 @@
                 "null": null
             },
             "when": "-8h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -984,7 +984,7 @@
                 "null": null
             },
             "when": "-9h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -996,7 +996,7 @@
                 "null": null
             },
             "when": "-10h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1008,7 +1008,7 @@
                 "null": null
             },
             "when": "-11h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1020,7 +1020,7 @@
                 "null": null
             },
             "when": "-12h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1032,7 +1032,7 @@
                 "null": null
             },
             "when": "-13h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1044,7 +1044,7 @@
                 "null": null
             },
             "when": "-14h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1056,7 +1056,7 @@
                 "null": null
             },
             "when": "-15h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1068,7 +1068,7 @@
                 "null": null
             },
             "when": "-16h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1080,7 +1080,7 @@
                 "null": null
             },
             "when": "-17h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1092,7 +1092,7 @@
                 "null": null
             },
             "when": "-18h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1104,7 +1104,7 @@
                 "null": null
             },
             "when": "-19h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1116,7 +1116,7 @@
                 "null": null
             },
             "when": "-20h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1128,7 +1128,7 @@
                 "null": null
             },
             "when": "-21h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1140,7 +1140,7 @@
                 "null": null
             },
             "when": "-22h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1152,7 +1152,7 @@
                 "null": null
             },
             "when": "-23h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1164,7 +1164,7 @@
                 "null": null
             },
             "when": "-0h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1176,7 +1176,7 @@
                 "null": null
             },
             "when": "-1h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1188,7 +1188,7 @@
                 "null": null
             },
             "when": "-2h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1200,7 +1200,7 @@
                 "null": null
             },
             "when": "-3h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1212,7 +1212,7 @@
                 "null": null
             },
             "when": "-4h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1224,7 +1224,7 @@
                 "null": null
             },
             "when": "-5h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1236,7 +1236,7 @@
                 "null": null
             },
             "when": "-6h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1248,7 +1248,7 @@
                 "null": null
             },
             "when": "-7h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1260,7 +1260,7 @@
                 "null": null
             },
             "when": "-8h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1272,7 +1272,7 @@
                 "null": null
             },
             "when": "-9h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1284,7 +1284,7 @@
                 "null": null
             },
             "when": "-10h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1296,7 +1296,7 @@
                 "null": null
             },
             "when": "-11h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1308,7 +1308,7 @@
                 "null": null
             },
             "when": "-12h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1320,7 +1320,7 @@
                 "null": null
             },
             "when": "-13h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1332,7 +1332,7 @@
                 "null": null
             },
             "when": "-14h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1344,7 +1344,7 @@
                 "null": null
             },
             "when": "-15h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1356,7 +1356,7 @@
                 "null": null
             },
             "when": "-16h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1368,7 +1368,7 @@
                 "null": null
             },
             "when": "-17h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1380,7 +1380,7 @@
                 "null": null
             },
             "when": "-18h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1392,7 +1392,7 @@
                 "null": null
             },
             "when": "-19h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1404,7 +1404,7 @@
                 "null": null
             },
             "when": "-20h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1416,7 +1416,7 @@
                 "null": null
             },
             "when": "-21h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1428,7 +1428,7 @@
                 "null": null
             },
             "when": "-22h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1440,7 +1440,7 @@
                 "null": null
             },
             "when": "-23h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1452,7 +1452,7 @@
                 "null": null
             },
             "when": "-0h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1464,7 +1464,7 @@
                 "null": null
             },
             "when": "-1h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1476,7 +1476,7 @@
                 "null": null
             },
             "when": "-2h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1488,7 +1488,7 @@
                 "null": null
             },
             "when": "-3h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1500,7 +1500,7 @@
                 "null": null
             },
             "when": "-4h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1512,7 +1512,7 @@
                 "null": null
             },
             "when": "-5h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1524,7 +1524,7 @@
                 "null": null
             },
             "when": "-6h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1536,7 +1536,7 @@
                 "null": null
             },
             "when": "-7h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1548,7 +1548,7 @@
                 "null": null
             },
             "when": "-8h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1560,7 +1560,7 @@
                 "null": null
             },
             "when": "-9h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1572,7 +1572,7 @@
                 "null": null
             },
             "when": "-10h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1584,7 +1584,7 @@
                 "null": null
             },
             "when": "-11h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1596,7 +1596,7 @@
                 "null": null
             },
             "when": "-12h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1608,7 +1608,7 @@
                 "null": null
             },
             "when": "-13h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1620,7 +1620,7 @@
                 "null": null
             },
             "when": "-14h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1632,7 +1632,7 @@
                 "null": null
             },
             "when": "-15h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1644,7 +1644,7 @@
                 "null": null
             },
             "when": "-16h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1656,7 +1656,7 @@
                 "null": null
             },
             "when": "-17h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1668,7 +1668,7 @@
                 "null": null
             },
             "when": "-18h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1680,7 +1680,7 @@
                 "null": null
             },
             "when": "-19h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1692,7 +1692,7 @@
                 "null": null
             },
             "when": "-20h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1704,7 +1704,7 @@
                 "null": null
             },
             "when": "-21h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1716,7 +1716,7 @@
                 "null": null
             },
             "when": "-22h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1728,7 +1728,7 @@
                 "null": null
             },
             "when": "-23h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1740,7 +1740,7 @@
                 "null": null
             },
             "when": "-0h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1752,7 +1752,7 @@
                 "null": null
             },
             "when": "-1h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1764,7 +1764,7 @@
                 "null": null
             },
             "when": "-2h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1776,7 +1776,7 @@
                 "null": null
             },
             "when": "-3h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1788,7 +1788,7 @@
                 "null": null
             },
             "when": "-4h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1800,7 +1800,7 @@
                 "null": null
             },
             "when": "-5h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1812,7 +1812,7 @@
                 "null": null
             },
             "when": "-6h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1824,7 +1824,7 @@
                 "null": null
             },
             "when": "-7h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1836,7 +1836,7 @@
                 "null": null
             },
             "when": "-8h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1848,7 +1848,7 @@
                 "null": null
             },
             "when": "-9h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1860,7 +1860,7 @@
                 "null": null
             },
             "when": "-10h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1872,7 +1872,7 @@
                 "null": null
             },
             "when": "-11h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1884,7 +1884,7 @@
                 "null": null
             },
             "when": "-12h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1896,7 +1896,7 @@
                 "null": null
             },
             "when": "-13h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1908,7 +1908,7 @@
                 "null": null
             },
             "when": "-14h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1920,7 +1920,7 @@
                 "null": null
             },
             "when": "-15h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1932,7 +1932,7 @@
                 "null": null
             },
             "when": "-16h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1944,7 +1944,7 @@
                 "null": null
             },
             "when": "-17h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1956,7 +1956,7 @@
                 "null": null
             },
             "when": "-18h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1968,7 +1968,7 @@
                 "null": null
             },
             "when": "-19h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1980,7 +1980,7 @@
                 "null": null
             },
             "when": "-20h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -1992,7 +1992,7 @@
                 "null": null
             },
             "when": "-21h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -2004,7 +2004,7 @@
                 "null": null
             },
             "when": "-22h",
-            "window": "1h"
+            "window": "2h"
         },
         {
             "aggregate": "mean",
@@ -2016,12 +2016,12 @@
                 "null": null
             },
             "when": "-23h",
-            "window": "1h"
+            "window": "2h"
         }
     ],
     "organisation": "naiades",
-    "startTime": "2022-03-21T01:00:00",
-    "stopTime": "2022-03-23T09:00:00",
+    "startTime": "2022-05-09T02:00:00",
+    "stopTime": "2022-05-10T09:00:00",
     "token": "k_TK7JanSGbx9k7QClaPjarlhJSsh8oApCyQrs9GqfsyO3-GIDf_tJ79ckwrcA-K536Gvz8bxQhMXKuKYjDsgw==",
     "url": "http://localhost:8086"
 }

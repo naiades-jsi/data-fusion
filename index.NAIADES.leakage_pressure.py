@@ -33,7 +33,7 @@ template = {
             "measurement":"braila",
             "fields":["analog_input2"],
             "tags":{None: None},
-            "window":"1h",
+            "window":"2h",
             "when":"-1h"
             }
 fusion = []
@@ -41,10 +41,16 @@ for m in measurements_analog:
     template['measurement'] = m
     for i in range(24):
         temp = copy.deepcopy(template)
+        if(m == 'flow318505H498'):
+            temp['window'] = '4h'
+        else:
+            temp['window'] = '1h'
         temp['when'] = f'-{i}h'
         fusion.append(temp)
+        
 
 template['fields'] = ['value']
+template['window'] = '2h'
 for m in measurements_presure:
     template['measurement'] = m
 
@@ -71,13 +77,10 @@ def RunBatchFusionOnce():
         "fusion": fusion
     }
 
-    #print(json.dumps(config, indent=4, sort_keys=True))
-
     today = datetime.datetime.today()
     folder = 'features_data'
 
     config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:00:00")
-    #config['startTime'] = datetime.datetime.utcfromtimestamp((today - datetime.datetime(1970, 1, 2 + start)).total_seconds()).strftime("%Y-%m-%dT%H:00:00")
     
     print(config['stopTime'] )
 
@@ -87,10 +90,6 @@ def RunBatchFusionOnce():
     last_line = lines[-1]
     tss = int(json.loads(last_line)['timestamp']/1000 + 60*60)
     
-    #print(last_line)
-    #print(tss)
-    #print(datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00"))
-
     config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00")
 
     print(config['startTime'])
@@ -99,7 +98,6 @@ def RunBatchFusionOnce():
     file_json.write(json.dumps(config, indent=4, sort_keys=True) )
     file_json.close()
 
-    #sf2 = bachFusion(config)
     sf2 = bachFusion(config)
 
 
@@ -115,15 +113,10 @@ def RunBatchFusionOnce():
       # firs sensor missing therefore zeros for now
       zero = np.zeros((fv.shape[0], 24))
       
-      print(fv)
-      print(t)
-      print(zero)
       print(fv.shape)
       print(zero.shape)
   
       fv = np.concatenate((zero, fv), axis=1)
-  
-      
   
       # use formula to transform TODO add in sistem
       fv[:, 24: 24 * 4] = (fv[:,24: 24 * 4] - 0.6) * 4 * 10.197
