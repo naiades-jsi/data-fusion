@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {"timestamp": 1649000044521, "ftr_vector": [5134.320333333333]}
 {"timestamp": 1649000104521, "ftr_vector": [5063.8565]}
 {"timestamp": 1649000164521, "ftr_vector": [5003.236714285714]}
@@ -35651,3 +35652,6 @@
 {"timestamp": 1651960624521, "ftr_vector": [6158.623]}
 {"timestamp": 1651960744521, "ftr_vector": [6142.85]}
 {"timestamp": 1651960804521, "ftr_vector": [6127.208]}
+=======
+{"timestamp": 1647989964879, "ftr_vector": [4038.517]}
+>>>>>>> 1d2a2c3ba1a053f5f729aa3ea998d98703d06227
