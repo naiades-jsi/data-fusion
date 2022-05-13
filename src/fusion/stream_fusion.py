@@ -10,7 +10,7 @@ from kafka import KafkaConsumer
 
 class streamFusion():
     def __init__(self, config):
-        # TODO from config detemine nodes used for fussion
+        # TODO from config detemine nodes used for fusion
         self.config = config
         self.token = config["token"]
         self.url = config["url"]
@@ -105,7 +105,7 @@ class streamFusion():
 
 class batchFusion():
     def __init__(self, config):
-        # TODO from config detemine nodes used for fussion
+        # TODO from config detemine nodes used for fusion
         self.config = config
         self.token = config["token"]
         self.url = config["url"]
