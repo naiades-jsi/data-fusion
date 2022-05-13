@@ -19,10 +19,6 @@ measurements_conductivity = [
     'salinity_EA008_36_conductivity'
 ]
 
-
-#start = 14 #1
-stop = 9   #0
-
 template = {
     "aggregate":"mean",
     "measurement":"alicante",
@@ -33,7 +29,6 @@ template = {
 }
 
 fusions = {}
-
 
 for m in measurements_conductivity:
     fusion = []
@@ -110,13 +105,13 @@ def RunBatchFusionOnce():
             except Exception as e:
                 print('Producer error: ' + str(e))
 
-#Do batch fusion once per day
+# schedule batch fusion once per day
 schedule.every().hour.do(RunBatchFusionOnce)
 print(schedule.get_jobs())
 now = datetime.datetime.now()
 
 current_time = now.strftime("%H:%M:%S")
-print("Current Time =", current_time)
+print("Current Time = ", current_time)
 
 RunBatchFusionOnce()
 while True:
