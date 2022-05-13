@@ -16,7 +16,6 @@ import schedule
 
 from kafka import KafkaProducer
 
-
 # constants -- to be moved to configuration structure (TODO)
 config_folder = "config" # TODO: should this be renamed to "current_config" or similar?
 features_folder = 'features_data'
@@ -49,7 +48,6 @@ for m in measurements_conductivity:
     temp = copy.deepcopy(template)
     fusion.append(temp)
     fusions[m] = copy.deepcopy(fusion)
-
 
 def RunBatchFusionOnce():
     """Runs batch fusion for Alicante once.
@@ -147,7 +145,7 @@ def RunBatchFusionOnce():
             except Exception as e:
                 print('Producer error: ' + str(e))
 
-# schedule batch fusion once per day
+# schedule batch fusion once per day (TODO: this looks like once per hour)
 schedule.every().hour.do(RunBatchFusionOnce)
 print(schedule.get_jobs())
 now = datetime.datetime.now()
@@ -155,6 +153,7 @@ now = datetime.datetime.now()
 current_time = now.strftime("%H:%M:%S")
 print("Current Time = ", current_time)
 
+# run batch once in the beginning and then schedule it accordingly
 RunBatchFusionOnce()
 while True:
     schedule.run_pending()
