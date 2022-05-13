@@ -1,4 +1,4 @@
-from src.fusion.stream_fusion import streamFusion, bachFusion
+from src.fusion.stream_fusion import streamFusion, batchFusion
 
 import pandas as pd
 import numpy as np
@@ -56,7 +56,7 @@ def RunBatchFusionOnce():
     folder = 'features_data'
 
     config['stopTime'] =datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
-    
+
     print(config['stopTime'] )
 
     file_json = open(f'{folder}/features_alicante_salinity_EA001_36_level_duration.json', 'r')
@@ -64,7 +64,7 @@ def RunBatchFusionOnce():
     lines = file_json.readlines()
     last_line = lines[-1]
     tss = int(json.loads(last_line)['timestamp'] + numSamples*5*60)
-    
+
 
     config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:%M:%S")
 
@@ -74,11 +74,11 @@ def RunBatchFusionOnce():
     file_json.write(json.dumps(config, indent=4, sort_keys=True) )
     file_json.close()
 
-    #sf2 = bachFusion(config)
-    sf2 = bachFusion(config)
+    #sf2 = batchFusion(config)
+    sf2 = batchFusion(config)
 
     update_outputs = True
-    
+
     try:
       fv, t = sf2.buildFeatureVectors()
     except:
@@ -86,7 +86,7 @@ def RunBatchFusionOnce():
       update_outputs = False
 
     if(update_outputs):
-      
+
       #duration, time
       tosend = []
       for vector, time in zip(fv, t):
@@ -108,32 +108,32 @@ def RunBatchFusionOnce():
                         tosend.append([duration, timestamp - (numSamples - i)*4*60])
                       else:
                         Append = True
-      tosend = np.array(tosend)             
+      tosend = np.array(tosend)
       print(tosend)
-    
-    
-    
+
+
+
       file_json = open(f'{folder}/features_alicante_salinity_EA001_36_level_duration.json', 'a')
       for j in range(tosend.shape[0]):
           if((all(isinstance(x, (float, int)) for x in tosend[j])) and (not np.isnan(tosend[j]).any())):
             fv_line = {"timestamp":int(tosend[j][1]), "ftr_vector":[tosend[j][0]]}
             file_json.write((json.dumps(fv_line) + '\n' ))
-  
+
       file_json.close()
-      
-      
+
+
       for j in range(tosend.shape[0]):
           output = {"timestamp":int(tosend[j][1]), "ftr_vector":[tosend[j][0]]}
           output_topic = "features_alicante_salinity_EA001_36_level_duration"
           # Start Kafka producer
-          
+
           if((all(isinstance(x, (float, int)) for x in tosend[j]))):
             future = producer.send(output_topic, output)
-  
+
           try:
               record_metadata = future.get(timeout=10)
           except Exception as e:
-              print('Producer error: ' + str(e))  
+              print('Producer error: ' + str(e))
 
 
 
@@ -149,10 +149,10 @@ RunBatchFusionOnce()
 while True:
     schedule.run_pending()
     time.sleep(1)
-    
-    
-    
-    
-    
-"""   
+
+
+
+
+
+"""
 """
