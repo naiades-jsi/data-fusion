@@ -10,3 +10,5 @@ __pycache__/
 *.ipynb
 *.bat
 push.py
+
+features_data/
