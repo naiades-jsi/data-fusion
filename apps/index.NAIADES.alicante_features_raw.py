@@ -52,45 +52,45 @@ def RunBatchFusionOnce():
             "fusion": fusions[location]
         }
 
-      today = datetime.datetime.today()
-      folder = 'features_data'
+        today = datetime.datetime.today()
+        folder = 'features_data'
 
-      config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:00")
-      #config['startTime'] = datetime.datetime.utcfromtimestamp((today - datetime.datetime(1970, 1, 2 + start)).total_seconds()).strftime("%Y-%m-%dT%H:00:00")
+        config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:00")
+        #config['startTime'] = datetime.datetime.utcfromtimestamp((today - datetime.datetime(1970, 1, 2 + start)).total_seconds()).strftime("%Y-%m-%dT%H:00:00")
 
-      #print(config['stopTime'] )
-      with open(f'{folder}/features_alicante_{location}_raw.json', 'w+')as file_json:
-          try:
-              lines = file_json.readlines()
-              last_line = lines[-1]
-              tss = int(json.loads(last_line)['timestamp']/1000 + 60*60)
-          except:
-              tss = 1649000000
+        #print(config['stopTime'] )
+        with open(f'{folder}/features_alicante_{location}_raw.json', 'w+')as file_json:
+            try:
+                lines = file_json.readlines()
+                last_line = lines[-1]
+                tss = int(json.loads(last_line)['timestamp']/1000 + 60*60)
+            except:
+                tss = 1649000000
 
-      config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:%M:00")
+        config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:%M:00")
 
-      #print(config['startTime'])
+        #print(config['startTime'])
 
-      file_json = open(f'alicante_salinity_{location}_raw_config.json', 'w')
-      file_json.write(json.dumps(config, indent=4, sort_keys=True) )
-      file_json.close()
+        file_json = open(f'alicante_salinity_{location}_raw_config.json', 'w')
+        file_json.write(json.dumps(config, indent=4, sort_keys=True) )
+        file_json.close()
 
-      sf2 = batchFusion(config)
+        sf2 = batchFusion(config)
 
-      update_outputs = True
-      try:
-          fv, t = sf2.buildFeatureVectors()
-      except:
-          print('Feature vector generation failed')
-          update_outputs = False
+        update_outputs = True
+        try:
+            fv, t = sf2.buildFeatureVectors()
+        except:
+            print('Feature vector generation failed')
+            update_outputs = False
 
-      if(update_outputs):
-          with open(f'{folder}/features_alicante_{location}_raw.json', 'a+') as file_json:
-              for j in range(t.shape[0]):
-                  fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
-                  if((all(isinstance(x, (float, int)) for x in fv[j])) and (not np.isnan(fv[j]).any())):
-                      file_json.write((json.dumps(fv_line) + '\n' ))
-              file_json.close()
+        if(update_outputs):
+            with open(f'{folder}/features_alicante_{location}_raw.json', 'a+') as file_json:
+                for j in range(t.shape[0]):
+                    fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
+                    if((all(isinstance(x, (float, int)) for x in fv[j])) and (not np.isnan(fv[j]).any())):
+                        file_json.write((json.dumps(fv_line) + '\n' ))
+                file_json.close()
 
 
         for j in range(t.shape[0]):
