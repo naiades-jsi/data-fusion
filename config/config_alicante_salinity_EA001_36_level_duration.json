@@ -1,0 +1,971 @@
+{
+    "bucket": "alicante",
+    "every": "320m",
+    "fusion": [
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-0m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-4m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-8m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-12m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-16m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-20m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-24m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-28m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-32m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-36m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-40m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-44m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-48m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-52m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-56m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-60m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-64m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-68m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-72m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-76m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-80m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-84m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-88m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-92m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-96m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-100m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-104m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-108m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-112m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-116m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-120m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-124m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-128m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-132m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-136m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-140m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-144m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-148m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-152m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-156m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-160m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-164m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-168m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-172m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-176m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-180m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-184m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-188m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-192m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-196m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-200m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-204m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-208m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-212m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-216m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-220m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-224m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-228m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-232m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-236m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-240m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-244m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-248m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-252m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-256m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-260m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-264m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-268m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-272m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-276m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-280m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-284m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-288m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-292m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-296m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-300m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-304m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-308m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-312m",
+            "window": "4m"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA001_36_level",
+            "tags": {
+                "null": null
+            },
+            "when": "-316m",
+            "window": "4m"
+        }
+    ],
+    "organisation": "naiades",
+    "startTime": "2022-05-08T01:55:52",
+    "stopTime": "2022-05-10T15:52:02",
+    "token": "k_TK7JanSGbx9k7QClaPjarlhJSsh8oApCyQrs9GqfsyO3-GIDf_tJ79ckwrcA-K536Gvz8bxQhMXKuKYjDsgw==",
+    "url": "http://localhost:8086"
+}

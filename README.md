@@ -33,7 +33,7 @@ config2 = {
     "stopTime":"-0h",
     // startTime and stopTime can be defiend with ISO timestamp
     "every":"10m",
-    
+
     "fusion": [
         {
             "aggregate": "mean",
@@ -65,14 +65,14 @@ config2 = {
 }
 ```
 
-List of aggregates: these aggregates are directly Influx aggregates. 
+List of aggregates: these aggregates are directly Influx aggregates.
 
 
 ## Python
 ```
-from src.fusion.stream_fusion import bachFusion
+from src.fusion.stream_fusion import batchFusion
 config = ...
-sf = bachFusion(config)
+sf = batchFusion(config)
 l, t = sf.buildFeatureVectors()
 // t - vector of times
 // l - matrix of feature values
