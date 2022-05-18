@@ -39,40 +39,40 @@ for m in locations:
             "when":"-0h"
             }
     template['measurement'] = f'{m}_flow'
-    for i in range(48):
+    for i in range(24):
         temp = copy.deepcopy(template)
         temp['fields'] = ["value"]
-        temp['when'] = f'-{(47-i)*30}m'
+        temp['when'] = f'-{(23-i)*30}m'
         fusion.append(temp)
 
         
     template['measurement'] = 'weather_observed1'
     template['window'] = "1h"
             
-    for i in range(24):
+    for i in range(12):
         temp = copy.deepcopy(template)
         temp['fields'] = ["pressure"]
-        temp['when'] = f'-{(23-i)}h'
+        temp['when'] = f'-{(11-i)}h'
         fusion.append(temp)
         
         temp = copy.deepcopy(template)
         temp['fields'] = ["humidity"]
-        temp['when'] = f'-{(23-i)}h'
+        temp['when'] = f'-{(11-i)}h'
         fusion.append(temp)
         
         temp = copy.deepcopy(template)
         temp['fields'] = ["temperature"]
-        temp['when'] = f'-{(23-i)}h'
+        temp['when'] = f'-{(11-i)}h'
         fusion.append(temp)
         
         temp = copy.deepcopy(template)
         temp['fields'] = ["wind_bearing"]
-        temp['when'] = f'-{(23-i)}h'
+        temp['when'] = f'-{(11-i)}h'
         fusion.append(temp)
         
         temp = copy.deepcopy(template)
         temp['fields'] = ["wind_speed"]
-        temp['when'] = f'-{(23-i)}h'
+        temp['when'] = f'-{(11-i)}h'
         fusion.append(temp)
     fusions[m] = copy.deepcopy(fusion)
         
@@ -142,8 +142,7 @@ def RunBatchFusionOnce():
         
         consumption_tosend = []
         for i in range(len(t)):
-          #print(fv[i,:])
-          if(True):
+            
             Flow = fv[i, :24]
             Weather = fv[i, 24:]
             weather_ext = np.zeros(len(Weather)*2)
@@ -152,30 +151,29 @@ def RunBatchFusionOnce():
             
             vec = np.concatenate([Flow, weather_ext])
             consumption_tosend.append(vec)
-          
-        
-        for j in range(t.shape[0]):
-            if(not np.isnan(consumption_tosend[j]).any()):
-              fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(consumption_tosend[j])}
             
-              #data is uploaded at different times - this ensures that FV's won't be sent if data hasn't been uploaded for one or more of the sensors
-              with open(f'{folder}/features_alicante_{location}_forecasting_w.json', 'a') as file_json:
-                file_json.write((json.dumps(fv_line) + '\n' ))
-              
-    
-        file_json.close()
-        
-        for j in range(t.shape[0]):
-            if(not np.isnan(consumption_tosend[j]).any()):
-              output = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(consumption_tosend[j])}
-              output_topic = f'features_alicante_{location}_forecasting_w'
-    
-              future = producer.send(output_topic, output)
+            last_values = vec[23::24]
+          
+            if(not np.isnan(last_values).any()):
+                fv_line = {"timestamp":int(t[i].astype('uint64')/1000000), "ftr_vector":list(consumption_tosend[i])}
+                
+                #data is uploaded at different times - this ensures that FV's won't be sent if data hasn't been uploaded for one or more of the sensors
+                with open(f'{folder}/features_alicante_{location}_forecasting_w.json', 'a') as file_json:
+                  file_json.write((json.dumps(fv_line) + '\n' ))
+                
+                file_json.close()
+                
+                output = {"timestamp":int(t[i].astype('uint64')/1000000), "ftr_vector":list(consumption_tosend[i])}
+                output_topic = f'features_alicante_{location}_forecasting_w'
       
-              try:
-                  record_metadata = future.get(timeout=10)
-              except Exception as e:
-                  print('Producer error: ' + str(e))
+                future = producer.send(output_topic, output)
+        
+                try:
+                    record_metadata = future.get(timeout=10)
+                except Exception as e:
+                    print('Producer error: ' + str(e))
+        
+              
 
 #Do batch fusion once per hour
 

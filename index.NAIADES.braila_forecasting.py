@@ -24,7 +24,7 @@ template = {
             "measurement":"braila",
             "fields":["flow_rate_value"],
             "tags":{None: None},
-            "window":"30m",
+            "window":"20m",
             "when":"-0h"
             }
 
@@ -32,10 +32,10 @@ template = {
 fusions = {}
 for m in measurements_analog:
     fusion = []
-    for i in range(48):
+    for i in range(36):
       template['measurement'] = m
       temp = copy.deepcopy(template)
-      temp['when'] = f"-{(47-i)*30}m"
+      temp['when'] = f"-{(35-i)*20}m"
       fusion.append(temp)
     fusions[m] = copy.deepcopy(fusion)
 
@@ -50,7 +50,7 @@ def RunBatchFusionOnce():
           "bucket": "braila",
           "startTime":"2021-07-07T00:00:00",
           "stopTime":"2021-07-13T00:00:00",
-          "every":"30m",
+          "every":"20m",
           "fusion": fusions[location]
       }
   
@@ -84,16 +84,13 @@ def RunBatchFusionOnce():
       if(update_outputs):
         
         for j in range(t.shape[0]):
-            if(not np.isnan(fv[j]).any()):
+            if(not np.isnan(fv[j][-5:]).any()):
               fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
             
               #data is uploaded at different times - this ensures that FV's won't be sent if data hasn't been uploaded for one or more of the sensors
               with open(f'{folder}/features_braila_{location}_forecasting.json', 'a') as file_json:
                 file_json.write((json.dumps(fv_line) + '\n' ))
   
-  
-        for j in range(t.shape[0]):
-            if(not np.isnan(fv[j]).any()):
               output = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
               output_topic = f'features_braila_{location}_forecasting'
               future = producer.send(output_topic, output)
