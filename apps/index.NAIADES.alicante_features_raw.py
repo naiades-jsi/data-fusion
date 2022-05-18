@@ -53,6 +53,16 @@ def RunBatchFusionOnce():
     """Runs batch fusion for Alicante once.
 
     Docs needed ... __TODO___
+    
+    Parameters
+    ----------
+    x : int or float
+        A numerical value
+ 
+    Returns
+    -------
+    int or float
+        The square of `x`
     """
 
     # run data fusion for each of the locations
