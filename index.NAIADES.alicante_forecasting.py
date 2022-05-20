@@ -111,7 +111,7 @@ def RunBatchFusionOnce():
           
         
         for j in range(t.shape[0]):
-            if(not np.isnan(tosend[j][-1])):
+            if(not pd.isna(tosend[j][-1])):
                 fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(tosend[j])}
               
                 with open(f'{folder}/features_alicante_{location}_flow_forecasting.json', 'a') as file_json:

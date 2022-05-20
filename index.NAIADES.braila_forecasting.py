@@ -84,7 +84,7 @@ def RunBatchFusionOnce():
       if(update_outputs):
         
         for j in range(t.shape[0]):
-            if(not np.isnan(fv[j][-5:]).any()):
+            if(not pd.isna(fv[j][-5:]).any()):
               fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
             
               #data is uploaded at different times - this ensures that FV's won't be sent if data hasn't been uploaded for one or more of the sensors
