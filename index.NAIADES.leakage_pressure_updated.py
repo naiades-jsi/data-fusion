@@ -82,7 +82,7 @@ def RunBatchFusionOnce():
 
     config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:00:00")
 
-    with open(f'{folder}/leakage_pressure_updated.json', 'w+')as file_json:
+    with open(f'{folder}/leakage_pressure_updated.json', 'a+')as file_json:
         try:
           lines = file_json.readlines()
           last_line = lines[-1]
