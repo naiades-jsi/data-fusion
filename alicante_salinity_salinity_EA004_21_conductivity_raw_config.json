@@ -1,0 +1,23 @@
+{
+    "bucket": "alicante",
+    "every": "10m",
+    "fusion": [
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "salinity_EA004_21_conductivity",
+            "tags": {
+                "null": null
+            },
+            "when": "-0h",
+            "window": "10m"
+        }
+    ],
+    "organisation": "naiades",
+    "startTime": "2022-05-19T22:40:00",
+    "stopTime": "2022-06-08T18:41:00",
+    "token": "k_TK7JanSGbx9k7QClaPjarlhJSsh8oApCyQrs9GqfsyO3-GIDf_tJ79ckwrcA-K536Gvz8bxQhMXKuKYjDsgw==",
+    "url": "http://localhost:8086"
+}
