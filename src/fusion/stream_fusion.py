@@ -20,12 +20,12 @@ class streamFusion():
 
         self.agregate = AgregateQuery(self.token, self.url, self.organisation, self.bucket)
 
-    def fuildFeatuureVectorKafka(self, topics, bootstrap_server):
+    def buildFeatuureVectorKafka(self, topics, bootstrap_server):
         consumer = KafkaConsumer(bootstrap_servers=bootstrap_server)
         consumer.subscribe(topics)
 
         for msg in consumer:
-            self.buildFeatureVector()
+            return self.buildFeatureVector()
 
     def buildFeatureVector(self):
         feature_vector = []
@@ -105,7 +105,6 @@ class streamFusion():
 
 class batchFusion():
     def __init__(self, config):
-        # TODO from config detemine nodes used for fusion
         self.config = config
         self.token = config["token"]
         self.url = config["url"]

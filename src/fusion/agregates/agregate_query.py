@@ -45,6 +45,10 @@ class AgregateQuery(Agregate):
         return self.queryDB.query_df(query_str) """
 
     def agregate_time(self, agr:str = 'mean', every:str = '5m', window:str = '5m', start_time = None, stop_time = '-0m', shift = '0m', offset:int=0, measurement = '', fields = [], tags = {None: None}):
+        """
+            It creates query that creates the agregate.
+            Aggregates possible to calculate are from
+        """
         # set offset so agregate is calculated from now 
         if isinstance(every, int):
             every = str(every) + 'ms'

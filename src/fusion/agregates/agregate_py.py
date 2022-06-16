@@ -4,15 +4,18 @@ from .agregate import Agregate
 import pandas as pd
 
 class AgregatePy(Agregate):
-    # agregates calculated with python
+    """
+        Agregates calculated with python
+    """
     def __init__(self, token, url, organisation, bucket):
         super().__init__(token, url, organisation, bucket)
         self.queryDB = QueryFromDB(self.token, self.url, self.organisation, self.bucket)
 
     def customAggregate(self):
+        """
+            TODO 
+        """
         result = None
-
-
         return result
 
     def agregate_rolling(self, agr='mean', every:str = '5m', window:str = '5min',  start_time = None, stop_time = '-0h', measurement = '', fields = [], tags = {None: None}):
