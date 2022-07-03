@@ -75,7 +75,7 @@ def RunBatchFusionOnce():
   
       
       
-      with open(f'{folder}/features_alicante_{location}_raw.json', 'r')as file_json:
+      with open(f'{folder}/features_alicante_{location}_raw.json', 'a+')as file_json:
         try:
             lines = file_json.readlines()
             last_line = lines[-1]
@@ -85,7 +85,7 @@ def RunBatchFusionOnce():
                 shift = 10 
             tss = int(json.loads(last_line)['timestamp']/1000 + shift*60)
         except:
-            tss = 1653000000
+            tss = 1656000000
   
       config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:%M:00")
       config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:00")
@@ -120,7 +120,6 @@ def RunBatchFusionOnce():
                           record_metadata = future.get(timeout=10)
                       except Exception as e:
                           print('Producer error: ' + str(e))
-          file_json.close()
     
     
 

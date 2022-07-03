@@ -69,10 +69,17 @@ for idx in range(8):
     fusion.append(temp)
     
     temp = copy.deepcopy(template)
-    temp["measurement"] = 'flower_bed_' + str(idx + 1)
-    temp["fields"] = ['soilTemperature']
-    
+    temp["measurement"] = "environmental_station"
+    temp["fields"] = ["temperature"]
+    temp["window"] = "1h"
+    temp["when"] = "-0h"
     fusion.append(temp)
+    
+    #temp = copy.deepcopy(template)
+    #temp["measurement"] = 'flower_bed_' + str(idx + 1)
+    #temp["fields"] = ['soilTemperature']
+    
+    #fusion.append(temp)
     
     temp = copy.deepcopy(template)
     Fusions.append(fusion)
@@ -102,6 +109,10 @@ def RunBatchFusionOnce():
   
       lines = file_json.readlines()
       last_line = lines[-1]
+      print(last_line)
+      print(json.loads(last_line))
+      print(idx)
+      print(json.loads(last_line)['timestamp'])
       tss = int(json.loads(last_line)['timestamp']/1000 + 60*60)
   
       config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:%M:%S")
