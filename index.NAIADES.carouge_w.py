@@ -21,6 +21,13 @@ logging.basicConfig(
 # connecting to Kafka; TODO - put this into a config file
 producer = KafkaProducer(bootstrap_servers="localhost:9092", value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
+# generating fusions structure for all the devices
+LOGGER.info("Starting building configurations for fusion.")
+
+# -------------------------------------------------------------
+# CONFIG PART
+# -------------------------------------------------------------
+
 # definition of devices
 device_names = [
     "device_1f0d",  #1
@@ -33,9 +40,7 @@ device_names = [
     "device_1efe"   #8
 ]
 
-# generating fusions structure for all the devices
 Fusions = []
-
 # transverse through devices
 for idx in range(8):
     fusion = []
@@ -101,12 +106,18 @@ for idx in range(8):
     temp = copy.deepcopy(template)
     Fusions.append(fusion)
 
+# -------------------------------------------------------------
+# Function definition part
+# -------------------------------------------------------------
+
 def RunBatchFusionOnce():
     """Create batch fusion for current nodes"""
 
     for idx in range(8):
         today = datetime.datetime.today()
 
+        # config tempalte for InfluxDB
+        # note to change the key, if needed
         config = {
             "token":"k_TK7JanSGbx9k7QClaPjarlhJSsh8oApCyQrs9GqfsyO3-GIDf_tJ79ckwrcA-K536Gvz8bxQhMXKuKYjDsgw==",
             "url": "http://localhost:8086",
@@ -118,69 +129,79 @@ def RunBatchFusionOnce():
             "fusion": Fusions[idx]
         }
 
-        today = datetime.datetime.today()
+        # folder for storing features data
         folder = 'features_data'
 
-        config['stopTime'] =datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
-
+        # updating stop time for batch fusion
+        config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+        # generating JSON filename
         file_json = open(f'{folder}/features_carouge_' + str(idx + 1) + '.json', 'r')
-
+        # reading features file
         lines = file_json.readlines()
         last_line = lines[-1]
-        print(last_line)
-        print(json.loads(last_line))
-        print(idx)
-        print(json.loads(last_line)['timestamp'])
+        #print(last_line)
+        #print(json.loads(last_line))
+        #print(idx)
+        #print(json.loads(last_line)['timestamp'])
         tss = int(json.loads(last_line)['timestamp']/1000 + 60*60)
-
+        LOGGER.info("Obtaining last timestamp for features_carouge_%s: %d", str(idx + 1), tss)
+        # setting start time
         config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:%M:%S")
 
-        #print(config['startTime'])
-        #print(config['stopTime'] )
-
+        # dumping the actual config for this node into a file for further debugging
         file_json = open(f'config_carouge_' + str(idx + 1) + '.json', 'w')
         file_json.write(json.dumps(config, indent=4, sort_keys=True) )
         file_json.close()
 
+        # initiate the batch fusion
         sf2 = batchFusion(config)
 
+        # get ouputs if possible
         update_outputs = True
         try:
             fv, t = sf2.buildFeatureVectors()
         except:
-            print('Feature vector generation failed')
+            LOGGER.error('Feature vector generation failed')
             update_outputs = False
 
+        # if feature vector was successfully generated, append the data into the file
         if(update_outputs):
-
             file_json = open(f'{folder}/features_carouge_' + str(idx + 1) + '.json', 'a')
+            # go through the vector of timestamps and save the data
+            # into a file
             for j in range(t.shape[0]):
-                fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
-                if((all(isinstance(x, (float, int)) for x in fv[j])) and (not np.isnan(fv[j]).any())):
+                # build the output JSON
+                fv_line = { "timestamp": int(t[j].astype('uint64')/1000000), "ftr_vector": list(fv[j])}
+                # only save feature vectors without NaNs and with ints and floats
+                if ((all(isinstance(x, (float, int)) for x in fv[j])) and (not np.isnan(fv[j]).any())):
                     file_json.write((json.dumps(fv_line) + '\n' ))
 
-        file_json.close()
+            file_json.close()
 
-        for j in range(t.shape[0]):
-            output = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
-            output_topic = "features_carouge_flowerbed" + str(idx + 1)
-            # Start Kafka producer
-            if((all(isinstance(x, (float, int)) for x in fv[j])) and (not np.isnan(fv[j]).any())):
-                future = producer.send(output_topic, output)
+            # go through the vector of timestamps and post the feature vectors in the
+            # correct topics
+            for j in range(t.shape[0]):
+                output = { "timestamp": int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
+                output_topic = "features_carouge_flowerbed" + str(idx + 1)
+                # send data to Kafka producer only if it does contain only floats and ints and no NaNs
+                if((all(isinstance(x, (float, int)) for x in fv[j])) and (not np.isnan(fv[j]).any())):
+                    future = producer.send(output_topic, output)
+                    try:
+                        record_metadata = future.get(timeout=10)
+                        LOGGER.info("Feature vector sent to topic: %s", output_topic)
+                    except Exception as e:
+                        LOGGER.exception('Producer error: ' + str(e))
+                else:
+                    LOGGER.info("Feature vector contains NaN or non-int/float: %s", output_topic)
 
-                try:
-                    record_metadata = future.get(timeout=10)
-                except Exception as e:
-                    print('Producer error: ' + str(e))
-
+# -------------------------------------------------------------
 # MAIN part of the fusion script
+# -------------------------------------------------------------
+
 # create scheduler
+LOGGER.info("Starting scheduler")
 schedule.every().hour.do(RunBatchFusionOnce)
 RunBatchFusionOnce()
-
-now = datetime.datetime.now()
-current_time = now.strftime("%H:%M:%S")
-#print("Current Time =", current_time)
 
 # checking scheduler (TODO: is this the correct way to do it)
 while True:
