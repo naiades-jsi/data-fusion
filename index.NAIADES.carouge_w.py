@@ -102,8 +102,10 @@ for idx in range(8):
     #temp["measurement"] = 'flower_bed_' + str(idx + 1)
     #temp["fields"] = ['soilTemperature']
     #fusion.append(temp)
-    # this makes no sense (!?)
+
+    # this line makes no sense (!?)
     temp = copy.deepcopy(template)
+
     Fusions.append(fusion)
 
 # -------------------------------------------------------------
