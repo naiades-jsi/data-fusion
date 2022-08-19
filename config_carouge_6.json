@@ -77,9 +77,9 @@
         {
             "aggregate": "mean",
             "fields": [
-                "soilTemperature"
+                "temperature"
             ],
-            "measurement": "flower_bed_6",
+            "measurement": "environmental_station",
             "tags": {
                 "null": null
             },
@@ -88,8 +88,8 @@
         }
     ],
     "organisation": "naiades",
-    "startTime": "2022-03-30T14:12:24",
-    "stopTime": "2022-05-10T19:42:07",
+    "startTime": "2022-07-03T08:22:03",
+    "stopTime": "2022-07-03T11:15:39",
     "token": "k_TK7JanSGbx9k7QClaPjarlhJSsh8oApCyQrs9GqfsyO3-GIDf_tJ79ckwrcA-K536Gvz8bxQhMXKuKYjDsgw==",
     "url": "http://localhost:8086"
 }

@@ -39,10 +39,10 @@ for m in locations:
             "when":"-0h"
             }
     template['measurement'] = f'{m}_flow'
-    for i in range(48):
+    for i in range(24):
         temp = copy.deepcopy(template)
         temp['fields'] = ["value"]
-        temp['when'] = f'{(-47 + i)*30}m'
+        temp['when'] = f'{(-23 + i)*30}m'
         fusion.append(temp)
 
     fusions[m] = copy.deepcopy(fusion)
@@ -66,7 +66,7 @@ def RunBatchFusionOnce():
           "bucket": "alicante",
           "startTime":"2021-07-07T00:00:00",
           "stopTime":"2021-07-13T00:00:00",
-          "every":"1h",
+          "every":"30m",
           "fusion": fusions[location]
       }
 
@@ -76,9 +76,9 @@ def RunBatchFusionOnce():
       config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:00:00")
 
       #print(config['stopTime'] )
-
-      file_json = open(f'{folder}/features_alicante_{location}_forecasting_w.json', 'r')
-
+  
+      file_json = open(f'{folder}/features_alicante_{location}_flow_forecasting.json', 'r')
+  
       lines = file_json.readlines()
       last_line = lines[-1]
       tss = int(json.loads(last_line)['timestamp']/1000 + 30*60)
@@ -86,8 +86,7 @@ def RunBatchFusionOnce():
       config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00")
 
       #print(config['startTime'])
-
-      file_json = open(f'alicante_{location}_forecasting_w_config.json', 'w')
+      file_json = open(f'alicante_{location}_flow_forecasting_config.json', 'w')
       file_json.write(json.dumps(config, indent=4, sort_keys=True) )
       file_json.close()
 
@@ -111,29 +110,25 @@ def RunBatchFusionOnce():
 
 
         for j in range(t.shape[0]):
-            if(not None in tosend[j]):
-              if(not np.isnan(tosend[j]).any()):
+            if(not pd.isna(tosend[j][-1])):
                 fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(tosend[j])}
 
-                #data is uploaded at different times - this ensures that FV's won't be sent if data hasn't been uploaded for one or more of the sensors
                 with open(f'{folder}/features_alicante_{location}_flow_forecasting.json', 'a') as file_json:
                   file_json.write((json.dumps(fv_line) + '\n' ))
-
-
-        file_json.close()
-
-        for j in range(t.shape[0]):
-            if(not None in tosend[j]):
-                if(not np.isnan(tosend[j]).any()):
-                  output = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(tosend[j])}
-                  output_topic = f'features_alicante_{location}_flow_forecasting'
-
-                  future = producer.send(output_topic, output)
-
-                  try:
-                      record_metadata = future.get(timeout=10)
-                  except Exception as e:
-                      print('Producer error: ' + str(e))
+            
+                file_json.close()
+                
+                output = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(tosend[j])}
+                output_topic = f'features_alicante_{location}_flow_forecasting'
+        
+                future = producer.send(output_topic, output)
+        
+                try:
+                    record_metadata = future.get(timeout=10)
+                except Exception as e:
+                    print('Producer error: ' + str(e))
+        
+                  
 
 #Do batch fusion once per hour
 
