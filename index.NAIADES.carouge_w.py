@@ -125,19 +125,23 @@ def RunBatchFusionOnce():
             "url": "http://localhost:8086",
             "organisation": "naiades",
             "bucket": "carouge",
-            "startTime":"2021-07-07T00:00:00",
-            "stopTime":"2021-07-13T00:00:00",
+            "startTime":"2022-08-01T00:00:00",
+            "stopTime":"2022-08-2T00:00:00",
             "every":"1h",
             "fusion": Fusions[idx]
         }
 
+        # DELETE before commit
+        config["token"] = "ZykEIhhYe0KRjleAAjFX9LhEm_H7SeLiLe6Kc71f1452Lps7U6MECvOHw9UooSanWwm7SKqe0kTXDnOhoAMNNA=="
+
         # folder for storing features data
-        folder = 'features_data'
+        features_folder = 'features_data'
+        config_folder = 'config_data'
 
         # updating stop time for batch fusion
         config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
         # generating JSON filename
-        file_json = open(f'{folder}/features_carouge_' + str(idx + 1) + '.json', 'r')
+        file_json = open(f'{features_folder}/features_carouge_' + str(idx + 1) + '.json', 'r')
         # reading features file
         lines = file_json.readlines()
         last_line = lines[-1]
@@ -151,7 +155,7 @@ def RunBatchFusionOnce():
         config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:%M:%S")
 
         # dumping the actual config for this node into a file for further debugging
-        file_json = open(f'config_carouge_' + str(idx + 1) + '.json', 'w')
+        file_json = open(f'{config_folder}/config_carouge_' + str(idx + 1) + '.json', 'w+')
         file_json.write(json.dumps(config, indent=4, sort_keys=True) )
         file_json.close()
 
@@ -162,13 +166,13 @@ def RunBatchFusionOnce():
         update_outputs = True
         try:
             fv, t = sf2.buildFeatureVectors()
-        except:
-            LOGGER.error('Feature vector generation failed')
+        except Exception as e:
+            LOGGER.error('Feature vector generation failed %s', str(e))
             update_outputs = False
 
         # if feature vector was successfully generated, append the data into the file
-        if(update_outputs):
-            file_json = open(f'{folder}/features_carouge_' + str(idx + 1) + '.json', 'a')
+        if (update_outputs):
+            file_json = open(f'{features_folder}/features_carouge_' + str(idx + 1) + '.json', 'a+')
             # go through the vector of timestamps and save the data
             # into a file
             for j in range(t.shape[0]):
@@ -183,18 +187,22 @@ def RunBatchFusionOnce():
             # go through the vector of timestamps and post the feature vectors in the
             # correct topics
             for j in range(t.shape[0]):
-                output = { "timestamp": int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
+                # generating timestamp and timestamp in readable form
+                ts = int(t[j].astype('uint64')/1000000)
+                ts_string = datetime.datetime.utcfromtimestamp(ts / 1000).strftime("%Y-%m-%dT%H:%M:%S")
+
+                output = { "timestamp": ts, "ftr_vector": list(fv[j])}
                 output_topic = "features_carouge_flowerbed" + str(idx + 1)
                 # send data to Kafka producer only if it does contain only floats and ints and no NaNs
                 if((all(isinstance(x, (float, int)) for x in fv[j])) and (not np.isnan(fv[j]).any())):
                     future = producer.send(output_topic, output)
                     try:
-                        record_metadata = future.get(timeout=10)
-                        LOGGER.info("Feature vector sent to topic: %s", output_topic)
+                        record_metadata = future.get(timeout = 10)
+                        LOGGER.info("[%s] Feature vector sent to topic: %s", ts_string, output_topic)
                     except Exception as e:
                         LOGGER.exception('Producer error: ' + str(e))
                 else:
-                    LOGGER.info("Feature vector contains NaN or non-int/float: %s", output_topic)
+                    LOGGER.info("[%s] Feature vector contains NaN or non-int/float: %s", ts_string, output_topic)
 
 # -------------------------------------------------------------
 # MAIN part of the fusion script
@@ -206,6 +214,6 @@ schedule.every().hour.do(RunBatchFusionOnce)
 RunBatchFusionOnce()
 
 # checking scheduler (TODO: is this the correct way to do it)
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+#while True:
+#    schedule.run_pending()
+#    time.sleep(1)

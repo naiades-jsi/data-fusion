@@ -4,8 +4,10 @@
 .raw_data/
 .features_data/
 
-
 __pycache__/
+.src/data_base/__pycache__/
+.src/fusion/__pycache__/
+
 
 *.ipynb
 *.bat
