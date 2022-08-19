@@ -1,0 +1,95 @@
+{
+    "bucket": "braila",
+    "every": "1h",
+    "fusion": [
+        {
+            "aggregate": "mean",
+            "fields": [
+                "analog_input2"
+            ],
+            "measurement": "flow211206H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-0h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "analog_input2"
+            ],
+            "measurement": "flow211306H360",
+            "tags": {
+                "null": null
+            },
+            "when": "-0h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "analog_input2"
+            ],
+            "measurement": "flow318505H498",
+            "tags": {
+                "null": null
+            },
+            "when": "-0h",
+            "window": "4h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "pressure5770",
+            "tags": {
+                "null": null
+            },
+            "when": "-0h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "pressure5771",
+            "tags": {
+                "null": null
+            },
+            "when": "-0h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "pressure5772",
+            "tags": {
+                "null": null
+            },
+            "when": "-0h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "pressure5773",
+            "tags": {
+                "null": null
+            },
+            "when": "-0h",
+            "window": "1h"
+        }
+    ],
+    "organisation": "naiades",
+    "startTime": "2022-04-03T15:00:00",
+    "stopTime": "2022-07-03T09:00:00",
+    "token": "k_TK7JanSGbx9k7QClaPjarlhJSsh8oApCyQrs9GqfsyO3-GIDf_tJ79ckwrcA-K536Gvz8bxQhMXKuKYjDsgw==",
+    "url": "http://localhost:8086"
+}
