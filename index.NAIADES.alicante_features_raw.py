@@ -1,4 +1,4 @@
-from src.fusion.stream_fusion import streamFusion, bachFusion
+from src.fusion.stream_fusion import streamFusion, batchFusion
 
 import pandas as pd
 import numpy as np
@@ -31,7 +31,7 @@ template = {
             "window":"1m",
             "when":"-0h"
             }
-            
+
 fusions = {}
 
 
@@ -45,7 +45,7 @@ for m in measurements_conductivity:
 def RunBatchFusionOnce():
     for location in measurements_conductivity:
       today = datetime.datetime.today()
-  
+
       config = {
           "token":"k_TK7JanSGbx9k7QClaPjarlhJSsh8oApCyQrs9GqfsyO3-GIDf_tJ79ckwrcA-K536Gvz8bxQhMXKuKYjDsgw==",
           "url": "http://localhost:8086",
@@ -56,13 +56,13 @@ def RunBatchFusionOnce():
           "every":"1m",
           "fusion": fusions[location]
       }
-  
+
       today = datetime.datetime.today()
       folder = 'features_data'
-  
+
       config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:00")
       #config['startTime'] = datetime.datetime.utcfromtimestamp((today - datetime.datetime(1970, 1, 2 + start)).total_seconds()).strftime("%Y-%m-%dT%H:00:00")
-      
+
       #print(config['stopTime'] )
       with open(f'{folder}/features_alicante_{location}_raw.json', 'w+')as file_json:
         try:
@@ -71,25 +71,25 @@ def RunBatchFusionOnce():
           tss = int(json.loads(last_line)['timestamp']/1000 + 60*60)
         except:
           tss = 1649000000
-  
+
       config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:%M:00")
-  
+
       #print(config['startTime'])
-  
+
       file_json = open(f'alicante_salinity_{location}_raw_config.json', 'w')
       file_json.write(json.dumps(config, indent=4, sort_keys=True) )
       file_json.close()
-  
-      sf2 = bachFusion(config)
-  
-  
+
+      sf2 = batchFusion(config)
+
+
       update_outputs = True
       try:
         fv, t = sf2.buildFeatureVectors()
       except:
         print('Feature vector generation failed')
         update_outputs = False
-        
+
       if(update_outputs):
         with open(f'{folder}/features_alicante_{location}_raw.json', 'a+') as file_json:
           for j in range(t.shape[0]):
@@ -97,15 +97,15 @@ def RunBatchFusionOnce():
               if((all(isinstance(x, (float, int)) for x in fv[j])) and (not np.isnan(fv[j]).any())):
                 file_json.write((json.dumps(fv_line) + '\n' ))
           file_json.close()
-    
-    
+
+
         for j in range(t.shape[0]):
             output = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
             output_topic = f"features_alicante_{location}"
            # Start Kafka producer
             if((all(isinstance(x, (float, int)) for x in fv[j])) and (not np.isnan(fv[j]).any())):
               future = producer.send(output_topic, output)
-    
+
             try:
                 record_metadata = future.get(timeout=10)
             except Exception as e:
@@ -121,6 +121,6 @@ print("Current Time =", current_time)
 
 RunBatchFusionOnce()
 while True:
-    
+
     schedule.run_pending()
     time.sleep(1)

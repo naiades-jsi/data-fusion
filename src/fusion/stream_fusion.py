@@ -17,7 +17,7 @@ class streamFusion():
         self.organisation = config["organisation"]
         self.bucket = config["bucket"]
         self.fusion = config["fusion"]
-        
+
         self.agregate = AgregateQuery(self.token, self.url, self.organisation, self.bucket)
 
     def fuildFeatuureVectorKafka(self, topics, bootstrap_server):
@@ -58,7 +58,7 @@ class streamFusion():
             except:
                 what = 'influx'
                 pass
-        
+
             if what == 'python':
                 feat = AgregatePy(self.token, self.url, self.organisation, self.bucket).agregate_time(
                     agr=aggregate,
@@ -103,7 +103,7 @@ class streamFusion():
     def save(self):
         pass
 
-class bachFusion():
+class batchFusion():
     def __init__(self, config):
         # TODO from config detemine nodes used for fussion
         self.config = config
@@ -117,7 +117,7 @@ class bachFusion():
         self.stopTime = config["stopTime"]
 
         self.every = config["every"]
-        
+
         self.agregate = AgregateQuery(self.token, self.url, self.organisation, self.bucket)
 
     def buildFeatureVectors(self):
@@ -185,7 +185,7 @@ class bachFusion():
 
             feat = feat.drop_duplicates(subset=['_stop'], keep='first')
             feat = feat.drop_duplicates(subset=['_start'], keep='last')
-            
+
             if (not(feat.empty)):
               if (feat['_time'].iloc[-1] - feat['_time'].iloc[-2]) < pd.Timedelta(1, unit='s'):
                   feat.drop(feat.tail(1).index,inplace=True)
@@ -197,27 +197,27 @@ class bachFusion():
                 except:
                   feature_vector.append([np.nan])
                   print('missing value')
-                  
-                  
+
+
 
         #fix unexual row lengths
-                  
+
         row_lengths = []
 
         for row in feature_vector:
             row_lengths.append(len(row))
-            
-        
+
+
         max_length = max(row_lengths)
-        
+
         for i in range(len(feature_vector)):
             while len(feature_vector[i]) < max_length:
-                feature_vector[i] = np.concatenate([feature_vector[i],[np.nan]])    
+                feature_vector[i] = np.concatenate([feature_vector[i],[np.nan]])
 
         feature_vector = np.array(feature_vector)
 
         feature_vector = np.array(np.transpose(feature_vector))
-        
+
 
         return feature_vector, times
 
