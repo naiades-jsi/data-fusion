@@ -1,4 +1,4 @@
-from src.fusion.stream_fusion import streamFusion, bachFusion
+from src.fusion.stream_fusion import streamFusion, batchFusion
 
 import pandas as pd
 import numpy as np
@@ -34,7 +34,7 @@ template = {
             "window":"10m",
             "when":"-0h"
             }
-            
+
 fusions = {}
 
 
@@ -58,7 +58,7 @@ for m in measurements_conductivity:
 def RunBatchFusionOnce():
     for location in measurements_conductivity:
       today = datetime.datetime.today()
-  
+
       config = {
           "token":"k_TK7JanSGbx9k7QClaPjarlhJSsh8oApCyQrs9GqfsyO3-GIDf_tJ79ckwrcA-K536Gvz8bxQhMXKuKYjDsgw==",
           "url": "http://localhost:8086",
@@ -69,11 +69,9 @@ def RunBatchFusionOnce():
           "every":"10m",
           "fusion": fusions[location]
       }
-  
+
       today = datetime.datetime.today()
       folder = 'features_data'
-  
-      
       
       with open(f'{folder}/features_alicante_{location}_raw.json', 'a+')as file_json:
         try:
@@ -96,10 +94,10 @@ def RunBatchFusionOnce():
       file_json = open(f'alicante_salinity_{location}_raw_config.json', 'w')
       file_json.write(json.dumps(config, indent=4, sort_keys=True) )
       file_json.close()
-  
-      sf2 = bachFusion(config)
-  
-  
+
+      sf2 = batchFusion(config)
+
+
       update_outputs = True
       try:
           fv, t = sf2.buildFeatureVectors()
@@ -121,9 +119,6 @@ def RunBatchFusionOnce():
                       except Exception as e:
                           print('Producer error: ' + str(e))
     
-    
-
-
 #Do batch fusion once per day
 schedule.every().hour.do(RunBatchFusionOnce)
 print(schedule.get_jobs())
@@ -134,6 +129,6 @@ print("Current Time =", current_time)
 
 RunBatchFusionOnce()
 while True:
-    
+
     schedule.run_pending()
     time.sleep(1)

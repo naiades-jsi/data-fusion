@@ -1,4 +1,4 @@
-from src.fusion.stream_fusion import streamFusion, bachFusion
+from src.fusion.stream_fusion import streamFusion, batchFusion
 
 import pandas as pd
 import numpy as np
@@ -14,8 +14,8 @@ producer = KafkaProducer(bootstrap_servers="localhost:9092", value_serializer=la
 
 locations = [
     'alipark',
-    'autobuses', 
-    'benalua', 
+    'autobuses',
+    'benalua',
     'diputacion',
     'mercado',
     'montaneta',
@@ -45,7 +45,7 @@ for m in locations:
         temp['when'] = f'-{(23-i)*30}m'
         fusion.append(temp)
 
-        
+
     template['measurement'] = 'weather_observed1'
     template['window'] = "1h"
             
@@ -54,29 +54,29 @@ for m in locations:
         temp['fields'] = ["pressure"]
         temp['when'] = f'-{(11-i)}h'
         fusion.append(temp)
-        
+
         temp = copy.deepcopy(template)
         temp['fields'] = ["humidity"]
         temp['when'] = f'-{(11-i)}h'
         fusion.append(temp)
-        
+
         temp = copy.deepcopy(template)
         temp['fields'] = ["temperature"]
         temp['when'] = f'-{(11-i)}h'
         fusion.append(temp)
-        
+
         temp = copy.deepcopy(template)
         temp['fields'] = ["wind_bearing"]
         temp['when'] = f'-{(11-i)}h'
         fusion.append(temp)
-        
+
         temp = copy.deepcopy(template)
         temp['fields'] = ["wind_speed"]
         temp['when'] = f'-{(11-i)}h'
         fusion.append(temp)
     fusions[m] = copy.deepcopy(fusion)
-        
-        
+
+
 
 
 
@@ -87,7 +87,7 @@ once = True
 def RunBatchFusionOnce():
     for location in locations:
       today = datetime.datetime.today()
-  
+
       config = {
           "token":"k_TK7JanSGbx9k7QClaPjarlhJSsh8oApCyQrs9GqfsyO3-GIDf_tJ79ckwrcA-K536Gvz8bxQhMXKuKYjDsgw==",
           "url": "http://localhost:8086",
@@ -98,48 +98,48 @@ def RunBatchFusionOnce():
           "every":"1h",
           "fusion": fusions[location]
       }
-  
+
       #print(json.dumps(config, indent=4, sort_keys=True))
-  
+
       today = datetime.datetime.today()
       folder = 'features_data'
-  
+
       config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:00:00")
       #config['startTime'] = datetime.datetime.utcfromtimestamp((today - datetime.datetime(1970, 1, 2 + start)).total_seconds()).strftime("%Y-%m-%dT%H:00:00")
-      
+
       #print(config['stopTime'] )
-  
+
       file_json = open(f'{folder}/features_alicante_{location}_forecasting_w.json', 'r')
-  
+
       lines = file_json.readlines()
       last_line = lines[-1]
       tss = int(json.loads(last_line)['timestamp']/1000 + 30*60)
-      
+
       #print(last_line)
       #print(tss)
       #print(datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00"))
-  
+
       config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00")
-  
+
       #print(config['startTime'])
-  
+
       file_json = open(f'alicante_{location}_forecasting_w_config.json', 'w')
       file_json.write(json.dumps(config, indent=4, sort_keys=True) )
       file_json.close()
-  
-      #sf2 = bachFusion(config)
-      sf2 = bachFusion(config)
-  
-  
+
+      #sf2 = batchFusion(config)
+      sf2 = batchFusion(config)
+
+
       update_outputs = True
       try:
         fv, t = sf2.buildFeatureVectors()
       except:
         print('Feature vector generation failed')
         update_outputs = False
-        
+
       if(update_outputs):
-        
+
         consumption_tosend = []
         for i in range(len(t)):
             
@@ -148,10 +148,9 @@ def RunBatchFusionOnce():
             weather_ext = np.zeros(len(Weather)*2)
             weather_ext[::2] = Weather
             weather_ext[1::2] = Weather
-            
+
             vec = np.concatenate([Flow, weather_ext])
             consumption_tosend.append(vec)
-            
             last_values = vec[23::24]
           
             if(not pd.isna(last_values).any()):
@@ -172,8 +171,7 @@ def RunBatchFusionOnce():
                     record_metadata = future.get(timeout=10)
                 except Exception as e:
                     print('Producer error: ' + str(e))
-        
-              
+                      
 
 #Do batch fusion once per hour
 
@@ -188,6 +186,6 @@ print("Current Time =", current_time)
 RunBatchFusionOnce()
 print('Component started successfully.')
 while True:
-    
+
     schedule.run_pending()
     time.sleep(1)

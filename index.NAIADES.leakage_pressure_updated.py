@@ -1,4 +1,4 @@
-from src.fusion.stream_fusion import streamFusion, bachFusion
+from src.fusion.stream_fusion import streamFusion, batchFusion
 
 import pandas as pd
 import numpy as np
@@ -14,14 +14,14 @@ producer = KafkaProducer(bootstrap_servers="localhost:9092", value_serializer=la
 
 measurements_analog = [
     #'flow211106H360',
-    'flow211206H360', 
-    'flow211306H360', 
+    'flow211206H360',
+    'flow211306H360',
     'flow318505H498'
     ]
 measurements_presure = [
-    'pressure5770', 
-    'pressure5771', 
-    'pressure5772', 
+    'pressure5770',
+    'pressure5771',
+    'pressure5772',
     'pressure5773'
     ]
 
@@ -47,7 +47,7 @@ for m in measurements_analog:
             temp['window'] = '1h'
         temp['when'] = f'-{i}h'
         fusion.append(temp)
-        
+
 
 template['fields'] = ['value']
 template['window'] = '1h'
@@ -89,7 +89,7 @@ def RunBatchFusionOnce():
           tss = int(json.loads(last_line)['timestamp']/1000 + 60*60)
         except:
           tss = 1649000000
-    
+
     config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00")
     #print(config['startTime'])
 
@@ -97,7 +97,7 @@ def RunBatchFusionOnce():
     file_json.write(json.dumps(config, indent=4, sort_keys=True) )
     file_json.close()
 
-    sf2 = bachFusion(config)
+    sf2 = batchFusion(config)
 
 
     update_outputs = True
@@ -106,49 +106,49 @@ def RunBatchFusionOnce():
     except:
       print('Feature vector generation failed')
       update_outputs = False
-      
+
     if(update_outputs):
 
       # firs sensor missing therefore zeros for now
       zero = np.zeros((fv.shape[0], 1))
-  
+
       fv = np.concatenate((zero, fv), axis=1)
-  
+
       # use formula to transform TODO add in sistem
       fv[:, 1:4] = (fv[:,1:4] - 0.6) * 4 * 10.197
-  
-  
+
+
       with open(f'{folder}/features_pressure_updated.json', 'a+') as file_json:
         for j in range(t.shape[0]):
             fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
-            
+
             #data is uploaded at different times - this ensures that FV's won't be sent if data hasn't been uploaded for one or more of the sensors
             last_values = []
             for n in range(7):
               last_values.append(fv[j][n])
             last_values = np.array(last_values)
-            
-            
+
+
             if((all(isinstance(x, (float, int)) for x in last_values)) and (not np.isnan(last_values).any())):
               file_json.write((json.dumps(fv_line) + '\n' ))
-            
-  
+
+
       file_json.close()
-  
+
 
       for j in range(t.shape[0]):
           output = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
           output_topic = "features_braila_leakage_detection_updated"
-          
+
           last_values = []
           for n in range(7):
             last_values.append(fv[j][n])
           last_values = np.array(last_values)
-          
+
          # Start Kafka producer
           if((all(isinstance(x, (float, int)) for x in last_values)) and (not np.isnan(last_values).any())):
             future = producer.send(output_topic, output)
-  
+
           try:
               record_metadata = future.get(timeout=10)
           except Exception as e:
@@ -164,6 +164,6 @@ current_time = now.strftime("%H:%M:%S")
 
 RunBatchFusionOnce()
 while True:
-    
+
     schedule.run_pending()
     time.sleep(1)
