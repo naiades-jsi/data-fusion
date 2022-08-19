@@ -5,7 +5,15 @@ Download indluxDB from: [influxDB](https://www.influxdata.com/) (we used docker 
 (Components are not tested yet and not finished.)
 
 ## Deployment
-Directory: `/users/mcerin/services/data-fusion`
+
+1. Open `Dockerfile` and add the correct command to run the component. For example:
+    * `CMD ["python3", "index.NAIADES.carouge_w.py"]` (comment out the rest)
+2. Open file: `index.NAIADES.carouge_w.py` and change the Influx token that is currently set to `k_TK7JanSGbx9k7QClaPjarlhJSsh8oApCyQrs9GqfsyO3-GIDf_tJ79ckwrcA-K536Gvz8bxQhMXKuKYjDsgw==` with the correct influx token, used on IRCAI machine.
+    *   token is obtained on IRCAI machine in the influxdb container by running `influx auth list`; you choose the token for the `naiades` user.
+3. Build the docker file: `docker build -t e3ailab/df_carouge_w_ircai .`
+4. Push the docker file: `docker push e3ailab/df_carouge_w_ircai` (for this you need credentials for `e3ailab` on DockerHub)
+5. On IRCAI machine pull the latest image: `docker pull e3ailab/df_carouge_w_ircai`
+6. Run the image with `docker run -d --network="host" e3ailab/df_carouge_w_ircai`
 
 ## Database Schema
 

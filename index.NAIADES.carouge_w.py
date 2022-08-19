@@ -50,15 +50,16 @@ for idx in range(8):
         "when":"-0h"
     }
 
-
-
+    # make copy of the template first (it's a valid)
     temp = copy.deepcopy(template)
     fusion.append(temp)
 
+    # last h value
     temp = copy.deepcopy(template)
     temp["when"] = "-1h"
     fusion.append(temp)
 
+    # add current humidity
     temp = copy.deepcopy(template)
     temp["measurement"] = "environmental_station"
     temp["fields"] = ["relativeHumidity"]
@@ -66,6 +67,7 @@ for idx in range(8):
     temp["when"] = "-0h"
     fusion.append(temp)
 
+    # add soil (humidity?) for last hour
     temp = copy.deepcopy(template)
     temp["measurement"] = "environmental_station"
     temp["fields"] = ["soil"]
@@ -75,6 +77,7 @@ for idx in range(8):
     temp["when"] = "-1h"
     fusion.append(temp)
 
+    # add current temperature
     temp = copy.deepcopy(template)
     temp["measurement"] = "environmental_station"
     temp["fields"] = ["temperature"]
@@ -82,81 +85,81 @@ for idx in range(8):
     temp["when"] = "-0h"
     fusion.append(temp)
 
+    # add current temperature (again?)
     temp = copy.deepcopy(template)
     temp["measurement"] = "environmental_station"
     temp["fields"] = ["temperature"]
     temp["window"] = "1h"
     temp["when"] = "-0h"
     fusion.append(temp)
-    
+
     #temp = copy.deepcopy(template)
     #temp["measurement"] = 'flower_bed_' + str(idx + 1)
     #temp["fields"] = ['soilTemperature']
-    
     #fusion.append(temp)
-    
+    # this makes no sense (!?)
     temp = copy.deepcopy(template)
     Fusions.append(fusion)
 
-
 def RunBatchFusionOnce():
+    """Create batch fusion for current nodes"""
+
     for idx in range(8):
-      today = datetime.datetime.today()
+        today = datetime.datetime.today()
 
-      config = {
-          "token":"k_TK7JanSGbx9k7QClaPjarlhJSsh8oApCyQrs9GqfsyO3-GIDf_tJ79ckwrcA-K536Gvz8bxQhMXKuKYjDsgw==",
-          "url": "http://localhost:8086",
-          "organisation": "naiades",
-          "bucket": "carouge",
-          "startTime":"2021-07-07T00:00:00",
-          "stopTime":"2021-07-13T00:00:00",
-          "every":"1h",
-          "fusion": Fusions[idx]
-      }
+        config = {
+            "token":"k_TK7JanSGbx9k7QClaPjarlhJSsh8oApCyQrs9GqfsyO3-GIDf_tJ79ckwrcA-K536Gvz8bxQhMXKuKYjDsgw==",
+            "url": "http://localhost:8086",
+            "organisation": "naiades",
+            "bucket": "carouge",
+            "startTime":"2021-07-07T00:00:00",
+            "stopTime":"2021-07-13T00:00:00",
+            "every":"1h",
+            "fusion": Fusions[idx]
+        }
 
-      today = datetime.datetime.today()
-      folder = 'features_data'
+        today = datetime.datetime.today()
+        folder = 'features_data'
 
-      config['stopTime'] =datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
+        config['stopTime'] =datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
 
-      file_json = open(f'{folder}/features_carouge_' + str(idx + 1) + '.json', 'r')
+        file_json = open(f'{folder}/features_carouge_' + str(idx + 1) + '.json', 'r')
 
-      lines = file_json.readlines()
-      last_line = lines[-1]
-      print(last_line)
-      print(json.loads(last_line))
-      print(idx)
-      print(json.loads(last_line)['timestamp'])
-      tss = int(json.loads(last_line)['timestamp']/1000 + 60*60)
+        lines = file_json.readlines()
+        last_line = lines[-1]
+        print(last_line)
+        print(json.loads(last_line))
+        print(idx)
+        print(json.loads(last_line)['timestamp'])
+        tss = int(json.loads(last_line)['timestamp']/1000 + 60*60)
 
-      config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:%M:%S")
+        config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:%M:%S")
 
-      #print(config['startTime'])
-      #print(config['stopTime'] )
+        #print(config['startTime'])
+        #print(config['stopTime'] )
 
-      file_json = open(f'config_carouge_' + str(idx + 1) + '.json', 'w')
-      file_json.write(json.dumps(config, indent=4, sort_keys=True) )
-      file_json.close()
-
-      sf2 = batchFusion(config)
-
-      update_outputs = True
-      try:
-          fv, t = sf2.buildFeatureVectors()
-      except:
-          print('Feature vector generation failed')
-          update_outputs = False
-
-      if(update_outputs):
-
-          file_json = open(f'{folder}/features_carouge_' + str(idx + 1) + '.json', 'a')
-          for j in range(t.shape[0]):
-              fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
-              if((all(isinstance(x, (float, int)) for x in fv[j])) and (not np.isnan(fv[j]).any())):
-                  file_json.write((json.dumps(fv_line) + '\n' ))
-
+        file_json = open(f'config_carouge_' + str(idx + 1) + '.json', 'w')
+        file_json.write(json.dumps(config, indent=4, sort_keys=True) )
         file_json.close()
 
+        sf2 = batchFusion(config)
+
+        update_outputs = True
+        try:
+            fv, t = sf2.buildFeatureVectors()
+        except:
+            print('Feature vector generation failed')
+            update_outputs = False
+
+        if(update_outputs):
+
+            file_json = open(f'{folder}/features_carouge_' + str(idx + 1) + '.json', 'a')
+            for j in range(t.shape[0]):
+                fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
+                if((all(isinstance(x, (float, int)) for x in fv[j])) and (not np.isnan(fv[j]).any())):
+                    file_json.write((json.dumps(fv_line) + '\n' ))
+
+        file_json.close()
 
         for j in range(t.shape[0]):
             output = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
@@ -170,8 +173,8 @@ def RunBatchFusionOnce():
                 except Exception as e:
                     print('Producer error: ' + str(e))
 
-
-
+# MAIN part of the fusion script
+# create scheduler
 schedule.every().hour.do(RunBatchFusionOnce)
 RunBatchFusionOnce()
 
@@ -179,6 +182,7 @@ now = datetime.datetime.now()
 current_time = now.strftime("%H:%M:%S")
 #print("Current Time =", current_time)
 
+# checking scheduler (TODO: is this the correct way to do it)
 while True:
     schedule.run_pending()
     time.sleep(1)
