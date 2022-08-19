@@ -13,13 +13,16 @@ from kafka import KafkaProducer
 
 import logging
 
+# logger initialization
 LOGGER = logging.getLogger(__name__)
 logging.basicConfig(
     format="%(asctime)s %(name)-12s %(levelname)-8s %(message)s", level=logging.INFO)
 
+# connecting to Kafka; TODO - put this into a config file
 producer = KafkaProducer(bootstrap_servers="localhost:9092", value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
-Device_names = [
+# definition of devices
+device_names = [
     "device_1f0d",  #1
     "device_1f08",  #2
     "device_1f10",  #3
@@ -30,13 +33,17 @@ Device_names = [
     "device_1efe"   #8
 ]
 
+# generating fusions structure for all the devices
 Fusions = []
+
+# transverse through devices
 for idx in range(8):
     fusion = []
 
+    # template for a particular device
     template = {
         "aggregate":"mean",
-        "measurement": Device_names[idx],
+        "measurement": device_names[idx],
         "fields":["value"],
         "tags":{None: None},
         "window":"1h",
