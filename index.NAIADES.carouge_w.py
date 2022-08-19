@@ -20,14 +20,14 @@ logging.basicConfig(
 producer = KafkaProducer(bootstrap_servers="localhost:9092", value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
 Device_names = [
-  "device_1f0d",  #1
-  "device_1f08",  #2
-  "device_1f10",  #3
-  "device_1f06",  #4
-  "device_1efd",  #5
-  "device_1eff",  #6
-  "device_1f02",  #7
-  "device_1efe"   #8
+    "device_1f0d",  #1
+    "device_1f08",  #2
+    "device_1f10",  #3
+    "device_1f06",  #4
+    "device_1efd",  #5
+    "device_1eff",  #6
+    "device_1f02",  #7
+    "device_1efe"   #8
 ]
 
 Fusions = []
@@ -35,13 +35,13 @@ for idx in range(8):
     fusion = []
 
     template = {
-                "aggregate":"mean",
-                "measurement": Device_names[idx],
-                "fields":["value"],
-                "tags":{None: None},
-                "window":"1h",
-                "when":"-0h"
-                }
+        "aggregate":"mean",
+        "measurement": Device_names[idx],
+        "fields":["value"],
+        "tags":{None: None},
+        "window":"1h",
+        "when":"-0h"
+    }
 
 
 
@@ -124,18 +124,18 @@ def RunBatchFusionOnce():
 
       update_outputs = True
       try:
-        fv, t = sf2.buildFeatureVectors()
+          fv, t = sf2.buildFeatureVectors()
       except:
-        print('Feature vector generation failed')
-        update_outputs = False
+          print('Feature vector generation failed')
+          update_outputs = False
 
       if(update_outputs):
 
-        file_json = open(f'{folder}/features_carouge_' + str(idx + 1) + '.json', 'a')
-        for j in range(t.shape[0]):
-            fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
-            if((all(isinstance(x, (float, int)) for x in fv[j])) and (not np.isnan(fv[j]).any())):
-              file_json.write((json.dumps(fv_line) + '\n' ))
+          file_json = open(f'{folder}/features_carouge_' + str(idx + 1) + '.json', 'a')
+          for j in range(t.shape[0]):
+              fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
+              if((all(isinstance(x, (float, int)) for x in fv[j])) and (not np.isnan(fv[j]).any())):
+                  file_json.write((json.dumps(fv_line) + '\n' ))
 
         file_json.close()
 
@@ -145,12 +145,12 @@ def RunBatchFusionOnce():
             output_topic = "features_carouge_flowerbed" + str(idx + 1)
             # Start Kafka producer
             if((all(isinstance(x, (float, int)) for x in fv[j])) and (not np.isnan(fv[j]).any())):
-              future = producer.send(output_topic, output)
+                future = producer.send(output_topic, output)
 
-              try:
-                  record_metadata = future.get(timeout=10)
-              except Exception as e:
-                  print('Producer error: ' + str(e))
+                try:
+                    record_metadata = future.get(timeout=10)
+                except Exception as e:
+                    print('Producer error: ' + str(e))
 
 
 
