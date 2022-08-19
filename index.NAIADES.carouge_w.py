@@ -131,9 +131,6 @@ def RunBatchFusionOnce():
             "fusion": Fusions[idx]
         }
 
-        # DELETE before commit
-        config["token"] = "ZykEIhhYe0KRjleAAjFX9LhEm_H7SeLiLe6Kc71f1452Lps7U6MECvOHw9UooSanWwm7SKqe0kTXDnOhoAMNNA=="
-
         # folder for storing features data
         features_folder = 'features_data'
         config_folder = 'config_data'
@@ -214,6 +211,6 @@ schedule.every().hour.do(RunBatchFusionOnce)
 RunBatchFusionOnce()
 
 # checking scheduler (TODO: is this the correct way to do it)
-#while True:
-#    schedule.run_pending()
-#    time.sleep(1)
+while True:
+    schedule.run_pending()
+    time.sleep(1)
