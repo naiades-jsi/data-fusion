@@ -68,7 +68,7 @@ for idx in range(8):
     temp = copy.deepcopy(template)
     temp["measurement"] = "environmental_station"
     temp["fields"] = ["relativeHumidity"]
-    temp["window"] = "1h"
+    temp["window"] = "1d"
     temp["when"] = "-0h"
     fusion.append(temp)
 
@@ -76,7 +76,7 @@ for idx in range(8):
     temp = copy.deepcopy(template)
     temp["measurement"] = "environmental_station"
     temp["fields"] = ["soil"]
-    temp["window"] = "1h"
+    temp["window"] = "1d"
     temp["when"] = "-0h"
     fusion.append(temp)
     temp["when"] = "-1h"
@@ -86,7 +86,7 @@ for idx in range(8):
     temp = copy.deepcopy(template)
     temp["measurement"] = "environmental_station"
     temp["fields"] = ["temperature"]
-    temp["window"] = "1h"
+    temp["window"] = "1d"
     temp["when"] = "-0h"
     fusion.append(temp)
 
@@ -94,7 +94,7 @@ for idx in range(8):
     temp = copy.deepcopy(template)
     temp["measurement"] = "environmental_station"
     temp["fields"] = ["temperature"]
-    temp["window"] = "1h"
+    temp["window"] = "1d"
     temp["when"] = "-0h"
     fusion.append(temp)
 
@@ -130,7 +130,7 @@ def RunBatchFusionOnce():
             "every":"1h",
             "fusion": Fusions[idx]
         }
-
+        
         # folder for storing features data
         features_folder = 'features_data'
         config_folder = 'config_data'
@@ -199,7 +199,7 @@ def RunBatchFusionOnce():
                     except Exception as e:
                         LOGGER.exception('Producer error: ' + str(e))
                 else:
-                    LOGGER.info("[%s] Feature vector contains NaN or non-int/float: %s", ts_string, output_topic)
+                    LOGGER.info("[%s] Feature vector contains NaN or non-int/float: %s: %s", ts_string, output_topic, json.dumps(output))
 
 # -------------------------------------------------------------
 # MAIN part of the fusion script

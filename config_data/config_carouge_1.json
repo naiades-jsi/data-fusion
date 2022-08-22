@@ -36,7 +36,7 @@
                 "null": null
             },
             "when": "-0h",
-            "window": "1h"
+            "window": "1d"
         },
         {
             "aggregate": "mean",
@@ -48,7 +48,7 @@
                 "null": null
             },
             "when": "-1h",
-            "window": "1h"
+            "window": "1d"
         },
         {
             "aggregate": "mean",
@@ -60,7 +60,7 @@
                 "null": null
             },
             "when": "-1h",
-            "window": "1h"
+            "window": "1d"
         },
         {
             "aggregate": "mean",
@@ -72,7 +72,7 @@
                 "null": null
             },
             "when": "-0h",
-            "window": "1h"
+            "window": "1d"
         },
         {
             "aggregate": "mean",
@@ -84,12 +84,12 @@
                 "null": null
             },
             "when": "-0h",
-            "window": "1h"
+            "window": "1d"
         }
     ],
     "organisation": "naiades",
     "startTime": "2022-08-18T10:49:52",
-    "stopTime": "2022-08-19T15:05:20",
+    "stopTime": "2022-08-22T11:24:10",
     "token": "ZykEIhhYe0KRjleAAjFX9LhEm_H7SeLiLe6Kc71f1452Lps7U6MECvOHw9UooSanWwm7SKqe0kTXDnOhoAMNNA==",
     "url": "http://localhost:8086"
 }
