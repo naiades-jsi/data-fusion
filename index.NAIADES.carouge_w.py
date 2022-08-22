@@ -121,7 +121,7 @@ def RunBatchFusionOnce():
         # config tempalte for InfluxDB
         # note to change the key, if needed
         config = {
-            "token":"k_TK7JanSGbx9k7QClaPjarlhJSsh8oApCyQrs9GqfsyO3-GIDf_tJ79ckwrcA-K536Gvz8bxQhMXKuKYjDsgw==",
+            "token":"ZykEIhhYe0KRjleAAjFX9LhEm_H7SeLiLe6Kc71f1452Lps7U6MECvOHw9UooSanWwm7SKqe0kTXDnOhoAMNNA==",
             "url": "http://localhost:8086",
             "organisation": "naiades",
             "bucket": "carouge",
@@ -130,7 +130,7 @@ def RunBatchFusionOnce():
             "every":"1h",
             "fusion": Fusions[idx]
         }
-        
+
         # folder for storing features data
         features_folder = 'features_data'
         config_folder = 'config_data'

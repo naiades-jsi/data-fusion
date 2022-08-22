@@ -7,6 +7,7 @@
 __pycache__/
 .src/data_base/__pycache__/
 .src/fusion/__pycache__/
+secrets.json
 
 
 *.ipynb
