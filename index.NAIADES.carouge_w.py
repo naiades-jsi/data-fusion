@@ -18,8 +18,12 @@ LOGGER = logging.getLogger(__name__)
 logging.basicConfig(
     format="%(asctime)s %(name)-12s %(levelname)-8s %(message)s", level=logging.INFO)
 
+# import secrets
+with open("secrets_carouge.json", "r") as jsonfile:
+    secrets = json.load(jsonfile)
+
 # connecting to Kafka; TODO - put this into a config file
-producer = KafkaProducer(bootstrap_servers="localhost:9092", value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+producer = KafkaProducer(bootstrap_servers=secrets.bootstrap_servers, value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
 # generating fusions structure for all the devices
 LOGGER.info("Starting building configurations for fusion.")
@@ -121,13 +125,13 @@ def RunBatchFusionOnce():
         # config tempalte for InfluxDB
         # note to change the key, if needed
         config = {
-            "token":"ZykEIhhYe0KRjleAAjFX9LhEm_H7SeLiLe6Kc71f1452Lps7U6MECvOHw9UooSanWwm7SKqe0kTXDnOhoAMNNA==",
-            "url": "http://localhost:8086",
+            "token": secrets.influx_token,
+            "url": "localhost:8086",
             "organisation": "naiades",
             "bucket": "carouge",
-            "startTime":"2022-08-01T00:00:00",
-            "stopTime":"2022-08-2T00:00:00",
-            "every":"1h",
+            "startTime": "2022-08-01T00:00:00",
+            "stopTime": "2022-08-2T00:00:00",
+            "every": "1h",
             "fusion": Fusions[idx]
         }
 

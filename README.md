@@ -15,6 +15,8 @@ Download indluxDB from: [influxDB](https://www.influxdata.com/) (we used docker 
 5. On IRCAI machine pull the latest image: `docker pull e3ailab/df_carouge_w_ircai`
 6. Run the image with `docker run -d --network="host" e3ailab/df_carouge_w_ircai`
 
+Alternetively, some solutions (like Carouge) already implement `secrets.json` file for storing the Influx and Kafka secrets. For these deployments, you only have to set the secrets in this file. For structure, copy `secrets.sample.json` --> `secrets.json`.
+
 ## Database Schema
 
 InfluxDB hierarchy:
