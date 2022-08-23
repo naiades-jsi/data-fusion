@@ -116,7 +116,7 @@ def RunBatchFusionOnce():
             "fusion": fusions[location]
         }
 
-        today = datetime.datetime.today()
+        # folders for storing features and config data
         features_folder = 'features_data'
         config_folder = 'config_data'
 
@@ -126,56 +126,64 @@ def RunBatchFusionOnce():
         file_json = open(f'{features_folder}/features_alicante_{location}_forecasting_w.json', 'r')
         lines = file_json.readlines()
         last_line = lines[-1]
+        # adding 30 minutes; why?
         tss = int(json.loads(last_line)['timestamp']/1000 + 30 * 60)
-
         config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00")
+
+        # writing back the config file
+        # TODO: possible bug - we should write this down only if output is successfull
         file_json = open(f'{config_folder}/alicante_{location}_forecasting_w_config.json', 'w')
         file_json.write(json.dumps(config, indent=4, sort_keys=True) )
         file_json.close()
 
+        # initiate the batch fusion
         sf2 = batchFusion(config)
 
-
+        # get outputs if possible
         update_outputs = True
         try:
             fv, t = sf2.buildFeatureVectors()
-        except:
-            print('Feature vector generation failed')
+        except Exception as e:
+            LOGGER.error('Feature vector generation failed %s', str(e))
             update_outputs = False
 
-        if(update_outputs):
+        # if feature vector was successfully generated, append the data into the file
+        if (update_outputs):
 
             consumption_tosend = []
             for i in range(len(t)):
 
-                Flow = fv[i, :24]
-                Weather = fv[i, 24:]
-                weather_ext = np.zeros(len(Weather)*2)
-                weather_ext[::2] = Weather
-                weather_ext[1::2] = Weather
+                flow = fv[i, :24]
+                weather = fv[i, 24:]
+                weather_ext = np.zeros(len(weather)*2)
+                weather_ext[::2] = weather
+                weather_ext[1::2] = weather
 
-                vec = np.concatenate([Flow, weather_ext])
+                vec = np.concatenate([flow, weather_ext])
                 consumption_tosend.append(vec)
                 last_values = vec[23::24]
 
                 if(not pd.isna(last_values).any()):
-                    fv_line = {"timestamp":int(t[i].astype('uint64')/1000000), "ftr_vector":list(consumption_tosend[i])}
+                    # generating timestamp and timestamp in readable form
+                    ts = int(t[i].astype('uint64')/1000000)
+                    ts_string = datetime.datetime.utcfromtimestamp(ts / 1000).strftime("%Y-%m-%dT%H:%M:%S")
 
-                    #data is uploaded at different times - this ensures that FV's won't be sent if data hasn't been uploaded for one or more of the sensors
-                    with open(f'{folder}/features_alicante_{location}_forecasting_w.json', 'a') as file_json:
-                    file_json.write((json.dumps(fv_line) + '\n' ))
-
-                    file_json.close()
-
-                    output = {"timestamp":int(t[i].astype('uint64')/1000000), "ftr_vector":list(consumption_tosend[i])}
+                    output = {"timestamp": ts, "ftr_vector":list(consumption_tosend[i])}
                     output_topic = f'features_alicante_{location}_forecasting_w'
 
-                    future = producer.send(output_topic, output)
+                    #data is uploaded at different times - this ensures that FV's won't be sent if data hasn't been uploaded for one or more of the sensors
+                    with open(f'{features_folder}/features_alicante_{location}_forecasting_w.json', 'a') as file_json:
+                        file_json.write((json.dumps(output) + '\n' ))
+                        file_json.close()
 
+                    future = producer.send(output_topic, output)
                     try:
-                        record_metadata = future.get(timeout=10)
+                        record_metadata = future.get(timeout = 10)
+                        LOGGER.info("[%s] Feature vector sent to topic: %s", ts_string, output_topic)
                     except Exception as e:
-                        print('Producer error: ' + str(e))
+                        LOGGER.exception('Producer error: ' + str(e))
+                else:
+                    LOGGER.info("[%s] Feature vector contains NaN or non-int/float: %s: %s", ts_string, output_topic, json.dumps(output))
 
 # MAIN part of the program -------------------------------
 # create hourly scheduler
