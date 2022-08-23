@@ -18,8 +18,13 @@ LOGGER = logging.getLogger(__name__)
 logging.basicConfig(
     format="%(asctime)s %(name)-12s %(levelname)-8s %(message)s", level=logging.INFO)
 
+# import secrets
+with open("secrets.json", "r") as jsonfile:
+    secrets = json.load(jsonfile)
+    print(secrets)
+
 # starting Kafka producer
-producer = KafkaProducer(bootstrap_servers="localhost:9092", value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+producer = KafkaProducer(bootstrap_servers=secrets["bootstrap_servers"], value_serializer=lambda v: json.dumps(v).encode('utf-8'))
 
 # CONFIG generations ---------------------------------------------
 LOGGER.info("Generating Alicante configurations")
@@ -101,7 +106,7 @@ def RunBatchFusionOnce():
     for location in locations:
         # template for the batch fusion config
         config = {
-            "token": "k_TK7JanSGbx9k7QClaPjarlhJSsh8oApCyQrs9GqfsyO3-GIDf_tJ79ckwrcA-K536Gvz8bxQhMXKuKYjDsgw==",
+            "token": secrets["influx_token"],
             "url": "http://localhost:8086",
             "organisation": "naiades",
             "bucket": "alicante",
