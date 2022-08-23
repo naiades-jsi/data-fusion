@@ -104,58 +104,64 @@ def RunBatchFusionOnce():
         file_json.write(json.dumps(config, indent=4, sort_keys=True) )
         file_json.close()
 
+        # initiate the batch fusion
         sf2 = batchFusion(config)
 
-
+        # get outputs if possible
         update_outputs = True
         try:
             fv, t = sf2.buildFeatureVectors()
-        except:
-            print('Feature vector generation failed')
+        except Exception as e:
+            LOGGER.error('Feature vector generation failed %s', str(e))
             update_outputs = False
 
-        if(update_outputs):
+        # if feature vector was successfully generated, append the data into the file
+        # and send it to Kafka
+        if (update_outputs):
             tosend = []
+
+            # TODO: this should be obsolete - copies itself
             for i in range(len(t)):
                 Flow = fv[i, :24]
-
                 vec = Flow.copy()
                 tosend.append(vec)
 
-
+            # create vector to send
             for j in range(t.shape[0]):
                 if(not pd.isna(tosend[j][-1])):
-                    fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(tosend[j])}
+                    # generating timestamp and timestamp in readable form
+                    ts = int(t[j].astype('uint64')/1000000)
+                    ts_string = datetime.datetime.utcfromtimestamp(ts / 1000).strftime("%Y-%m-%dT%H:%M:%S")
 
+                    # generate outputs
+                    output = {"timestamp": ts, "ftr_vector": list(tosend[j])}
+                    output_topic = f'features_alicante_{location}_forecasting'
+
+                    # write feature vector to file
                     with open(f'{features_folder}/features_alicante_{location}_flow_forecasting.json', 'a') as file_json:
-                        file_json.write((json.dumps(fv_line) + '\n' ))
+                        file_json.write((json.dumps(output) + '\n' ))
+                        file_json.close()
 
-                    file_json.close()
-
-                    output = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(tosend[j])}
-                    output_topic = f'features_alicante_{location}_flow_forecasting'
-
+                    # send to Kafka and check success of the result
                     future = producer.send(output_topic, output)
-
                     try:
-                        record_metadata = future.get(timeout=10)
+                        record_metadata = future.get(timeout = 10)
+                        LOGGER.info("[%s] Feature vector sent to topic: %s", ts_string, output_topic)
                     except Exception as e:
-                        print('Producer error: ' + str(e))
+                        LOGGER.exception('Producer error: ' + str(e))
+                else:
+                    LOGGER.info("[%s] Feature vector contains NaN or non-int/float: %s: %s", ts_string, output_topic, json.dumps(output))
 
 
+# MAIN part of the program -------------------------------
 
-#Do batch fusion once per hour
-
-
+# create hourly scheduler
 schedule.every().hour.do(RunBatchFusionOnce)
-
-now = datetime.datetime.now()
-
-current_time = now.strftime("%H:%M:%S")
-print("Current Time =", current_time)
-
 RunBatchFusionOnce()
-print('Component started successfully.')
+
+LOGGER.info('Component started successfully.')
+
+# checking scheduler
 while True:
     schedule.run_pending()
     time.sleep(1)

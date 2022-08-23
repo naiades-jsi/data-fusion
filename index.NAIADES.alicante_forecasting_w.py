@@ -148,6 +148,7 @@ def RunBatchFusionOnce():
             update_outputs = False
 
         # if feature vector was successfully generated, append the data into the file
+        # and send it to Kafka
         if (update_outputs):
 
             consumption_tosend = []
