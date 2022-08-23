@@ -151,31 +151,44 @@ def RunBatchFusionOnce():
         if (update_outputs):
 
             consumption_tosend = []
+            # transverse through all the feature vectors
             for i in range(len(t)):
-
+                # extract flow profile
                 flow = fv[i, :24]
+                # doubling weather vector, duplicating every second value
                 weather = fv[i, 24:]
+                # make weather vector - double sized
                 weather_ext = np.zeros(len(weather)*2)
+                # fill in even places
                 weather_ext[::2] = weather
+                # fill in odd places
                 weather_ext[1::2] = weather
-
+                # build final vector
                 vec = np.concatenate([flow, weather_ext])
                 consumption_tosend.append(vec)
                 last_values = vec[23::24]
 
-                if(not pd.isna(last_values).any()):
+                # TODO: take care about potential missing data imputation in the profiles
+                # if feature vectors contain some NaNs then we do not send the feature vector
+                if (not pd.isna(last_values).any()):
                     # generating timestamp and timestamp in readable form
                     ts = int(t[i].astype('uint64')/1000000)
                     ts_string = datetime.datetime.utcfromtimestamp(ts / 1000).strftime("%Y-%m-%dT%H:%M:%S")
 
-                    output = {"timestamp": ts, "ftr_vector":list(consumption_tosend[i])}
+                    # generate outputs
+                    output = {"timestamp": ts, "ftr_vector": list(consumption_tosend[i])}
                     output_topic = f'features_alicante_{location}_forecasting_w'
 
-                    #data is uploaded at different times - this ensures that FV's won't be sent if data hasn't been uploaded for one or more of the sensors
+                    # TODO: What is this?
+                    #   data is uploaded at different times - this ensures that FV's won't
+                    #   be sent if data hasn't been uploaded for one or more of the sensors
+
+                    # append the data in the file
                     with open(f'{features_folder}/features_alicante_{location}_forecasting_w.json', 'a') as file_json:
                         file_json.write((json.dumps(output) + '\n' ))
                         file_json.close()
 
+                    # send to Kafka and check success of the result
                     future = producer.send(output_topic, output)
                     try:
                         record_metadata = future.get(timeout = 10)
