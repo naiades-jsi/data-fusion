@@ -30,8 +30,8 @@ InfluxDB hierarchy:
 
 ## Config
 
-```
-config2 = {
+```json
+config = {
     // influx data
     "token":"B1WdM9eu5E-GV5l3zA-eRvbboy_-2jzPyIZUW7x2rbhVLd2DRYRU-UgQrmdOf8bXTKAhMp8XVRhmSUCaeGpTZA==",
     "url": "http://localhost:8086",
@@ -79,13 +79,13 @@ List of aggregates: these aggregates are directly Influx aggregates.
 
 
 ## Python
-```
+```python
 from src.fusion.stream_fusion import batchFusion
 config = ...
 sf = batchFusion(config)
 l, t = sf.buildFeatureVectors()
-// t - vector of times
-// l - matrix of feature values
+# t - vector of times
+# l - matrix of feature values
 ```
 
 ## Running
