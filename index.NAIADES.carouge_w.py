@@ -19,7 +19,7 @@ logging.basicConfig(
     format="%(asctime)s %(name)-12s %(levelname)-8s %(message)s", level=logging.INFO)
 
 # import secrets
-with open("secrets_carouge.json", "r") as jsonfile:
+with open("secrets.json", "r") as jsonfile:
     secrets = json.load(jsonfile)
     print(secrets)
 
