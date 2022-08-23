@@ -199,6 +199,7 @@ def RunBatchFusionOnce():
                     LOGGER.info("[%s] Feature vector contains NaN or non-int/float: %s: %s", ts_string, output_topic, json.dumps(output))
 
 # MAIN part of the program -------------------------------
+
 # create hourly scheduler
 schedule.every().hour.do(RunBatchFusionOnce)
 RunBatchFusionOnce()
