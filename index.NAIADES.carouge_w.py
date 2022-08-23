@@ -136,7 +136,7 @@ def RunBatchFusionOnce():
             "fusion": Fusions[idx]
         }
 
-        # folder for storing features data
+        # folders for storing features and config data
         features_folder = 'features_data'
         config_folder = 'config_data'
 

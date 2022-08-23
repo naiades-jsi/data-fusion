@@ -118,6 +118,8 @@ def RunBatchFusionOnce():
 
         today = datetime.datetime.today()
         features_folder = 'features_data'
+        config_folder = 'config_data'
+
         config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:00:00")
 
         # reading last generating feature for obtaining last successful timestamp
@@ -127,7 +129,7 @@ def RunBatchFusionOnce():
         tss = int(json.loads(last_line)['timestamp']/1000 + 30 * 60)
 
         config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00")
-        file_json = open(f'alicante_{location}_forecasting_w_config.json', 'w')
+        file_json = open(f'{config_folder}/alicante_{location}_forecasting_w_config.json', 'w')
         file_json.write(json.dumps(config, indent=4, sort_keys=True) )
         file_json.close()
 
