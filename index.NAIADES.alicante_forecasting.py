@@ -62,7 +62,7 @@ for m in locations:
         temp = copy.deepcopy(template)
         temp['fields'] = ["value"]
         # 12-hour profile of with 30min resolution
-        temp['when'] = f'{(-23 + i)*30}m'
+        temp['when'] = f'-{(23-i)*30}m'
         fusion.append(temp)
 
     # adding fusion to the set of all fusions
@@ -127,15 +127,16 @@ def RunBatchFusionOnce():
 
             # create vector to send
             for j in range(t.shape[0]):
-                if(not pd.isna(tosend[j][-1])):
-                    # generating timestamp and timestamp in readable form
-                    ts = int(t[j].astype('uint64')/1000000)
-                    ts_string = datetime.datetime.utcfromtimestamp(ts / 1000).strftime("%Y-%m-%dT%H:%M:%S")
+                # generating timestamp and timestamp in readable form
+                ts = int(t[j].astype('uint64')/1000000)
+                ts_string = datetime.datetime.utcfromtimestamp(ts / 1000).strftime("%Y-%m-%dT%H:%M:%S")
 
-                    # generate outputs
-                    output = {"timestamp": ts, "ftr_vector": list(tosend[j])}
-                    output_topic = f'features_alicante_{location}_forecasting'
+                # generate outputs
+                output = {"timestamp": ts, "ftr_vector": list(tosend[j])}
+                output_topic = f'features_alicante_{location}_forecasting'
 
+                # only if last element is ok
+                if (not pd.isna(tosend[j][-1])):
                     # write feature vector to file
                     with open(f'{features_folder}/features_alicante_{location}_flow_forecasting.json', 'a') as file_json:
                         file_json.write((json.dumps(output) + '\n' ))
