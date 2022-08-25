@@ -106,61 +106,63 @@ def RunBatchFusionOnce():
                     shift = 30 # in minutes
                 else:
                     shift = 10
-            tss = int(json.loads(last_line)['timestamp']/1000 + shift*60)
-        except:
-            LOGGER.error("Error opening features file: %s", f'{features_folder}/features_alicante_{location}_raw.json')
-            LOGGER.info("Setting up fake start timestamp")
-            tss = 1661119200 # 2022-08-22 00:00:00
+                tss = int(json.loads(last_line)['timestamp']/1000 + shift*60)
+            except Exception as e:
+                LOGGER.error("Exception: %s", str(e))
+                LOGGER.info("Setting up fake start timestamp")
+                tss = 1661119200 # 2022-08-22 00:00:00
 
-    # setting up start and stop times
-    config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:%M:00")
-    config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:00")
+        # setting up start and stop times
+        config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:%M:00")
+        config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:00")
 
-    # writing back the config file
-    file_json = open(f'{config_folder}/alicante_{location}_raw_config.json', 'w')
-    file_json.write(json.dumps(config, indent=4, sort_keys=True) )
-    file_json.close()
+        LOGGER.info("Setting start and stop timest to: %s and %s", config['startTime'], config['stopTime'])
 
-    # initiate the batch fusion
-    sf2 = batchFusion(config)
+        # writing back the config file
+        file_json = open(f'{config_folder}/alicante_{location}_raw_config.json', 'w')
+        file_json.write(json.dumps(config, indent=4, sort_keys=True) )
+        file_json.close()
 
-    # get outputs if possible
-    update_outputs = True
-    try:
-        fv, t = sf2.buildFeatureVectors()
-    except Exception as e:
+        # initiate the batch fusion
+        sf2 = batchFusion(config)
+
+        # get outputs if possible
+        update_outputs = True
+        try:
+            fv, t = sf2.buildFeatureVectors()
+        except Exception as e:
             LOGGER.error('Feature vector generation failed %s', str(e))
             update_outputs = False
 
-    # if feature vector was successfully generated, append the data into the file
-    # and send it to Kafka
-    if (update_outputs):
-        # write to features log file
-        with open(f'{features_folder}/features_alicante_{location}_raw.json', 'a+') as file_json:
-            # iterate through all the feature vectors
-            for j in range(t.shape[0]):
-                # generating timestamp and timestamp in readable form
-                ts = int(t[j].astype('uint64')/1000000)
-                ts_string = datetime.datetime.utcfromtimestamp(ts / 1000).strftime("%Y-%m-%dT%H:%M:%S")
+        # if feature vector was successfully generated, append the data into the file
+        # and send it to Kafka
+        if (update_outputs):
+            # write to features log file
+            with open(f'{features_folder}/features_alicante_{location}_raw.json', 'a+') as file_json:
+                # iterate through all the feature vectors
+                for j in range(t.shape[0]):
+                    # generating timestamp and timestamp in readable form
+                    ts = int(t[j].astype('uint64')/1000000)
+                    ts_string = datetime.datetime.utcfromtimestamp(ts / 1000).strftime("%Y-%m-%dT%H:%M:%S")
 
-                # generating ouput topic and feature vector
-                output_topic = f"features_alicante_{location}"
-                output = { "timestamp": ts, "ftr_vector": list(fv[j]) }
+                    # generating ouput topic and feature vector
+                    output_topic = f"features_alicante_{location}"
+                    output = { "timestamp": ts, "ftr_vector": list(fv[j]) }
 
-        	    # are there NaNs in the feature vector?
-                if ((all(isinstance(x, (float, int)) for x in fv[j])) and (not np.isnan(fv[j]).any())):
-                    # write to file
-                    file_json.write((json.dumps(fv_line) + '\n' ))
+                    # are there NaNs in the feature vector?
+                    if ((all(isinstance(x, (float, int)) for x in fv[j])) and (not np.isnan(fv[j]).any())):
+                        # write to file
+                        file_json.write((json.dumps(output) + '\n' ))
 
-                    # send to Kafka and check the sucess of the producer
-                    future = producer.send(output_topic, fv_line)
-                    try:
-                        record_metadata = future.get(timeout = 10)
-                        LOGGER.info("[%s] Feature vector sent to topic: %s", ts_string, output_topic)
-                    except Exception as e:
-                        print('Producer error: ' + str(e))
-                else:
-                    LOGGER.info("[%s] Feature vector contains NaN or non-int/float: %s: %s", ts_string, output_topic, json.dumps(output))
+                        # send to Kafka and check the sucess of the producer
+                        #future = producer.send(output_topic, output)
+                        try:
+                            #record_metadata = future.get(timeout = 10)
+                            LOGGER.info("[%s] Feature vector sent to topic: %s", ts_string, output_topic)
+                        except Exception as e:
+                            print('Producer error: ' + str(e))
+                    else:
+                        LOGGER.info("[%s] Feature vector contains NaN or non-int/float: %s: %s", ts_string, output_topic, json.dumps(output))
 
 # MAIN part of the program -------------------------------
 

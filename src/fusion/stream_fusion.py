@@ -5,6 +5,12 @@ from .time_parser import TimeParser
 
 import numpy as np
 import pandas as pd
+import logging
+
+# logger initialization
+LOGGER = logging.getLogger(__name__)
+logging.basicConfig(
+    format="%(asctime)s %(name)-12s %(levelname)-8s %(message)s", level=logging.INFO)
 
 from kafka import KafkaConsumer
 
@@ -92,11 +98,11 @@ class streamFusion():
                         feature_vector.append( feat["_value"])
                     else:
                         feature_vector.append( feat["_value"][feat["_field"] == f].iloc[0] )
-                except:
-                    print('missing value')
+                except Exception as e:
+                    LOGGER.error('Missing value')
                     feature_vector.append(None)
 
-                print(feat["_time"], '\n')
+                # print(feat["_time"], '\n')
 
         return feature_vector, np.datetime64('now')
 
@@ -105,7 +111,7 @@ class streamFusion():
 
 class batchFusion():
     def __init__(self, config):
-        # TODO from config detemine nodes used for fussion
+        # TODO: from config detemine nodes used for fusion
         self.config = config
         self.token = config["token"]
         self.url = config["url"]
@@ -187,39 +193,40 @@ class batchFusion():
             feat = feat.drop_duplicates(subset=['_start'], keep='last')
 
             if (not(feat.empty)):
-              if (feat['_time'].iloc[-1] - feat['_time'].iloc[-2]) < pd.Timedelta(1, unit='s'):
-                  feat.drop(feat.tail(1).index,inplace=True)
-              #print(feat['_time'])
-            for f in fields:
-                try:
-                  feature_vector.append( feat["_value"][feat["_field"] == f].values )
-                  times = feat["_time"][feat["_field"] == f].values
-                except:
-                  feature_vector.append([np.nan])
-                  print('missing value')
+                if (feat['_time'].iloc[-1] - feat['_time'].iloc[-2]) < pd.Timedelta(1, unit='s'):
+                    feat.drop(feat.tail(1).index,inplace=True)
+                #print(feat['_time'])
 
+                for f in fields:
+                    try:
+                        feature_vector.append( feat["_value"][feat["_field"] == f].values )
+                        times = feat["_time"][feat["_field"] == f].values
+                    except Exception as e:
+                        feature_vector.append([np.nan])
+                        times = feat["_time"][feat["_field"] == f].values
+                        LOGGER.error('Missing value')
 
+                #fix unexual row lengths
 
-        #fix unexual row lengths
+                row_lengths = []
 
-        row_lengths = []
+                for row in feature_vector:
+                    row_lengths.append(len(row))
 
-        for row in feature_vector:
-            row_lengths.append(len(row))
+                max_length = max(row_lengths)
 
+                for i in range(len(feature_vector)):
+                    while len(feature_vector[i]) < max_length:
+                        feature_vector[i] = np.concatenate([feature_vector[i],[np.nan]])
 
-        max_length = max(row_lengths)
+                feature_vector = np.array(feature_vector)
 
-        for i in range(len(feature_vector)):
-            while len(feature_vector[i]) < max_length:
-                feature_vector[i] = np.concatenate([feature_vector[i],[np.nan]])
+                feature_vector = np.array(np.transpose(feature_vector))
+                LOGGER.info("Here! %s, %s", feature_vector, times)
+                return feature_vector, times
 
-        feature_vector = np.array(feature_vector)
-
-        feature_vector = np.array(np.transpose(feature_vector))
-
-
-        return feature_vector, times
+            else: # if feature vector is empty
+                raise BufferError('No data available for feature vector generation')
 
     def save(self):
         pass
