@@ -122,7 +122,7 @@ def RunBatchFusionOnce():
 
         config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:00:00")
 
-        # reading last generated feature vector for obtaining last successful timestamp
+        # reading generated feature vectors for obtaining last successful timestamp
         file_json = open(f'{features_folder}/features_alicante_{location}_forecasting_w.json', 'r')
         lines = file_json.readlines()
         last_line = lines[-1]
