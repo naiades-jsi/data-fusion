@@ -131,7 +131,7 @@ def RunBatchFusionOnce():
         try:
             fv, t = sf2.buildFeatureVectors()
         except Exception as e:
-            LOGGER.error('Feature vector generation failed %s', str(e))
+            LOGGER.error('Feature vector generation failed: %s', str(e))
             update_outputs = False
 
         # if feature vector was successfully generated, append the data into the file
