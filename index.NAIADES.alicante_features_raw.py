@@ -87,8 +87,8 @@ def RunBatchFusionOnce():
             "url": "http://localhost:8086",
             "organisation": "naiades",
             "bucket": "alicante",
-            "startTime": "2021-08-07T00:00:00",
-            "stopTime": "2021-08-13T00:00:00",
+            "startTime": secrets["start_time"],
+            "stopTime": secrets["stop_time"],
             "every": "10m",
             "fusion": fusions[location]
         }
