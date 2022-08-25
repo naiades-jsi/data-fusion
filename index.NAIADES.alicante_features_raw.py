@@ -117,7 +117,7 @@ def RunBatchFusionOnce():
     config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:00")
 
     # writing back the config file
-    file_json = open(f'{config_folder}/alicante_salinity_{location}_raw_config.json', 'w')
+    file_json = open(f'{config_folder}/alicante_{location}_raw_config.json', 'w')
     file_json.write(json.dumps(config, indent=4, sort_keys=True) )
     file_json.close()
 
