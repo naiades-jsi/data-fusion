@@ -222,7 +222,6 @@ class batchFusion():
                 feature_vector = np.array(feature_vector)
 
                 feature_vector = np.array(np.transpose(feature_vector))
-                LOGGER.info("Here! %s, %s", feature_vector, times)
                 return feature_vector, times
 
             else: # if feature vector is empty
