@@ -94,7 +94,7 @@ def RunBatchFusionOnce():
     config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00")
     #print(config['startTime'])
 
-    file_json = open(f'{config_folder}/leakage_pressure_updated.json', 'w')
+    file_json = open(f'{config_folder}/config_leakage_pressure_updated.json', 'w')
     file_json.write(json.dumps(config, indent=4, sort_keys=True) )
     file_json.close()
 
