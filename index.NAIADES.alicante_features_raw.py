@@ -155,9 +155,9 @@ def RunBatchFusionOnce():
                         file_json.write((json.dumps(output) + '\n' ))
 
                         # send to Kafka and check the sucess of the producer
-                        #future = producer.send(output_topic, output)
+                        future = producer.send(output_topic, output)
                         try:
-                            #record_metadata = future.get(timeout = 10)
+                            record_metadata = future.get(timeout = 10)
                             LOGGER.info("[%s] Feature vector sent to topic: %s", ts_string, output_topic)
                         except Exception as e:
                             print('Producer error: ' + str(e))
