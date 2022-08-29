@@ -200,9 +200,9 @@ def RunBatchFusionOnce():
                 output_topic = "features_carouge_flowerbed" + str(idx + 1)
                 # send data to Kafka producer only if it does contain only floats and ints and no NaNs
                 if((all(isinstance(x, (float, int)) for x in fv[j])) and (not np.isnan(fv[j]).any())):
-                    #future = producer.send(output_topic, output)
+                    future = producer.send(output_topic, output)
                     try:
-                        # record_metadata = future.get(timeout = 10)
+                        record_metadata = future.get(timeout = 10)
                         LOGGER.info("[%s] Feature vector sent to topic: %s", ts_string, output_topic)
                     except Exception as e:
                         LOGGER.exception('Producer error: ' + str(e))
@@ -219,6 +219,6 @@ schedule.every().hour.do(RunBatchFusionOnce)
 RunBatchFusionOnce()
 
 # checking scheduler (TODO: is this the correct way to do it)
-# while True:
-#    schedule.run_pending()
-#    time.sleep(1)
+while True:
+    schedule.run_pending()
+    time.sleep(1)
