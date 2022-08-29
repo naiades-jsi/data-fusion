@@ -1,0 +1,95 @@
+{
+    "bucket": "carouge",
+    "every": "1h",
+    "fusion": [
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "device_1eff",
+            "tags": {
+                "null": null
+            },
+            "when": "-0h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "value"
+            ],
+            "measurement": "device_1eff",
+            "tags": {
+                "null": null
+            },
+            "when": "-1h",
+            "window": "1h"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "humidity"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-0h",
+            "window": "1d"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "precipitation"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-0h",
+            "window": "3d"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "illuminance"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-0h",
+            "window": "1d"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "temperature"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-0h",
+            "window": "1d"
+        },
+        {
+            "aggregate": "mean",
+            "fields": [
+                "temperature"
+            ],
+            "measurement": "weather_observed",
+            "tags": {
+                "null": null
+            },
+            "when": "-1d",
+            "window": "1d"
+        }
+    ],
+    "organisation": "naiades",
+    "startTime": "2022-08-29T17:19:01",
+    "stopTime": "2022-08-29T16:24:20",
+    "token": "ZykEIhhYe0KRjleAAjFX9LhEm_H7SeLiLe6Kc71f1452Lps7U6MECvOHw9UooSanWwm7SKqe0kTXDnOhoAMNNA==",
+    "url": "http://localhost:8086"
+}

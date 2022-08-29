@@ -1,5 +1,6 @@
-# HISTORY:
-#  * 2022/08/27 - This script becomes obsolete as environmental station ceases to send data.
+# DESCRIPTION:
+# Data fusion for Carouge use case; features based on SuisseMeteo data and not environmental
+# station.
 
 # includes
 from src.fusion.stream_fusion import streamFusion, batchFusion
@@ -55,65 +56,64 @@ for idx in range(8):
 
     # template for a particular device
     template = {
-        "aggregate":"mean",
+        "aggregate": "mean",
         "measurement": device_names[idx],
-        "fields":["value"],
-        "tags":{None: None},
-        "window":"1h",
-        "when":"-0h"
+        "fields": ["value"],
+        "tags": {None: None},
+        "window": "1h",
+        "when": "-0h"
     }
 
     # make copy of the template first (it's a valid)
     temp = copy.deepcopy(template)
     fusion.append(temp)
 
-    # last h value
+    # last value one day ago
     temp = copy.deepcopy(template)
     temp["when"] = "-1h"
     fusion.append(temp)
 
     # add current humidity
     temp = copy.deepcopy(template)
-    temp["measurement"] = "environmental_station"
-    temp["fields"] = ["relativeHumidity"]
+    temp["measurement"] = "weather_observed"
+    temp["fields"] = ["humidity"]
     temp["window"] = "1d"
     temp["when"] = "-0h"
     fusion.append(temp)
 
-    # add soil (humidity?) for last hour
+    # add precipitation for last 3 days
     temp = copy.deepcopy(template)
-    temp["measurement"] = "environmental_station"
-    temp["fields"] = ["soil"]
+    temp["measurement"] = "weather_observed"
+    temp["fields"] = ["precipitation"]
+    temp["window"] = "3d"
+    temp["when"] = "-0h"
+    fusion.append(temp)
+
+    # add illuminance for last day
+    temp = copy.deepcopy(template)
+    temp["measurement"] = "weather_observed"
+    temp["fields"] = ["illuminance"]
     temp["window"] = "1d"
     temp["when"] = "-0h"
     fusion.append(temp)
-    temp["when"] = "-1h"
-    fusion.append(temp)
 
-    # add current temperature
+    # add current daily temperature average
     temp = copy.deepcopy(template)
-    temp["measurement"] = "environmental_station"
+    temp["measurement"] = "weather_observed"
     temp["fields"] = ["temperature"]
     temp["window"] = "1d"
     temp["when"] = "-0h"
     fusion.append(temp)
 
-    # add current temperature (again?)
+     # add temperature average for last day
     temp = copy.deepcopy(template)
-    temp["measurement"] = "environmental_station"
+    temp["measurement"] = "weather_observed"
     temp["fields"] = ["temperature"]
     temp["window"] = "1d"
-    temp["when"] = "-0h"
+    temp["when"] = "-1d"
     fusion.append(temp)
 
-    #temp = copy.deepcopy(template)
-    #temp["measurement"] = 'flower_bed_' + str(idx + 1)
-    #temp["fields"] = ['soilTemperature']
-    #fusion.append(temp)
-
-    # this line makes no sense (!?)
-    temp = copy.deepcopy(template)
-
+    # append the current feature vector config to the list of fusions
     Fusions.append(fusion)
 
 # -------------------------------------------------------------
@@ -130,11 +130,11 @@ def RunBatchFusionOnce():
         # note to change the key, if needed
         config = {
             "token": secrets["influx_token"],
-            "url": "localhost:8086",
+            "url": "http://localhost:8086",
             "organisation": "naiades",
             "bucket": "carouge",
-            "startTime": "2022-08-01T00:00:00",
-            "stopTime": "2022-08-2T00:00:00",
+            "startTime": "2022-06-01T00:00:00",
+            "stopTime": "2022-06-30T00:00:00",
             "every": "1h",
             "fusion": Fusions[idx]
         }
@@ -146,21 +146,21 @@ def RunBatchFusionOnce():
         # updating stop time for batch fusion
         config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
         # generating JSON filename
-        file_json = open(f'{features_folder}/features_carouge_' + str(idx + 1) + '.json', 'r')
-        # reading features file
-        lines = file_json.readlines()
-        last_line = lines[-1]
-        #print(last_line)
-        #print(json.loads(last_line))
-        #print(idx)
-        #print(json.loads(last_line)['timestamp'])
-        tss = int(json.loads(last_line)['timestamp']/1000 + 60*60)
-        LOGGER.info("Obtaining last timestamp for features_carouge_%s: %d", str(idx + 1), tss)
-        # setting start time
-        config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:%M:%S")
+        try:
+            file_json = open(f'{features_folder}/features_carouge_sm_' + str(idx + 1) + '.json', 'r')
+            # reading features file
+            lines = file_json.readlines()
+            last_line = lines[-1]
+            tss = int(json.loads(last_line)['timestamp']/1000 + 60*60)
+            LOGGER.info("Obtaining last timestamp for features_carouge_%s: %d", str(idx + 1), tss)
+            # setting start time
+            config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:%M:%S")
+        except Exception as e:
+            LOGGER.info("Error reading features file - using default time (%s); probably does not exist: %s", config["startTime"], str(e))
+
 
         # dumping the actual config for this node into a file for further debugging
-        file_json = open(f'{config_folder}/config_carouge_' + str(idx + 1) + '.json', 'w+')
+        file_json = open(f'{config_folder}/config_carouge_sm_' + str(idx + 1) + '.json', 'w+')
         file_json.write(json.dumps(config, indent=4, sort_keys=True) )
         file_json.close()
 
@@ -172,12 +172,12 @@ def RunBatchFusionOnce():
         try:
             fv, t = sf2.buildFeatureVectors()
         except Exception as e:
-            LOGGER.error('Feature vector generation failed %s', str(e))
+            LOGGER.error('Feature vector generation failed: %s', str(e))
             update_outputs = False
 
         # if feature vector was successfully generated, append the data into the file
         if (update_outputs):
-            file_json = open(f'{features_folder}/features_carouge_' + str(idx + 1) + '.json', 'a+')
+            file_json = open(f'{features_folder}/features_carouge_sm_' + str(idx + 1) + '.json', 'a+')
             # go through the vector of timestamps and save the data
             # into a file
             for j in range(t.shape[0]):
@@ -200,9 +200,9 @@ def RunBatchFusionOnce():
                 output_topic = "features_carouge_flowerbed" + str(idx + 1)
                 # send data to Kafka producer only if it does contain only floats and ints and no NaNs
                 if((all(isinstance(x, (float, int)) for x in fv[j])) and (not np.isnan(fv[j]).any())):
-                    future = producer.send(output_topic, output)
+                    #future = producer.send(output_topic, output)
                     try:
-                        record_metadata = future.get(timeout = 10)
+                        # record_metadata = future.get(timeout = 10)
                         LOGGER.info("[%s] Feature vector sent to topic: %s", ts_string, output_topic)
                     except Exception as e:
                         LOGGER.exception('Producer error: ' + str(e))
@@ -219,6 +219,6 @@ schedule.every().hour.do(RunBatchFusionOnce)
 RunBatchFusionOnce()
 
 # checking scheduler (TODO: is this the correct way to do it)
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+# while True:
+#    schedule.run_pending()
+#    time.sleep(1)

@@ -78,12 +78,13 @@ def RunBatchFusionOnce():
     }
 
     today = datetime.datetime.today()
-    folder = 'features_data'
+
+    features_folder = 'features_data'
     config_folder = 'config_data'
 
     config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:00:00")
 
-    with open(f'{folder}/leakage_pressure_updated.json', 'a+')as file_json:
+    with open(f'{features_folder}/leakage_pressure_updated.json', 'a+')as file_json:
         try:
           lines = file_json.readlines()
           last_line = lines[-1]
@@ -94,7 +95,7 @@ def RunBatchFusionOnce():
     config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00")
     #print(config['startTime'])
 
-    file_json = open(f'{config_folder}/config_leakage_pressure_updated.json', 'w')
+    file_json = open(f'{config_folder}/config_leakage_pressure_updated.json', 'w+')
     file_json.write(json.dumps(config, indent=4, sort_keys=True) )
     file_json.close()
 
@@ -119,7 +120,7 @@ def RunBatchFusionOnce():
       fv[:, 1:4] = (fv[:,1:4] - 0.6) * 4 * 10.197
 
 
-      with open(f'{folder}/features_pressure_updated.json', 'a+') as file_json:
+      with open(f'{features_folder}/features_pressure_updated.json', 'a+') as file_json:
         for j in range(t.shape[0]):
             fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
 

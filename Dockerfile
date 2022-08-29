@@ -8,8 +8,8 @@ COPY ./requirements.txt /requirements.txt
 WORKDIR /
 RUN pip3 install -r requirements.txt
 COPY . /
-CMD ["python3", "index.NAIADES.alicante_forecasting.py"]
+# CMD ["python3", "index.NAIADES.alicante_forecasting.py"]
 # CMD ["python3", "index.NAIADES.alicante_features_raw.py"]
 # CMD ["python3", "index.NAIADES.alicante_level.py"]
 # CMD ["python3", "index.NAIADES.alicante_level_freq.py"]
-# CMD ["python3", "index.NAIADES.carouge_w.py"]
+# CMD ["python3", "index.NAIADES.carouge_sm.py"]

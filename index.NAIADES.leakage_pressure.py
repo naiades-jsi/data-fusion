@@ -78,13 +78,14 @@ def RunBatchFusionOnce():
     }
 
     today = datetime.datetime.today()
-    folder = 'features_data'
+    features_folder = 'features_data'
+    config_folder = 'config_data'
 
     config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:00:00")
 
     print(config['stopTime'] )
 
-    file_json = open(f'{folder}/features_pressure.json', 'r')
+    file_json = open(f'{features_folder}/features_pressure.json', 'r')
 
     lines = file_json.readlines()
     last_line = lines[-1]
@@ -94,7 +95,7 @@ def RunBatchFusionOnce():
 
     print(config['startTime'])
 
-    file_json = open(f'config.json', 'w')
+    file_json = open(f'{config_folder}/config_leakage_pressure.json', 'w')
     file_json.write(json.dumps(config, indent=4, sort_keys=True) )
     file_json.close()
 
@@ -123,7 +124,7 @@ def RunBatchFusionOnce():
 
 
 
-      file_json = open(f'{folder}/features_pressure.json', 'a')
+      file_json = open(f'{features_folder}/features_pressure.json', 'a')
       for j in range(t.shape[0]):
           fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
 
