@@ -1,5 +1,6 @@
-# HISTORY:
-#  * 2022/08/27 - This script becomes obsolete as environmental station ceases to send data.
+# DESCRIPTION:
+# Data fusion for Carouge use case; features based on SuisseMeteo data and not environmental
+# station.
 
 # includes
 from src.fusion.stream_fusion import streamFusion, batchFusion
@@ -146,21 +147,21 @@ def RunBatchFusionOnce():
         # updating stop time for batch fusion
         config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
         # generating JSON filename
-        file_json = open(f'{features_folder}/features_carouge_' + str(idx + 1) + '.json', 'r')
-        # reading features file
-        lines = file_json.readlines()
-        last_line = lines[-1]
-        #print(last_line)
-        #print(json.loads(last_line))
-        #print(idx)
-        #print(json.loads(last_line)['timestamp'])
-        tss = int(json.loads(last_line)['timestamp']/1000 + 60*60)
-        LOGGER.info("Obtaining last timestamp for features_carouge_%s: %d", str(idx + 1), tss)
-        # setting start time
-        config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:%M:%S")
+        try:
+            file_json = open(f'{features_folder}/features_carouge_sm_' + str(idx + 1) + '.json', 'r')
+            # reading features file
+            lines = file_json.readlines()
+            last_line = lines[-1]
+            tss = int(json.loads(last_line)['timestamp']/1000 + 60*60)
+            LOGGER.info("Obtaining last timestamp for features_carouge_%s: %d", str(idx + 1), tss)
+            # setting start time
+            config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:%M:%S")
+        except Exception as e:
+            LOGGER.info("Error reading features file - using default time (%s); probably does not exist: %s", config["startTime"], str(e))
+
 
         # dumping the actual config for this node into a file for further debugging
-        file_json = open(f'{config_folder}/config_carouge_' + str(idx + 1) + '.json', 'w+')
+        file_json = open(f'{config_folder}/config_carouge_sm_' + str(idx + 1) + '.json', 'w+')
         file_json.write(json.dumps(config, indent=4, sort_keys=True) )
         file_json.close()
 
@@ -177,7 +178,7 @@ def RunBatchFusionOnce():
 
         # if feature vector was successfully generated, append the data into the file
         if (update_outputs):
-            file_json = open(f'{features_folder}/features_carouge_' + str(idx + 1) + '.json', 'a+')
+            file_json = open(f'{features_folder}/features_carouge_sm_' + str(idx + 1) + '.json', 'a+')
             # go through the vector of timestamps and save the data
             # into a file
             for j in range(t.shape[0]):
@@ -202,8 +203,8 @@ def RunBatchFusionOnce():
                 if((all(isinstance(x, (float, int)) for x in fv[j])) and (not np.isnan(fv[j]).any())):
                     future = producer.send(output_topic, output)
                     try:
-                        record_metadata = future.get(timeout = 10)
-                        LOGGER.info("[%s] Feature vector sent to topic: %s", ts_string, output_topic)
+                        # record_metadata = future.get(timeout = 10)
+                        # LOGGER.info("[%s] Feature vector sent to topic: %s", ts_string, output_topic)
                     except Exception as e:
                         LOGGER.exception('Producer error: ' + str(e))
                 else:
@@ -219,6 +220,6 @@ schedule.every().hour.do(RunBatchFusionOnce)
 RunBatchFusionOnce()
 
 # checking scheduler (TODO: is this the correct way to do it)
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+# while True:
+#    schedule.run_pending()
+#    time.sleep(1)

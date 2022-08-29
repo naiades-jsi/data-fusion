@@ -137,9 +137,7 @@ def RunBatchFusionOnce():
     file_json.write(json.dumps(config, indent=4, sort_keys=True) )
     file_json.close()
 
-    #sf2 = batchFusion(config)
     sf2 = batchFusion(config)
-
 
     update_outputs = True
     try:
