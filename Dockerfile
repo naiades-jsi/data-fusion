@@ -12,4 +12,4 @@ COPY . /
 # CMD ["python3", "index.NAIADES.alicante_features_raw.py"]
 # CMD ["python3", "index.NAIADES.alicante_level.py"]
 # CMD ["python3", "index.NAIADES.alicante_level_freq.py"]
-# CMD ["python3", "index.NAIADES.carouge_sm.py"]
+CMD ["python3", "index.NAIADES.carouge_sm.py"]

@@ -133,8 +133,8 @@ def RunBatchFusionOnce():
             "url": "http://localhost:8086",
             "organisation": "naiades",
             "bucket": "carouge",
-            "startTime": "2021-06-01T00:00:00",
-            "stopTime": "2022-06-30T00:00:00",
+            "startTime": secrets["start_time"],
+            "stopTime": secrets["stop_time"],
             "every": "1h",
             "fusion": Fusions[idx]
         }
