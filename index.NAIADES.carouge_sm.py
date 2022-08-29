@@ -56,65 +56,64 @@ for idx in range(8):
 
     # template for a particular device
     template = {
-        "aggregate":"mean",
+        "aggregate": "mean",
         "measurement": device_names[idx],
-        "fields":["value"],
-        "tags":{None: None},
-        "window":"1h",
-        "when":"-0h"
+        "fields": ["value"],
+        "tags": {None: None},
+        "window": "1h",
+        "when": "-0h"
     }
 
     # make copy of the template first (it's a valid)
     temp = copy.deepcopy(template)
     fusion.append(temp)
 
-    # last h value
+    # last value one day ago
     temp = copy.deepcopy(template)
-    temp["when"] = "-1h"
+    temp["when"] = "-24h"
     fusion.append(temp)
 
     # add current humidity
     temp = copy.deepcopy(template)
-    temp["measurement"] = "environmental_station"
-    temp["fields"] = ["relativeHumidity"]
+    temp["measurement"] = "weather_observed"
+    temp["fields"] = ["humidity"]
     temp["window"] = "1d"
     temp["when"] = "-0h"
     fusion.append(temp)
 
-    # add soil (humidity?) for last hour
+    # add precipitation for last 3 days
     temp = copy.deepcopy(template)
-    temp["measurement"] = "environmental_station"
-    temp["fields"] = ["soil"]
+    temp["measurement"] = "weather_observed"
+    temp["fields"] = ["precipitation"]
+    temp["window"] = "3d"
+    temp["when"] = "-0h"
+    fusion.append(temp)
+
+    # add illuminance for last day
+    temp = copy.deepcopy(template)
+    temp["measurement"] = "weather_observed"
+    temp["fields"] = ["illuminance"]
     temp["window"] = "1d"
     temp["when"] = "-0h"
     fusion.append(temp)
-    temp["when"] = "-1h"
-    fusion.append(temp)
 
-    # add current temperature
+    # add current daily temperature average
     temp = copy.deepcopy(template)
-    temp["measurement"] = "environmental_station"
+    temp["measurement"] = "weather_observed"
     temp["fields"] = ["temperature"]
     temp["window"] = "1d"
     temp["when"] = "-0h"
     fusion.append(temp)
 
-    # add current temperature (again?)
+     # add temperature average for last day
     temp = copy.deepcopy(template)
-    temp["measurement"] = "environmental_station"
+    temp["measurement"] = "weather_observed"
     temp["fields"] = ["temperature"]
     temp["window"] = "1d"
-    temp["when"] = "-0h"
+    temp["when"] = "-1d"
     fusion.append(temp)
 
-    #temp = copy.deepcopy(template)
-    #temp["measurement"] = 'flower_bed_' + str(idx + 1)
-    #temp["fields"] = ['soilTemperature']
-    #fusion.append(temp)
-
-    # this line makes no sense (!?)
-    temp = copy.deepcopy(template)
-
+    # append the current feature vector config to the list of fusions
     Fusions.append(fusion)
 
 # -------------------------------------------------------------
@@ -134,8 +133,8 @@ def RunBatchFusionOnce():
             "url": "localhost:8086",
             "organisation": "naiades",
             "bucket": "carouge",
-            "startTime": "2022-08-01T00:00:00",
-            "stopTime": "2022-08-2T00:00:00",
+            "startTime": "2021-06-01T00:00:00",
+            "stopTime": "2021-06-30T00:00:00",
             "every": "1h",
             "fusion": Fusions[idx]
         }
