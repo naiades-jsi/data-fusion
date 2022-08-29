@@ -137,15 +137,14 @@ class batchFusion():
             fields = feature["fields"]
             tags = feature["tags"]
             window = feature["window"]
+
             try:
                 when = feature["when"]
             except:
                 when = 0
 
-            try:
+            if 'bucket' in feature:
                 self.bucket = feature['bucket']
-            except:
-                pass
 
             stop_time = self.stopTime
             if isinstance(stop_time, str):
@@ -205,27 +204,26 @@ class batchFusion():
                         feature_vector.append([np.nan])
                         times = feat["_time"][feat["_field"] == f].values
                         LOGGER.error('Missing value')
-
-                #fix unexual row lengths
-
-                row_lengths = []
-
-                for row in feature_vector:
-                    row_lengths.append(len(row))
-
-                max_length = max(row_lengths)
-
-                for i in range(len(feature_vector)):
-                    while len(feature_vector[i]) < max_length:
-                        feature_vector[i] = np.concatenate([feature_vector[i],[np.nan]])
-
-                feature_vector = np.array(feature_vector)
-
-                feature_vector = np.array(np.transpose(feature_vector))
-                return feature_vector, times
-
             else: # if feature vector is empty
                 raise BufferError('No data available for feature vector generation')
+
+        #fix unexual row lengths
+
+        row_lengths = []
+
+        for row in feature_vector:
+            row_lengths.append(len(row))
+
+        max_length = max(row_lengths)
+
+        for i in range(len(feature_vector)):
+            while len(feature_vector[i]) < max_length:
+                feature_vector[i] = np.concatenate([feature_vector[i],[np.nan]])
+
+        feature_vector = np.array(feature_vector)
+
+        feature_vector = np.array(np.transpose(feature_vector))
+        return feature_vector, times
 
     def save(self):
         pass

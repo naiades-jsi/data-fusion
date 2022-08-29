@@ -70,7 +70,7 @@ for idx in range(8):
 
     # last value one day ago
     temp = copy.deepcopy(template)
-    temp["when"] = "-24h"
+    temp["when"] = "-1h"
     fusion.append(temp)
 
     # add current humidity
@@ -130,11 +130,11 @@ def RunBatchFusionOnce():
         # note to change the key, if needed
         config = {
             "token": secrets["influx_token"],
-            "url": "localhost:8086",
+            "url": "http://localhost:8086",
             "organisation": "naiades",
             "bucket": "carouge",
-            "startTime": "2021-06-01T00:00:00",
-            "stopTime": "2021-06-30T00:00:00",
+            "startTime": "2022-06-01T00:00:00",
+            "stopTime": "2022-06-30T00:00:00",
             "every": "1h",
             "fusion": Fusions[idx]
         }
@@ -172,7 +172,7 @@ def RunBatchFusionOnce():
         try:
             fv, t = sf2.buildFeatureVectors()
         except Exception as e:
-            LOGGER.error('Feature vector generation failed %s', str(e))
+            LOGGER.error('Feature vector generation failed: %s', str(e))
             update_outputs = False
 
         # if feature vector was successfully generated, append the data into the file
@@ -200,10 +200,10 @@ def RunBatchFusionOnce():
                 output_topic = "features_carouge_flowerbed" + str(idx + 1)
                 # send data to Kafka producer only if it does contain only floats and ints and no NaNs
                 if((all(isinstance(x, (float, int)) for x in fv[j])) and (not np.isnan(fv[j]).any())):
-                    future = producer.send(output_topic, output)
+                    #future = producer.send(output_topic, output)
                     try:
                         # record_metadata = future.get(timeout = 10)
-                        # LOGGER.info("[%s] Feature vector sent to topic: %s", ts_string, output_topic)
+                        LOGGER.info("[%s] Feature vector sent to topic: %s", ts_string, output_topic)
                     except Exception as e:
                         LOGGER.exception('Producer error: ' + str(e))
                 else:
