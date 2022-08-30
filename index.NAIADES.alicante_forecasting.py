@@ -133,7 +133,7 @@ def RunBatchFusionOnce():
 
                 # generate outputs
                 output = {"timestamp": ts, "ftr_vector": list(tosend[j])}
-                output_topic = f'features_alicante_{location}_forecasting'
+                output_topic = f'features_alicante_{location}_flow_forecasting'
 
                 # only if last element is ok
                 if (not pd.isna(tosend[j][-1])):
