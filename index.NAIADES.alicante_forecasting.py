@@ -96,6 +96,7 @@ def RunBatchFusionOnce():
             last_line = lines[-1]
             # adding 30 minutes; why?
             tss = int(json.loads(last_line)['timestamp']/1000 + 30*60)
+            # TODO: Check if it is older than start time from config!
             config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00")
         except Exception as e:
             LOGGER.info("No old features file was found (%s), keeping config time (%s).",
