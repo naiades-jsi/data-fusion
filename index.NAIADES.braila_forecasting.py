@@ -24,7 +24,6 @@ logging.basicConfig(
 # import secrets
 with open("secrets.json", "r") as jsonfile:
     secrets = json.load(jsonfile)
-    print(secrets)
 
 # connecting to Kafka; TODO - put this into a config file
 producer = KafkaProducer(bootstrap_servers=secrets["bootstrap_servers"], value_serializer=lambda v: json.dumps(v).encode('utf-8'))
@@ -65,7 +64,7 @@ for m in measurements_analog:
         temp = copy.deepcopy(template)
         temp['when'] = f"-{(35-i)*20}m"
         fusion.append(temp)
-    fusions[m] = copy.deepcopy(fusion)
+    fusions.append(fusion)
 
 # -------------------------------------------------------------
 # Function definition part
