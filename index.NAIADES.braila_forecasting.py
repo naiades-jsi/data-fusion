@@ -1,5 +1,7 @@
-from src.fusion.stream_fusion import streamFusion, batchFusion
+# DESCRIPTION:
+# Data fusion for Braila consumption use case.
 
+# includes
 import pandas as pd
 import numpy as np
 import json
@@ -7,112 +9,161 @@ import copy
 import time
 import datetime
 import schedule
+import logging
 
 from kafka import KafkaProducer
 
-producer = KafkaProducer(bootstrap_servers="localhost:9092", value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+# project-based includes
+from src.fusion.stream_fusion import streamFusion, batchFusion
 
+# logger initialization
+LOGGER = logging.getLogger(__name__)
+logging.basicConfig(
+    format="%(asctime)s %(name)-12s %(levelname)-8s %(message)s", level=logging.INFO)
+
+# import secrets
+with open("secrets.json", "r") as jsonfile:
+    secrets = json.load(jsonfile)
+    print(secrets)
+
+# connecting to Kafka; TODO - put this into a config file
+producer = KafkaProducer(bootstrap_servers=secrets["bootstrap_servers"], value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+
+# generating fusions structure for all the devices
+LOGGER.info("Starting building configurations for fusion.")
+
+# -------------------------------------------------------------
+# CONFIG PART
+# -------------------------------------------------------------
+
+# definition of devices
 measurements_analog = [
-    'flow211106H360',
+    # 'flow211106H360', # this sensor is not working
     'flow211206H360',
     'flow211306H360',
     'flow318505H498'
-    ]
+]
 
+# template for an aggregate
 template = {
-            "aggregate":"mean",
-            "measurement":"braila",
-            "fields":["flow_rate_value"],
-            "tags":{None: None},
-            "window":"20m",
-            "when":"-0h"
-            }
+    "aggregate": "mean",
+    "measurement": "braila",
+    "fields": ["flow_rate_value"],
+    "tags": {None: None},
+    "window": "20m",
+    "when": "-0h"
+}
 
-
-fusions = {}
+# list of fusions
+fusions = []
 for m in measurements_analog:
+    # a single fusino
     fusion = []
+    # build a time series from 35 - 0 hours
     for i in range(36):
-      template['measurement'] = m
-      temp = copy.deepcopy(template)
-      temp['when'] = f"-{(35-i)*20}m"
-      fusion.append(temp)
+        template['measurement'] = m
+        temp = copy.deepcopy(template)
+        temp['when'] = f"-{(35-i)*20}m"
+        fusion.append(temp)
     fusions[m] = copy.deepcopy(fusion)
 
+# -------------------------------------------------------------
+# Function definition part
+# -------------------------------------------------------------
+
 def RunBatchFusionOnce():
+    """Create batch fusion for current nodes"""
+
+    # iterate through all the devices
     for location in measurements_analog:
-      today = datetime.datetime.today()
+        # template config for a fusion
+        config = {
+            "token": secrets["influx_token"],
+            "url": "http://localhost:8086",
+            "organisation": "naiades",
+            "bucket": "braila",
+            "startTime": secrets["start_time"],
+            "stopTime": secrets["stop_time"],
+            "every": "20m",
+            "fusion": fusions[location]
+        }
 
-      config = {
-          "token":"k_TK7JanSGbx9k7QClaPjarlhJSsh8oApCyQrs9GqfsyO3-GIDf_tJ79ckwrcA-K536Gvz8bxQhMXKuKYjDsgw==",
-          "url": "http://localhost:8086",
-          "organisation": "naiades",
-          "bucket": "braila",
-          "startTime":"2021-07-07T00:00:00",
-          "stopTime":"2021-07-13T00:00:00",
-          "every":"20m",
-          "fusion": fusions[location]
-      }
+        # folders for storing features and config data
+        features_folder = 'features_data'
+        config_folder = 'config_data'
 
-      today = datetime.datetime.today()
-      folder = 'features_data'
+        # set stop time according to latest timestamp
+        config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:00:00")
 
-      config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:00:00")
+        # read last successfull timestamp from features file
+        try:
+            file_json = open(f'{features_folder}/features_braila_{location}_forecasting.json', 'r')
+            lines = file_json.readlines()
+            last_line = lines[-1]
+            tss = int(json.loads(last_line)['timestamp']/1000 + 30*60)
+            startTime = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00")
 
-      file_json = open(f'{folder}/features_braila_{location}_forecasting.json', 'r')
+            # only use time from features file if bigger than the one from secrets
+            if startTime > config['startTime']:
+                config['startTime'] = startTime
+        except Exception as e:
+            LOGGER.info("Exception while reading features file: %s", str(e))
+            LOGGER.info("Using default timestamp: %s", config["startTime"])
 
-      lines = file_json.readlines()
-      last_line = lines[-1]
-      tss = int(json.loads(last_line)['timestamp']/1000 + 30*60)
+        # save curent config
+        file_json = open(f'{config_folder}/braila_{location}_forecasting_config.json', 'w+')
+        file_json.write(json.dumps(config, indent=4, sort_keys=True) )
+        file_json.close()
 
-      config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00")
+        # initiate the batch fusion
+        sf2 = batchFusion(config)
 
-      file_json = open(f'braila_{location}_forecasting_config.json', 'w')
-      file_json.write(json.dumps(config, indent=4, sort_keys=True) )
-      file_json.close()
+        update_outputs = True
+        try:
+            fv, t = sf2.buildFeatureVectors()
+        except Exception as e:
+            LOGGER.error('Feature vector generation failed: %s', str(e))
+            update_outputs = False
 
-      sf2 = batchFusion(config)
+        # if feature vector was successfully generated, append the data into the file
+        if (update_outputs):
+            # iterate through vector of timestamps
+            for j in range(t.shape[0]):
 
+                # generating timestamp and timestamp in readable form
+                ts = int(t[j].astype('uint64')/1000000)
+                ts_string = datetime.datetime.utcfromtimestamp(ts / 1000).strftime("%Y-%m-%dT%H:%M:%S")
 
-      update_outputs = True
-      try:
-        fv, t = sf2.buildFeatureVectors()
-      except:
-        print('Feature vector generation failed')
-        update_outputs = False
+                output = {"timestamp": ts, "ftr_vector": list(fv[j])}
+                output_topic = f'features_braila_{location}_forecasting'
 
-      if(update_outputs):
+                # only if one of the last five numbers in feature vectors is not NaN
+                # TODO: why is this OK???
+                if (not pd.isna(fv[j][-5:]).any()):
+                    # save data to features file
+                    with open(f'{features_folder}/features_braila_{location}_forecasting.json', 'a') as file_json:
+                        file_json.write((json.dumps(output) + '\n' ))
 
-        for j in range(t.shape[0]):
-            if(not pd.isna(fv[j][-5:]).any()):
-              fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
+                    # send data to kafka
+                    future = producer.send(output_topic, output)
 
-              #data is uploaded at different times - this ensures that FV's won't be sent if data hasn't been uploaded for one or more of the sensors
-              with open(f'{folder}/features_braila_{location}_forecasting.json', 'a') as file_json:
-                file_json.write((json.dumps(fv_line) + '\n' ))
+                    # check response from kafka
+                    try:
+                        record_metadata = future.get(timeout=10)
+                    except Exception as e:
+                        LOGGER.exception('Producer error: ' + str(e))
+                else:
+                    LOGGER.info("[%s] Feature vector contains NaN or non-int/float: %s: %s", ts_string, output_topic, json.dumps(output))
+# -------------------------------------------------------------
+# MAIN part of the fusion script
+# -------------------------------------------------------------
 
-              output = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
-              output_topic = f'features_braila_{location}_forecasting'
-              future = producer.send(output_topic, output)
-
-              try:
-                  record_metadata = future.get(timeout=10)
-              except Exception as e:
-                  print('Producer error: ' + str(e))
-
-#Do batch fusion once per hour
+# create scheduler
+LOGGER.info("Scheduling starting")
 schedule.every().hour.do(RunBatchFusionOnce)
-
-
-#print(schedule.get_jobs())
-now = datetime.datetime.now()
-
-current_time = now.strftime("%H:%M:%S")
-print("Current Time =", current_time)
-
 RunBatchFusionOnce()
-print("Component started successfully.")
-while True:
 
+# checking scheduler (TODO: is this the correct way to do it)
+while True:
     schedule.run_pending()
     time.sleep(1)
