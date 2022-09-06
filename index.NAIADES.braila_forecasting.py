@@ -154,6 +154,7 @@ def RunBatchFusionOnce():
                         LOGGER.exception('Producer error: ' + str(e))
                 else:
                     LOGGER.info("[%s] Feature vector contains NaN or non-int/float: %s: %s", ts_string, output_topic, json.dumps(output))
+
 # -------------------------------------------------------------
 # MAIN part of the fusion script
 # -------------------------------------------------------------
