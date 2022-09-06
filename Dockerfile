@@ -10,10 +10,10 @@ RUN pip3 install -r requirements.txt
 COPY . /
 
 # e3ailab/df_alicante_forecasting_ircai
-# CMD ["python3", "index.NAIADES.alicante_forecasting.py"]
+CMD ["python3", "index.NAIADES.alicante_forecasting.py"]
 
 # e3ailab/df_alicante_features_raw_ircai
-CMD ["python3", "index.NAIADES.alicante_features_raw.py"]
+# CMD ["python3", "index.NAIADES.alicante_features_raw.py"]
 
 # e3ailab/df_alicante_features_level_ircai -- is this really needed
 # CMD ["python3", "index.NAIADES.alicante_level.py"]
