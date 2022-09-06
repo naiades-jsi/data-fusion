@@ -98,8 +98,8 @@ def RunBatchFusionOnce():
         config_folder = 'config_data'
 
         # reading generated feature vectors for obtaining last successful timestamp
-        with open(f'{features_folder}/features_alicante_{location}_raw.json', 'r') as file_json:
-            try:
+        try:
+            with open(f'{features_folder}/features_alicante_{location}_raw.json', 'r') as file_json:
                 lines = file_json.readlines()
                 last_line = lines[-1]
                 if(location == 'salinity_EA005_21_conductivity'):
@@ -107,13 +107,12 @@ def RunBatchFusionOnce():
                 else:
                     shift = 10
                 tss = int(json.loads(last_line)['timestamp']/1000 + shift*60)
-            except Exception as e:
-                LOGGER.error("Exception: %s", str(e))
-                LOGGER.info("Setting up fake start timestamp")
-                tss = 1661119200 # 2022-08-22 00:00:00
+                config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:%M:00")
+        except Exception as e:
+            LOGGER.error("Exception: %s", str(e))
+            LOGGER.info("Keeping original start timestamp: %s", config["startTime"])
 
-        # setting up start and stop times
-        config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:%M:00")
+        # setting up stop times
         config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:00")
 
         LOGGER.info("Setting start and stop timest to: %s and %s", config['startTime'], config['stopTime'])
