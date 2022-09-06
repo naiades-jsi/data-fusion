@@ -54,7 +54,7 @@ template = {
 }
 
 # list of fusions
-fusions = []
+fusions = {}
 for m in measurements_analog:
     # a single fusino
     fusion = []
@@ -64,7 +64,7 @@ for m in measurements_analog:
         temp = copy.deepcopy(template)
         temp['when'] = f"-{(35-i)*20}m"
         fusion.append(temp)
-    fusions.append(fusion)
+    fusions[m] = copy.deepcopy(fusion)
 
 # -------------------------------------------------------------
 # Function definition part
