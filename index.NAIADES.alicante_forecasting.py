@@ -90,12 +90,17 @@ def RunBatchFusionOnce():
         config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:00:00")
 
         # reading last generating feature for obtaining last successful timestamp
-        file_json = open(f'{features_folder}/features_alicante_{location}_flow_forecasting.json', 'r')
-        lines = file_json.readlines()
-        last_line = lines[-1]
-        # adding 30 minutes; why?
-        tss = int(json.loads(last_line)['timestamp']/1000 + 30*60)
-        config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00")
+        try:
+            file_json = open(f'{features_folder}/features_alicante_{location}_flow_forecasting.json', 'r')
+            lines = file_json.readlines()
+            last_line = lines[-1]
+            # adding 30 minutes; why?
+            tss = int(json.loads(last_line)['timestamp']/1000 + 30*60)
+            config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00")
+        except Exception as e:
+            LOGGER.info("No old features file was found (%s), keeping config time (%s).",
+                f'{features_folder}/features_alicante_{location}_flow_forecasting.json',
+                secrets["start_time"])
 
         # writing back the config file
         # TODO: possible bug - we should write this down only if output is successfull
