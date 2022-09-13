@@ -149,6 +149,7 @@ def RunBatchFusionOnce():
                     # check response from kafka
                     try:
                         record_metadata = future.get(timeout=10)
+                        LOGGER.info("[%s] Feature vector send successfully to Kafka: %s", ts_string, output_topic)
                     except Exception as e:
                         LOGGER.exception('Producer error: ' + str(e))
                 else:

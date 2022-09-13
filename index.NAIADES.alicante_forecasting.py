@@ -143,22 +143,24 @@ def RunBatchFusionOnce():
                 output = {"timestamp": ts, "ftr_vector": list(tosend[j])}
                 output_topic = f'features_alicante_{location}_flow_forecasting'
 
-                # only if last element is ok
-                if (not pd.isna(tosend[j][-1])) and (not pd.isna(tosend[j][0]):
+                # only if first and last element are ok
+                if (not pd.isna(tosend[j][-1])) and (not pd.isna(tosend[j][0])):
                     # write feature vector to file
                     with open(f'{features_folder}/features_alicante_{location}_flow_forecasting.json', 'a') as file_json:
                         file_json.write((json.dumps(output) + '\n' ))
                         file_json.close()
 
                     # send to Kafka and check success of the result
-                    future = producer.send(output_topic, output)
+                    # future = producer.send(output_topic, output)
                     try:
-                        record_metadata = future.get(timeout = 10)
+                        #record_metadata = future.get(timeout = 10)
                         LOGGER.info("[%s] Feature vector sent to topic: %s", ts_string, output_topic)
                     except Exception as e:
                         LOGGER.exception('Producer error: ' + str(e))
                 else:
-                    LOGGER.info("[%s] Feature vector contains NaN or non-int/float: %s: %s", ts_string, output_topic, json.dumps(output))
+                    # count nans
+                    number_of_nans = pd.isna(tosend[j]).sum()
+                    LOGGER.info("[%s] Feature vector contains NaN or non-int/float: %s: %d", ts_string, output_topic, number_of_nans)
 
 
 # MAIN part of the program -------------------------------
