@@ -162,7 +162,7 @@ def RunBatchFusionOnce():
 # MAIN part of the program -------------------------------
 
 # create hourly scheduler
-schedule.every().hour.do(RunBatchFusionOnce)
+schedule.every(1).hour.at(":10").do(RunBatchFusionOnce)
 RunBatchFusionOnce()
 
 LOGGER.info('Component started successfully.')
