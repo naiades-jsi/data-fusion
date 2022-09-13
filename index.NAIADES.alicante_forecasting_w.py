@@ -128,7 +128,10 @@ def RunBatchFusionOnce():
         last_line = lines[-1]
         # adding 30 minutes; why?
         tss = int(json.loads(last_line)['timestamp']/1000 + 30 * 60)
-        config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00")
+        startTime = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00")
+
+        if startTime > config['startTime']:
+            config['startTime'] = startTime
 
         # writing back the config file
         # TODO: possible bug - we should write this down only if output is successfull
