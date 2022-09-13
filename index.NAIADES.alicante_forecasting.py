@@ -144,7 +144,7 @@ def RunBatchFusionOnce():
                 output_topic = f'features_alicante_{location}_flow_forecasting'
 
                 # only if last element is ok
-                if (not pd.isna(tosend[j][-1])):
+                if (not pd.isna(tosend[j][-1])) and (not pd.isna(tosend[j][0]):
                     # write feature vector to file
                     with open(f'{features_folder}/features_alicante_{location}_flow_forecasting.json', 'a') as file_json:
                         file_json.write((json.dumps(output) + '\n' ))
