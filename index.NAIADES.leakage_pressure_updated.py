@@ -61,13 +61,13 @@ for m in measurements_analog:
         if(m == 'flow318505H498'):
             temp['window'] = '4h'
         else:
-            temp['window'] = '1h'
+            temp['window'] = '4h'
         temp['when'] = f'-{i}h'
         fusion.append(temp)
 
 # update template for pressure
 template['fields'] = ['value']
-template['window'] = '1h'
+template['window'] = '4h'
 
 # iterate through pressure sensors
 for m in measurements_presure:
