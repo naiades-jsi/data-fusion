@@ -165,10 +165,14 @@ def RunBatchFusionOnce():
             if((all(isinstance(x, (float, int)) for x in last_values)) and (not np.isnan(last_values).any())):
                 future = producer.send(output_topic, output)
 
-            try:
-                record_metadata = future.get(timeout=10)
-            except Exception as e:
-                LOGGER.error('Producer error: ' + str(e))
+                try:
+                    record_metadata = future.get(timeout=10)
+                    LOGGER.info("Feature vector successfully sent: %s", output_topic)
+                except Exception as e:
+                    LOGGER.error('Producer error: ' + str(e))
+            else:
+                LOGGER.error("Feature vector not successfully generated: %s", json.dumps(output))
+
 
 # schedule batch once per day
 schedule.every().day.at("09:00").do(RunBatchFusionOnce)
