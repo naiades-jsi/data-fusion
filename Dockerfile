@@ -10,7 +10,7 @@ RUN pip3 install -r requirements.txt
 COPY . /
 
 # e3ailab/df_alicante_forecasting_ircai
-CMD ["python3", "index.NAIADES.alicante_forecasting.py"]
+# CMD ["python3", "index.NAIADES.alicante_forecasting.py"]
 
 # e3ailab/df_alicante_forecasting_w_ircai
 # CMD ["python3", "index.NAIADES.alicante_forecasting_w.py"]
@@ -18,11 +18,8 @@ CMD ["python3", "index.NAIADES.alicante_forecasting.py"]
 # e3ailab/df_alicante_features_raw_ircai
 # CMD ["python3", "index.NAIADES.alicante_features_raw.py"]
 
-# e3ailab/df_alicante_features_level_ircai -- is this really needed
-# CMD ["python3", "index.NAIADES.alicante_level.py"]
-
-# e3ailab/df_alicante_level_freq_ircai -- is this really needed
-# CMD ["python3", "index.NAIADES.alicante_level_freq.py"]
+# e3ailab/df_alicante_level_frequency_ircai
+CMD ["python3", "index.NAIADES.alicante_level_frequency.py"]
 
 # e3ailab/df_carouge_sm_ircai
 # CMD ["python3", "index.NAIADES.carouge_sm.py"]
