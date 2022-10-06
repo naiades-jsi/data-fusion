@@ -139,7 +139,7 @@ def RunBatchFusionOnce():
                 else:
                     # count nans
                     number_of_nans = pd.isna(fv[j]).sum()
-                    LOGGER.info("[%s] Feature vector contains NaN or non-int/float: %s: %d", ts_string, output_topic, number_of_nans)¸
+                    LOGGER.info("[%s] Feature vector contains NaN or non-int/float: %s: %d", ts_string, output_topic, number_of_nans)
 
 
 # MAIN part of the program -------------------------------
