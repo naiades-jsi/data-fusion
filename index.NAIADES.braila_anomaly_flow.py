@@ -110,40 +110,47 @@ def RunBatchFusionOnce():
             LOGGER.error('Feature vector generation failed %s', str(e))
             update_outputs = False
 
-        if(update_outputs):
-
+        # if feature vector was successfully generated, append the data into the file
+        # and send it to Kafka
+        if (update_outputs):
+            # iterate over the feature vectors
             for j in range(t.shape[0]):
-                if(not np.isnan(fv[j]).any()):
-                    fv_line = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
+                # if feature vector is OK
+                if (not np.isnan(fv[j]).any()):
+                    # generating timestamp and timestamp in readable form
+                    ts = int(t[j].astype('uint64')/1000000)
+                    ts_string = datetime.datetime.utcfromtimestamp(ts / 1000).strftime("%Y-%m-%dT%H:%M:%S")
 
-                    #data is uploaded at different times - this ensures that FV's won't be sent if data hasn't been uploaded for one or more of the sensors
-                    with open(f'{folder}/features_braila_{location}_anomaly.json', 'a') as file_json:
-                        file_json.write((json.dumps(fv_line) + '\n' ))
-
-
-            for j in range(t.shape[0]):
-                if(not np.isnan(fv[j]).any()):
-                    output = {"timestamp":int(t[j].astype('uint64')/1000000), "ftr_vector":list(fv[j])}
+                    # generate outputs
+                    output = {"timestamp": ts, "ftr_vector":list(fv[j])}
                     output_topic = f'features_braila_{location}_anomaly'
-                    future = producer.send(output_topic, output)
 
+                    # saving feature vector to file
+                    with open(f'{features_folder}/features_braila_{location}_anomaly.json', 'a') as file_json:
+                        file_json.write((json.dumps(output) + '\n' ))
+
+                    # sending feature vector to Kafka
+                    future = producer.send(output_topic, output)
                     try:
                         record_metadata = future.get(timeout=10)
+                        LOGGER.info("[%s] Feature vector sent to topic: %s", ts_string, output_topic)
                     except Exception as e:
-                        print('Producer error: ' + str(e))
+                        LOGGER.exception('Producer error: ' + str(e))
+                else:
+                    # count nans
+                    number_of_nans = pd.isna(fv[j]).sum()
+                    LOGGER.info("[%s] Feature vector contains NaN or non-int/float: %s: %d", ts_string, output_topic, number_of_nans)¸
 
-#Do batch fusion once per hour
+
+# MAIN part of the program -------------------------------
+
+# create hourly scheduler
 schedule.every().hour.do(RunBatchFusionOnce)
-
-
-#print(schedule.get_jobs())
-now = datetime.datetime.now()
-
-current_time = now.strftime("%H:%M:%S")
-print("Current Time =", current_time)
-
 RunBatchFusionOnce()
-while True:
 
+LOGGER.info('Component started successfully.')
+
+# checking scheduler
+while True:
     schedule.run_pending()
     time.sleep(1)
