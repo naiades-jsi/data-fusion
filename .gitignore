@@ -9,6 +9,7 @@ __pycache__/
 .src/fusion/__pycache__/
 
 secrets_carouge.json
+secrets.json
 
 *.ipynb
 *.bat

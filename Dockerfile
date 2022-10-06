@@ -18,14 +18,15 @@ COPY . /
 # e3ailab/df_alicante_features_raw_ircai
 # CMD ["python3", "index.NAIADES.alicante_features_raw.py"]
 
-# e3ailab/df_alicante_level_frequency_ircai
-CMD ["python3", "index.NAIADES.alicante_level_frequency.py"]
-
 # e3ailab/df_carouge_sm_ircai
 # CMD ["python3", "index.NAIADES.carouge_sm.py"]
 
 # e3ailab/df_braila_forecasting_ircai
-# CMD ["python3", "index.NAIADES.braila_forecasting.py"]
+CMD ["python3", "index.NAIADES.braila_forecasting.py"]
 
 # e3ailab/df_braila_leakage_approximate_ircai
 # CMD ["python3", "index.NAIADES.leakage_pressure_updated.py"]
+
+# OBSOLETE: e3ailab/df_alicante_level_frequency_ircai
+# CMD ["python3", "index.NAIADES.alicante_level_frequency.py"]
+
