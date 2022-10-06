@@ -22,7 +22,14 @@ COPY . /
 # CMD ["python3", "index.NAIADES.carouge_sm.py"]
 
 # e3ailab/df_braila_forecasting_ircai
-CMD ["python3", "index.NAIADES.braila_forecasting.py"]
+# CMD ["python3", "index.NAIADES.braila_forecasting.py"]
+
+# e3ailab/df_braila_anomaly_flow_ircai
+CMD ["python3", "index.NAIADES.braila_anomaly_flow.py"]
+
+# e3ailab/df_braila_anomaly_pressure_ircai
+# CMD ["python3", "index.NAIADES.braila_anomaly_pressure.py"]
+
 
 # e3ailab/df_braila_leakage_approximate_ircai
 # CMD ["python3", "index.NAIADES.leakage_pressure_updated.py"]
