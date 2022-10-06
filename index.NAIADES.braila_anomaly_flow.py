@@ -84,28 +84,30 @@ def RunBatchFusionOnce():
             lines = file_json.readlines()
             last_line = lines[-1]
             tss = int(json.loads(last_line)['timestamp']/1000 + 5*60)
-            config['startTime'] = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00")
+            # only change start time if later than the one in the config
+            startTime = datetime.datetime.utcfromtimestamp(tss).strftime("%Y-%m-%dT%H:00:00")
+            if startTime > config['startTime']:
+                config['startTime'] = startTime
         except:
             LOGGER.info("No old features file was found (%s), keeping config time (%s).",
                 f'{features_folder}/features_alicante_{location}_flow_forecasting.json',
                 secrets["start_time"])
 
-
-        print(config['startTime'])
-
+        # writing back the config file
+        # TODO: possible bug - we should write this down only if output is successfull
         file_json = open(f'{config_folder}/braila_{location}_night_anomaly_config.json', 'w')
         file_json.write(json.dumps(config, indent=4, sort_keys=True) )
         file_json.close()
 
-        #sf2 = batchFusion(config)
+        # initiate the batch fusion
         sf2 = batchFusion(config)
 
-
+        # get outputs if possible
         update_outputs = True
         try:
             fv, t = sf2.buildFeatureVectors()
-        except:
-            print('Feature vector generation failed')
+        except Exception as e:
+            LOGGER.error('Feature vector generation failed %s', str(e))
             update_outputs = False
 
         if(update_outputs):
