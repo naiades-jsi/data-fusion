@@ -6,6 +6,7 @@ import copy
 import time
 import datetime
 import schedule
+import logging
 
 from kafka import KafkaProducer
 
