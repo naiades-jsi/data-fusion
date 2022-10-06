@@ -30,7 +30,6 @@ COPY . /
 # e3ailab/df_braila_anomaly_pressure_ircai
 CMD ["python3", "index.NAIADES.braila_anomaly_pressure.py"]
 
-
 # e3ailab/df_braila_leakage_approximate_ircai
 # CMD ["python3", "index.NAIADES.leakage_pressure_updated.py"]
 
