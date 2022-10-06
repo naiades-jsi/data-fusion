@@ -138,11 +138,10 @@ def RunBatchFusionOnce():
                             LOGGER.info("[%s] Feature vector sent to topic: %s", ts_string, output_topic)
                         except Exception as e:
                             LOGGER.exception('Producer error: ' + str(e))
-                    else:
-                        # count nans
-                        number_of_nans = pd.isna(fv[j]).sum()
-                        LOGGER.info("[%s] Feature vector contains NaN or non-int/float: %s: %d", ts_string, output_topic, number_of_nans)
-
+                else:
+                    # count nans
+                    number_of_nans = pd.isna(fv[j]).sum()
+                    LOGGER.info("[%s] Feature vector contains NaN or non-int/float: %s: %d", ts_string, output_topic, number_of_nans)
 
 # MAIN part of the program -------------------------------
 
