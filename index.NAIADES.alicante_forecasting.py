@@ -80,7 +80,7 @@ def RunBatchFusionOnce():
             "bucket": "alicante",
             "startTime": secrets["start_time"],
             "stopTime": secrets["stop_time"],
-            "every": "30m",
+            "every": "3h",
             "fusion": fusions[location]
         }
 
