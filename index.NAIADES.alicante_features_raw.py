@@ -21,7 +21,6 @@ logging.basicConfig(
 # import secrets
 with open("secrets.json", "r") as jsonfile:
     secrets = json.load(jsonfile)
-    print(secrets)
 
 # starting Kafka producer
 producer = KafkaProducer(bootstrap_servers="localhost:9092", value_serializer=lambda v: json.dumps(v).encode('utf-8'))
@@ -115,7 +114,7 @@ def RunBatchFusionOnce():
         # setting up stop times
         config['stopTime'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:00")
 
-        LOGGER.info("Setting start and stop timest to: %s and %s", config['startTime'], config['stopTime'])
+        LOGGER.info("Setting start and stop times to: %s and %s", config['startTime'], config['stopTime'])
 
         # writing back the config file
         file_json = open(f'{config_folder}/alicante_{location}_raw_config.json', 'w')
