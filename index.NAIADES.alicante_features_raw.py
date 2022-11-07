@@ -11,7 +11,7 @@ import logging
 from kafka import KafkaProducer
 
 # project-based includes
-from src.fusion.stream_fusion import streamFusion, batchFusion
+from src.fusion.batch_fusion import BatchFusion
 
 # logger initialization
 LOGGER = logging.getLogger(__name__)
@@ -122,7 +122,7 @@ def RunBatchFusionOnce():
         file_json.close()
 
         # initiate the batch fusion
-        sf2 = batchFusion(config)
+        sf2 = BatchFusion(config)
 
         # get outputs if possible
         update_outputs = True
