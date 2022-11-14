@@ -17,7 +17,7 @@ import schedule
 import numpy as np
 
 # import data fusion specific librarires
-from src.fusion.stream_fusion import batchFusion
+from src.fusion.batch_fusion import BatchFusion
 
 # logger initialization
 LOGGER = logging.getLogger(__name__)
@@ -109,7 +109,7 @@ class TimeseriesDataFusionInstance():
             # obtain last successful timestamp
 
             # initiate the batch fusion
-            batch_fusion = batchFusion(fusion)
+            batch_fusion = BatchFusion(fusion)
 
             update_outputs = True
             try:
