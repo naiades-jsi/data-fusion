@@ -2,10 +2,12 @@ from src.data_base.query_data import QueryFromDB
 from .agregate import Agregate
 
 from datetime import datetime
-import time 
+import time
 
 class AgregateQuery(Agregate):
-    # TODO test if works correctly
+    """
+    Aggreagte the data from the database (InfluxDB).
+    """
     def __init__(self, token, url, organisation, bucket):
         super().__init__(token, url, organisation, bucket)
         self.queryDB = QueryFromDB(self.token, self.url, self.organisation, self.bucket)
@@ -17,9 +19,9 @@ class AgregateQuery(Agregate):
 
         query_str = self._build_query(
             start_time = start_time,
-            stop_time = stop_time, 
-            measurement = measurement, 
-            fields = fields, 
+            stop_time = stop_time,
+            measurement = measurement,
+            fields = fields,
             tags = tags
         )
 
@@ -28,15 +30,15 @@ class AgregateQuery(Agregate):
         return self.queryDB.query_df(query_str)
 
     def agregate_now(self, agr:str = 'mean', every:str = '5m', window:str = '5m', start_time = None, stop_time = '-0m', measurement = '', fields = [], tags = {None: None}):
-        # set offset so agregate is calculated from now 
+        # set offset so agregate is calculated from now
         if start_time is None:
             start_time = '-' + window
 
         query_str = self._build_query(
             start_time = start_time,
-            stop_time = stop_time, 
-            measurement = measurement, 
-            fields = fields, 
+            stop_time = stop_time,
+            measurement = measurement,
+            fields = fields,
             tags = tags
         )
 
@@ -45,16 +47,16 @@ class AgregateQuery(Agregate):
         return self.queryDB.query_df(query_str) """
 
     def agregate_time(self, agr:str = 'mean', every:str = '5m', window:str = '5m', start_time = None, stop_time = '-0m', shift = '0m', offset:int=0, measurement = '', fields = [], tags = {None: None}):
-        # set offset so agregate is calculated from now 
+        # set offset so agregate is calculated from now
         if isinstance(every, int):
             every = str(every) + 'ms'
-            
+
         query_str = self._build_query(
             start_time = start_time,
-            stop_time = stop_time, 
+            stop_time = stop_time,
             shift = shift,
             measurement = measurement,
-            fields = fields, 
+            fields = fields,
             tags = tags
         )
 

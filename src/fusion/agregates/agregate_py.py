@@ -4,6 +4,10 @@ from .agregate import Agregate
 import pandas as pd
 
 class AgregatePy(Agregate):
+    """
+    Create aggregates with Pandas in Python.
+    """
+
     # agregates calculated with python
     def __init__(self, token, url, organisation, bucket):
         super().__init__(token, url, organisation, bucket)
@@ -11,8 +15,6 @@ class AgregatePy(Agregate):
 
     def customAggregate(self):
         result = None
-
-
         return result
 
     def agregate_rolling(self, agr='mean', every:str = '5m', window:str = '5min',  start_time = None, stop_time = '-0h', measurement = '', fields = [], tags = {None: None}):
@@ -21,12 +23,12 @@ class AgregatePy(Agregate):
 
         query_str = self._build_query(
             start_time = start_time,
-            stop_time = stop_time, 
-            measurement = measurement, 
-            fields = fields, 
+            stop_time = stop_time,
+            measurement = measurement,
+            fields = fields,
             tags = tags
-            )
-        
+        )
+
         df = self.queryDB.query_df(query_str)
         #return df
         #TODO different agregates
@@ -58,13 +60,13 @@ class AgregatePy(Agregate):
             start_time = start_time,
             stop_time = stop_time,
             shift = shift,
-            measurement = measurement, 
-            fields = fields, 
+            measurement = measurement,
+            fields = fields,
             tags = tags
             )
 
         df = self.queryDB.query_df(query_str)
-        _time = df['_time'].iloc[-1] 
+        _time = df['_time'].iloc[-1]
 
         if agr == 'mean':
             df = df.mean()
@@ -103,6 +105,6 @@ class AgregatePy(Agregate):
             df['_time'] = _time
             return df
 
-        
+
     def saveToDB(self):
         pass
