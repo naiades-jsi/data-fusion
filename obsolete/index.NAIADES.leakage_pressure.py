@@ -104,7 +104,7 @@ def RunBatchFusionOnce():
 
     update_outputs = True
     try:
-      fv, t = sf2.buildFeatureVectors()
+      fv, t = sf2.build_feature_vectors()
     except:
       print('Feature vector generation failed')
       update_outputs = False

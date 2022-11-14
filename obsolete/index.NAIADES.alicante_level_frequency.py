@@ -89,7 +89,7 @@ def RunBatchFusionOnce():
 
     update_outputs = True
     try:
-        fv, t = sf2.buildFeatureVectors()
+        fv, t = sf2.build_feature_vectors()
         print(f'{len(fv)}/{len(t)} feature vectors generated', flush = True)
     except:
         print('Feature vector generation failed')

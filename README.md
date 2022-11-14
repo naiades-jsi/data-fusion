@@ -83,7 +83,7 @@ List of aggregates: these aggregates are directly Influx aggregates.
 from src.fusion.stream_fusion import batchFusion
 config = ...
 sf = batchFusion(config)
-l, t = sf.buildFeatureVectors()
+l, t = sf.build_feature_vectors()
 # t - vector of times
 # l - matrix of feature values
 ```

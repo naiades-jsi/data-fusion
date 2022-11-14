@@ -1,12 +1,10 @@
 # imports
+import logging
 import numpy as np
 import pandas as pd
-import logging
-from kafka import KafkaConsumer
 
 # project imports
 from .aggregates.aggregate_query import AggregateQuery
-from .aggregates.aggregate_py import AggregatePy
 from .time_parser import TimeParser
 
 # logger initialization
@@ -34,7 +32,7 @@ class BatchFusion():
 
         self.aggregate = AggregateQuery(self.token, self.url, self.organisation, self.bucket)
 
-    def buildFeatureVectors(self):
+    def build_feature_vectors(self):
         """
         Build feature vectors for all time windows.
 
@@ -91,7 +89,7 @@ class BatchFusion():
 
             start_time = time_parser.parseToInt(start_time) + when_time
 
-            start_time = str(int((start_time - offset_time )/ every_time) * every_time - window_time) + 'ms'
+            start_time = str(int((start_time - offset_time) / every_time) * every_time - window_time) + 'ms'
 
             #Error here - cannot query empty range (if start_time < stop_time ?)
             feat = self.aggregate.aggregate_time(
@@ -100,7 +98,7 @@ class BatchFusion():
                 window=window,
                 start_time=start_time,
                 stop_time=stop_time,
-                shift = '-' + when,
+                shift='-' + when,
                 offset=offset_time,
                 measurement=measurement,
                 fields=fields,
@@ -110,19 +108,19 @@ class BatchFusion():
             feat = feat.drop_duplicates(subset=['_stop'], keep='first')
             feat = feat.drop_duplicates(subset=['_start'], keep='last')
 
-            if (not(feat.empty)):
+            if not feat.empty:
                 if (feat['_time'].iloc[-1] - feat['_time'].iloc[-2]) < pd.Timedelta(1, unit='s'):
-                    feat.drop(feat.tail(1).index,inplace=True)
+                    feat.drop(feat.tail(1).index, inplace=True)
                 #print(feat['_time'])
 
                 for f in fields:
                     try:
-                        feature_vector.append( feat["_value"][feat["_field"] == f].values )
+                        feature_vector.append(feat["_value"][feat["_field"] == f].values)
                         times = feat["_time"][feat["_field"] == f].values
-                    except Exception as e:
+                    except Exception as exception_missing_value:
                         feature_vector.append([np.nan])
                         times = feat["_time"][feat["_field"] == f].values
-                        LOGGER.error('Missing value')
+                        LOGGER.error('Missing value: %s', str(exception_missing_value))
             else: # if feature vector is empty
                 raise BufferError('No data available for feature vector generation')
 
@@ -137,7 +135,7 @@ class BatchFusion():
 
         for i in range(len(feature_vector)):
             while len(feature_vector[i]) < max_length:
-                feature_vector[i] = np.concatenate([feature_vector[i],[np.nan]])
+                feature_vector[i] = np.concatenate([feature_vector[i], [np.nan]])
 
         feature_vector = np.array(feature_vector)
 

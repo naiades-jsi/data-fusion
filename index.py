@@ -113,7 +113,7 @@ class TimeseriesDataFusionInstance():
 
             update_outputs = True
             try:
-                feature_vector, timestamps = batch_fusion.buildFeatureVectors()
+                feature_vector, timestamps = batch_fusion.build_feature_vectors()
             except Exception as no_vector_exception:
                 LOGGER.error("Error while building feature vectors: %s", str(no_vector_exception))
                 update_outputs = False
