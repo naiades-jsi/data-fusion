@@ -5,7 +5,7 @@ from urllib3 import Retry
 
 class QueryFromDB():
     # defined functions to crated usefull querys
-    # TODO test if all querys work 
+    # TODO test if all querys work
 
     def __init__(self, token:str='', url:str='', organisation:str='', bucket:str=''):
         self.token = token
@@ -49,15 +49,15 @@ class QueryFromDB():
         # TODO
         query = query + '|> group(columns:["_field"])'
         return query
-    
+
     def filter_query(self, query: str = '', measurement: str = None, fields:list = None, tags:dict = {None:None}):
-        
+
         # TODO may need some improvementst (check)
 
         filter_q = '|> filter(fn: (r) => '
         if measurement != None:
             filter_q = filter_q + f'r._measurement == "{measurement}"'
-        
+
         if fields != None:
             if measurement != None:
                 filter_q = filter_q + ' and ('
@@ -110,7 +110,7 @@ class QueryFromDB():
         query = query + f'|> duplicate(column: "{column}", as: "{to}")'
         return query
 
-    def agregate(self, query: str = '', agr:str = 'mean', every:str = '5m', period:str = '5m', offset:str='0m', timeSrc:str="_stop", timeDst:str="_time", createEmpty:str= 'true' ):
+    def aggregate(self, query: str = '', agr:str = 'mean', every:str = '5m', period:str = '5m', offset:str='0m', timeSrc:str="_stop", timeDst:str="_time", createEmpty:str= 'true' ):
         if (offset == '0m') and (every == period):
             query = query + f'|> aggregateWindow(every: {every}, fn: {agr}, timeSrc: "{timeSrc}", timeDst: "{timeDst}", createEmpty: {createEmpty} )'
         else:
@@ -119,7 +119,7 @@ class QueryFromDB():
             query = self.duplicate(query, timeSrc, timeDst)
 
         return query
-    
+
     def shift_time(self, query: str = '', shift = '0m'):
         query = query + f'|> timeShift(duration: {shift})'
 

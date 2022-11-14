@@ -1,5 +1,5 @@
-from .agregates.agregate_query import AgregateQuery
-from .agregates.agregate_py import AgregatePy
+from .aggregates.aggregate_query import AggregateQuery
+from .aggregates.aggregate_py import AggregatePy
 
 from .time_parser import TimeParser
 
@@ -24,7 +24,7 @@ class StreamFusion():
         self.bucket = config["bucket"]
         self.fusion = config["fusion"]
 
-        self.agregate = AgregateQuery(self.token, self.url, self.organisation, self.bucket)
+        self.aggregate = AggregateQuery(self.token, self.url, self.organisation, self.bucket)
 
     def fuildFeatuureVectorKafka(self, topics, bootstrap_server):
         consumer = KafkaConsumer(bootstrap_servers=bootstrap_server)
@@ -66,7 +66,7 @@ class StreamFusion():
                 pass
 
             if what == 'python':
-                feat = AgregatePy(self.token, self.url, self.organisation, self.bucket).agregate_time(
+                feat = AggregatePy(self.token, self.url, self.organisation, self.bucket).aggregate_time(
                     agr=aggregate,
                     every=window,
                     window=window,
@@ -79,7 +79,7 @@ class StreamFusion():
                     tags=tags
                 )
             else:
-                feat = self.agregate.agregate_time(
+                feat = self.aggregate.aggregate_time(
                     agr=aggregate,
                     every=window,
                     window=window,

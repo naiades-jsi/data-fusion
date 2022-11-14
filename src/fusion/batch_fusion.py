@@ -5,8 +5,8 @@ import logging
 from kafka import KafkaConsumer
 
 # project imports
-from .agregates.agregate_query import AgregateQuery
-from .agregates.agregate_py import AgregatePy
+from .aggregates.aggregate_query import AggregateQuery
+from .aggregates.aggregate_py import AggregatePy
 from .time_parser import TimeParser
 
 # logger initialization
@@ -32,7 +32,7 @@ class BatchFusion():
 
         self.every = config["every"]
 
-        self.agregate = AgregateQuery(self.token, self.url, self.organisation, self.bucket)
+        self.aggregate = AggregateQuery(self.token, self.url, self.organisation, self.bucket)
 
     def buildFeatureVectors(self):
         """
@@ -94,7 +94,7 @@ class BatchFusion():
             start_time = str(int((start_time - offset_time )/ every_time) * every_time - window_time) + 'ms'
 
             #Error here - cannot query empty range (if start_time < stop_time ?)
-            feat = self.agregate.agregate_time(
+            feat = self.aggregate.aggregate_time(
                 agr=aggregate,
                 every=every,
                 window=window,
